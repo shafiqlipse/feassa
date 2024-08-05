@@ -1,0 +1,106 @@
+{% extends "dashboard/dashboard.html" %} {% load static %} {% block title %}Add
+Team{% endblock %} {% block content %}
+<div class="teaming">
+  <h1>Add Team</h1>
+
+  <form
+    action=""
+    method="POST"
+    class="form-control formiks"
+    enctype="multipart/form-data"
+    id="teamform"
+  >
+    {% csrf_token %}
+    <div class="fields flex">
+      <div class="left">
+        <div class="field flex">
+          <label>{{ form.school.label}} </label>{{form.school}}
+        </div>
+        <div class="field flex">
+          <label>{{ form.gender.label}} </label>{{form.gender}}
+        </div>
+
+        <div class="field flex">
+          <label>{{ form.sport.label}} </label>{{form.sport}}
+        </div>
+      </div>
+      <div class="other-fields">
+        <div class="field flex">
+          <label>{{ form.athletes.label}} </label>
+          <div id="id_athletes" class="form-control athletes"></div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn-submit">Add team</button>
+    {% if form.errors %}
+    <ul class="errorlist">
+      {% for field, errors in form.errors.items %} {% for error in errors %}
+      <li>{{ field|title }}: {{ error }}</li>
+      {% endfor %} {% endfor %}
+    </ul>
+    {% endif %}
+  </form>
+</div>
+
+<script>
+  function get_athletes() {
+    // var sport_select = document.getElementById("id_sport");
+    var gender_select = document.getElementById("id_gender");
+    var sport_select = document.getElementById("id_sport");
+    var school_select = document.getElementById("id_school");
+    var athlete_select = document.getElementById("id_athletes");
+    //   var official_select = document.getElementById("id_officials");
+
+    // Show loading indicators for athletes and officials
+    athlete_select.innerHTML = "<p>Loading athletes...</p>";
+    //   official_select.innerHTML = "<p>Loading officials...</p>";
+
+    // Fetch athletes for the selected sport, gender, and age using AJAX
+    // var sport_id = sport_select.value/;
+    var gender = gender_select.value;
+    var sport_id = sport_select.value;
+    var school_id = school_select.value;
+
+    fetch(
+      `/get_athletes/?school_id=${school_id}&gender=${gender}&sport_id=${sport_id}`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        athlete_select.innerHTML = "Athletes";
+        if (data.athletes.length === 0) {
+          athlete_select.innerHTML = "<p>No athletes found.</p>";
+        } else {
+          data.athletes.forEach((athlete) => {
+            var div = document.createElement("div");
+            var label = document.createElement("label");
+            var input = document.createElement("input");
+            input.type = "checkbox";
+            input.value = athlete.id;
+            input.name = "athletes";
+            label.innerText = `${athlete.fname} ${athlete.lname}`;
+            div.appendChild(input);
+            div.appendChild(label);
+            athlete_select.appendChild(div);
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching athletes:", error);
+        athlete_select.innerHTML =
+          "<p>Error fetching athletes. Please try again.</p>";
+      });
+  }
+
+  // Attach the get_athletes function to the onchange events of the sport, gender, and age elements
+  // document.getElementById("id_sport").onchange = get_athletes;
+  document.getElementById("id_gender").onchange = get_athletes;
+  document.getElementById("id_sport").onchange = get_athletes;
+  document.getElementById("id_school").onchange = get_athletes;
+</script>
+{% endblock %}

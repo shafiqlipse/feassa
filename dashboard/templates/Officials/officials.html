@@ -1,0 +1,52 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}{{official.fname}} {{official.lname}}{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="lo">
+  <h1>Officials</h1>
+  <div class="official-list">
+    <table id="myTable" class="display">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>School</th>
+          <th>Gender</th>     <th>Role</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for official in officials %}
+        <tr>
+          <td>
+            <a href="{% url 'official' official.id%}"
+              >{{official.fname}} {{official.lname}}</a
+            >
+          </td>
+          <td>{{official.school}}</td>
+
+          <td>{{official.gender}}</td>
+          <td>{{official.role}}</td>
+
+          <td>
+            <a href="{%url 'officialupdate' official.id%}" class="del"
+              ><i class="fa fa-pencil"></i>Edit</a
+            >
+          </td>
+          <td>
+            <a href="{%url 'officialdelete' official.id%}" class="btn btn-danger"
+              ><i class="fa fa-trash"></i>Delete</a
+            >
+          </td>
+        </tr>
+        
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

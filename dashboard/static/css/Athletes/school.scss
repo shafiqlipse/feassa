@@ -1,0 +1,55 @@
+.school {
+  h1 {
+    text-transform: uppercase;
+    color: #017979;
+    font-weight: bold;
+  }
+  .modal {
+    // width: 768px;
+    .modal-dialog {
+      .modal-content {
+        width: 600px;
+        @media (max-width: 600px) {
+          width: 100%;
+        }
+        .modal-header {
+          color: #017979;
+          font-weight: bold;
+          text-transform: capitalize;
+          .close {
+            padding: 5px;
+            color: red;
+            // background-color: #017979;
+            // margin: 10px;
+          }
+        }
+
+        .modal-body {
+          width: 100%;
+          .form-ctrl {
+            width: 100%;
+            .fields {
+              width: 100%;
+              .left {
+                .field {
+                  width: 100%;
+                  #image-container {
+                    width: 400px;
+                    padding: 20px;
+
+                    @media (max-width: 400px) {
+                      width: 100%;
+                    }
+                    img {
+                      width: 100%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

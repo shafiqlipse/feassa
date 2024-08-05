@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#wrapper {
+  background-color: red;
+}
+
+.wrapqper {
+  background-image: url(../img/feassa.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapqper .login-page {
+  width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(233, 233, 233, 0.0509803922);
+  -webkit-backdrop-filter: blur(0.4em);
+          backdrop-filter: blur(0.4em);
+}
+@media (max-width: 800px) {
+  .wrapqper .login-page {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .wrapqper .login-page {
+    width: 80%;
+    flex-direction: column;
+  }
+}
+@media (max-width: 400px) {
+  .wrapqper .login-page {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+.wrapqper hr {
+  height: 200;
+  border: solid 1px #ffffff;
+}
+@media (max-width: 700px) {
+  .wrapqper hr {
+    height: 1px;
+    width: 300px;
+  }
+}
+.wrapqper .left {
+  padding: 10px;
+}
+.wrapqper .left .logo {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .wrapqper .left .logo {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.wrapqper .left .logo img {
+  width: 100px;
+}
+.wrapqper .left .logo .text {
+  margin: 20px;
+}
+.wrapqper .left .logo .text h2 {
+  font-size: 3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+}
+.wrapqper .left .logo .text p {
+  font-size: 12px;
+  text-transform: capitalize;
+  width: 200px;
+  color: rgb(196, 196, 196);
+}
+.wrapqper .right {
+  margin-left: 50px;
+}
+@media (max-width: 700px) {
+  .wrapqper .right {
+    margin: 0;
+  }
+}
+.wrapqper .right .formik .field {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.wrapqper .right .formik .field .fa {
+  padding: 10px;
+  color: #017979;
+  border-right: solid 1px #017979;
+}
+.wrapqper .right .formik .field input {
+  border: 0;
+  outline: none;
+  font-size: 12px;
+  caret-color: #017979;
+  padding: 0 10px;
+  width: 100%;
+  font-family: poppins;
+}
+.wrapqper .right .formik button {
+  background-color: #013c3c;
+  color: #fff;
+}/*# sourceMappingURL=login.css.map */

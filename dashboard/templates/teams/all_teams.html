@@ -1,0 +1,62 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}Athletes{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="schools-dew">
+  <div class="head flex">
+    <h1>Athletes</h1>
+  </div>
+  <h2>Filter Athletes</h2>
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" name="Accreditation" value="Accreditation" />
+  </form>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" name="Certificate" value="Certificate" />
+  </form>
+  <div class="filterlist glue">
+    <div class="official-list">
+      <table id="myTable" class="display">
+        <thead>
+          <tr>
+            <th>Names</th>
+            <th>School</th>
+            <th>Gender</th>
+            <th>Class</th>
+            <th>Category</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for teacher in filter.qs %}
+          <tr>
+            <td>
+              <a href=""
+                >{{teacher.fname}} {{teacher.lname}}</a
+              >
+            </td>
+            <td>{{teacher.school}}</td>
+            <td>{{teacher.gender}}</td>
+            <td>{{teacher.classroom}}</td>
+
+            <td>{{teacher.category}}</td>
+            <td><a href="">delete</a></td>
+          </tr>
+
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

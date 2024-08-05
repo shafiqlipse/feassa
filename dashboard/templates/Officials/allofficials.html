@@ -1,0 +1,160 @@
+{% extends "dashboard/dashboard.html" %} {%load static%}
+<!---->
+{% block title %} {{school}}{% endblock %}
+<!---->
+
+{%block content%}
+<div class="school">
+
+
+
+  <div class="lo">  
+    <div class="top flex">
+    <h1>Officials</h1> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Official</a>  </div>
+    <div class="official-list">
+      <table id="myTable" class="display">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>School</th>
+            <th>Gender</th>     <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for official in officials %}
+          <tr>
+            <td>
+              <a href="{% url 'official' official.id%}"
+                >{{official.fname}} {{official.lname}}</a
+              >
+            </td>
+            <td>{{official.school}}</td>
+  
+            <td>{{official.gender}}</td>
+            <td>{{official.role}}</td>
+  
+            <td>
+              <a href="{%url 'officialupdate' official.id%}" class="del"
+                ><i class="fa fa-pencil"></i>Edit</a
+              >
+            </td>
+            <td>
+              <a href="{%url 'officialdelete' official.id%}" class="btn btn-danger"
+                ><i class="fa fa-trash"></i>Delete</a
+              >
+            </td>
+          </tr>
+          
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Official</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form
+            action=""
+            method="POST"
+            class="form-ctrl glue"
+            enctype="multipart/form-data"
+          >
+     
+            {% csrf_token %}
+            <div class="fields grid2">
+              <div class="left">
+                <h2>Official Info</h2>
+      
+                <div class="field">
+                  <label>{{cform.photo.label}}</label>
+                  <div id="image-container">
+                    {% if cform.instance.photo %}
+                    <img
+                      src="{{ cform.instance.photo.url }}"
+                      id="image-preview"
+                      alt="Current Photo"
+                    />
+                    {% else %}
+                    <img
+                      src="{% static 'img/logos.jpg'%}"
+                      id="image-preview"
+                      alt="No Photo"
+                    />
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="field">
+                  <input
+                    type="file"
+                    name="photo"
+                    accept="image/*"
+                    id="id_photo"
+                    style="display: none"
+                  />
+                  <input type="hidden" name="cropped_photo" id="cropped_photo" />
+                </div>
+                <button type="button" id="crop-button" style="display: none">
+                  Crop Image
+                </button>
+              </div>
+      
+              <div class="left">
+                <div class="field-grid">
+                  <div class="field"><label>First Name</label>{{cform.fname}}</div>
+      
+                  <div class="field"><label>Last Name</label>{{cform.lname}}</div>
+                  <div class="field"><label>NIN/ PASSPORT</label>{{cform.nin}}</div>
+                  <div class="field"><label>Email</label>{{cform.email}}</div>
+      
+                  <div class="field-grid">
+                    <div class="field"><label>School</label>{{cform.school}}</div>
+                    <div class="field"><label>Gender</label>{{cform.gender}}</div>
+                    <div class="field"><label>Role</label>{{cform.role}}</div>
+                  </div>
+                </div>
+      
+                <button type="submit" class="btn btn-primary width-100">
+                  Save official
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock %}

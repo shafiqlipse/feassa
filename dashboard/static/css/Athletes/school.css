@@ -1,0 +1,46 @@
+.school h1 {
+  text-transform: uppercase;
+  color: #017979;
+  font-weight: bold;
+}
+.school .modal .modal-dialog .modal-content {
+  width: 600px;
+}
+@media (max-width: 600px) {
+  .school .modal .modal-dialog .modal-content {
+    width: 100%;
+  }
+}
+.school .modal .modal-dialog .modal-content .modal-header {
+  color: #017979;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.school .modal .modal-dialog .modal-content .modal-header .close {
+  padding: 5px;
+  color: red;
+}
+.school .modal .modal-dialog .modal-content .modal-body {
+  width: 100%;
+}
+.school .modal .modal-dialog .modal-content .modal-body .form-ctrl {
+  width: 100%;
+}
+.school .modal .modal-dialog .modal-content .modal-body .form-ctrl .fields {
+  width: 100%;
+}
+.school .modal .modal-dialog .modal-content .modal-body .form-ctrl .fields .left .field {
+  width: 100%;
+}
+.school .modal .modal-dialog .modal-content .modal-body .form-ctrl .fields .left .field #image-container {
+  width: 400px;
+  padding: 20px;
+}
+@media (max-width: 400px) {
+  .school .modal .modal-dialog .modal-content .modal-body .form-ctrl .fields .left .field #image-container {
+    width: 100%;
+  }
+}
+.school .modal .modal-dialog .modal-content .modal-body .form-ctrl .fields .left .field #image-container img {
+  width: 100%;
+}/*# sourceMappingURL=school.css.map */
