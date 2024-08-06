@@ -27,10 +27,10 @@
         }
       }
       .header .athletes table tbody tr td table tr .td {
-        padding-top: 105px;
-        padding-bottom: 40px;
-        padding-left: 50px;
-        padding-right: 30px;
+        padding-top: 120px;
+        padding-bottom: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
         margin: 0;
       }
       .header .athletes table tbody tr td table tr .td .inner {
@@ -40,7 +40,7 @@
       }
       .header .athletes table tbody tr td table tr .td .inner img {
         width: 160px;
-        height: 180px;
+        height: 160px;
         image-orientation: from-image;
         transform: rotate(0deg);
       }
@@ -80,13 +80,16 @@
                         {% endif %}
                         <br />
                         <span
-                          >{{ athlete.fname|upper }}
-                          {{athlete.lname|upper }}
+                          ><strong
+                            >{{ athlete.fname|upper }}
+                            {{athlete.lname|upper}}</strong
+                          >
                         </span>
                         <br />
-                        
+
                         <span>{{ athlete.school|upper }}</span><br />
                         <span>{{ athlete.sport|upper }}</span><br />
+                        <span>{{ athlete.date_of_birth|upper }}</span><br />
                       </div>
                     </td>
                   </tr>

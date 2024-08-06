@@ -80,7 +80,7 @@ def SchoolDetail(request, id):
 
             new_athlete.save()
             messages.success(request, "Athlete added successfully.")
-            return redirect(reverse("school", kwargs={"id": school.id}))
+            return redirect("school", school.id)
         else:
             for field, errors in cform.errors.items():
                 for error in errors:

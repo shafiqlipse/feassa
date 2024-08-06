@@ -9,6 +9,7 @@ class AthleteForm(forms.ModelForm):
             "fname",
             "lname",
             "gender",
+            "classroom",
             "date_of_birth",
             "id_number",
             "sport",
@@ -19,6 +20,7 @@ class AthleteForm(forms.ModelForm):
             "lname": forms.TextInput(attrs={"class": "form-control"}),
             "id_number": forms.TextInput(attrs={"class": "form-control"}),
             "gender": forms.Select(attrs={"class": "form-control"}),
+            "classroom": forms.TextInput(attrs={"class": "form-control"}),
             "sport": forms.Select(attrs={"class": "form-control"}),
             "date_of_birth": forms.DateInput(
                 attrs={"class": "form-control", "type": "date"}
