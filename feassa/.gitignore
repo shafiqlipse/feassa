@@ -1,0 +1,5 @@
+# Ignore the settings.py file
+settings.py
+
+# Ignore all migrations folders in any subdirectory
+**/migrations/
