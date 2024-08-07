@@ -148,13 +148,14 @@
                 <span class="align-middle">Officials</span>
               </a>
             </li>
-            {% endif %}
+            {% endif %} {% if user.is_superuser %}
             <li class="sidebar-item">
-              <a class="sidebar-link" href="">
+              <a class="sidebar-link" href="{%url 'activity_log'%}">
                 <i class="align-middle" data-feather="log-in"></i>
-                <span class="align-middle">Sport</span>
+                <span class="align-middle">Activity</span>
               </a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -182,12 +183,30 @@
                   data-bs-toggle="dropdown"
                 >
                   {% if user.country == 'Uganda' %}
-
                   <img
-                    src="{% static 'img/ug.svg'%}"
+                    src="{% static 'img/ug.svg' %}"
                     class="avatar img-fluid rounded me-1"
-                    alt="{{user}}"
-                  />{% endif %} {% if user.country %}
+                    alt="{{ user }}"
+                  />
+                  {% elif user.country == 'Kenya' %}
+                  <img
+                    src="{% static 'img/ke.svg' %}"
+                    class="avatar img-fluid rounded me-1"
+                    alt="{{ user }}"
+                  />
+                  {% elif user.country == 'Tanzania' %}
+                  <img
+                    src="{% static 'img/tz.svg' %}"
+                    class="avatar img-fluid rounded me-1"
+                    alt="{{ user }}"
+                  />
+                  {% elif user.country == 'Rwanda' %}
+                  <img
+                    src="{% static 'img/rd.svg' %}"
+                    class="avatar img-fluid rounded me-1"
+                    alt="{{ user }}"
+                  />
+                  {% endif %} {% if user.country %}
                   <span class="text-dark"
                     ><strong>{{user.country|upper}}</strong></span
                   >

@@ -23,8 +23,8 @@ urlpatterns = [
     path("official/<int:id>", officialDetail, name="official"),
     path("officialupdate/<int:id>", officialUpdate, name="officialupdate"),
     path("deleteofficial/<int:id>", deleteOfficial, name="officialdelete"),
-     #--------------------------------
-     path("Athletes/", TAthletes, name="Athletes"),
+    # --------------------------------
+    path("Athletes/", TAthletes, name="Athletes"),
     #  # team
     path("new_team/", create_team, name="new_team"),
     path("updateteam/<int:id>", update_team, name="updategteam"),
@@ -34,4 +34,6 @@ urlpatterns = [
     path("team_accred/<int:id>", teamAccreditation, name="team_accred"),
     path("team_cert/<int:id>", TeamCert, name="team_cert"),
     path("deleteteam/<int:id>", delete_team, name="delete_team"),
+    # path("deleteteam/<int:id>", delete_team, name="delete_team"),
+    path("activity-log/", activity_log_view, name="activity_log"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

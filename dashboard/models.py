@@ -58,3 +58,13 @@ class Official(models.Model):
 
     def __str__(self):
         return f"{self.fname} {self.lname}"
+
+
+
+class UserActivityLog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    activity = models.CharField(max_length=255)
+    timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.user} - {self.activity} at {self.timestamp}'

@@ -481,3 +481,8 @@ def TAthletes(request):
     else:
         # Render the filter form
         return render(request, "teams/all_teams.html", {"filter": athlete_filter})
+
+
+def activity_log_view(request):
+    activities = UserActivityLog.objects.all().order_by('-timestamp')
+    return render(request, 'dashboard/activity_log.html', {'activities': activities})

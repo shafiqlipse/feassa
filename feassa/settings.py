@@ -50,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "dashboard.middleware.ActivityLoggingMiddleware",
 ]
 
 ROOT_URLCONF = "feassa.urls"
@@ -86,7 +87,6 @@ DATABASES = {
         "PORT": "3306",  # or the port on which your MySQL server is listening
     }
 }
-
 
 
 # Password validation

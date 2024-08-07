@@ -1,0 +1,27 @@
+{% extends "dashboard/dashboard.html" %}
+<!--static-->
+{% load static %}
+<!---->
+{% block content %}
+<div class="container">
+  <h1>Activity Log</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Activity</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for activity in activities %}
+      <tr>
+        <td>{{ activity.user.username }}</td>
+        <td>{{ activity.activity }}</td>
+        <td>{{ activity.timestamp }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
