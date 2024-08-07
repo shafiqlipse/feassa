@@ -63,7 +63,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css"
     />
   </head>
 
@@ -89,13 +89,6 @@
               <a class="sidebar-link" href="{%url 'schools'%}">
                 <i class="align-middle" data-feather="sliders"></i>
                 <span class="align-middle">Schools</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{% url 'teams'%}">
-                <i class="align-middle" data-feather="sliders"></i>
-                <span class="align-middle">Teams</span>
               </a>
             </li>
 
@@ -291,9 +284,11 @@
     <!--   Core JS Files   -->
     <script src="{% static 'js/api.js'%}"></script>
     <script src="{% static 'js/apps.js'%}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-    <!--   Core JS Files   -->
 
+    <script src="https://unpkg.com/pintura@7.9.4/dist/pintura.js"></script>
+
+    <!--   Core JS Files   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
     <script>
       $(document).ready(function () {
         $("#myTable").DataTable();

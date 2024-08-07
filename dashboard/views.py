@@ -62,8 +62,12 @@ def Schools(request):
     return render(request, "school/schools.html", context)
 
 
+import base64
+from django.core.files.base import ContentFile
+
+
 def SchoolDetail(request, id):
-    school = School.objects.get(id=id)
+    school = get_object_or_404(School, id=id)
     athletes = Athlete.objects.filter(school=school)
     new_athlete = None
 
@@ -75,8 +79,14 @@ def SchoolDetail(request, id):
             new_athlete.school = school
 
             # Handle the cropped image
-            if "photo" in request.FILES:
-                new_athlete.photo = request.FILES["photo"]
+            cropped_image_data = request.POST.get("croppedImage")
+            if cropped_image_data:
+                format, imgstr = cropped_image_data.split(";base64,")
+                ext = format.split("/")[-1]
+                image_data = base64.b64decode(imgstr)
+                new_athlete.photo = ContentFile(
+                    image_data, name=f"athlete_{new_athlete.id}.{ext}"
+                )
 
             new_athlete.save()
             messages.success(request, "Athlete added successfully.")
@@ -484,5 +494,5 @@ def TAthletes(request):
 
 
 def activity_log_view(request):
-    activities = UserActivityLog.objects.all().order_by('-timestamp')
-    return render(request, 'dashboard/activity_log.html', {'activities': activities})
+    activities = UserActivityLog.objects.all().order_by("-timestamp")
+    return render(request, "dashboard/activity_log.html", {"activities": activities})
