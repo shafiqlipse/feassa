@@ -29,7 +29,7 @@ class Official(models.Model):
     nin = models.CharField(max_length=20, null=True, blank=True, default="")
     gender = models.CharField(
         max_length=10,
-        choices=[("Male", "Male"), ("Female", "Female"), ("Other", "Other")],
+        choices=[("Male", "Male"), ("Female", "Female")],
         null=True,
         blank=True,
     )

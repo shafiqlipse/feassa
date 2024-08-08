@@ -20,6 +20,7 @@ urlpatterns = [
     # ------------Officials-------------------
     path("allofficials/", allOfficials, name="allofficials"),
     path("officials/", Officials, name="officials"),
+    path("Offs/", TOfficials, name="Offs"),
     path("official/<int:id>", officialDetail, name="official"),
     path("officialupdate/<int:id>", officialUpdate, name="officialupdate"),
     path("deleteofficial/<int:id>", deleteOfficial, name="officialdelete"),

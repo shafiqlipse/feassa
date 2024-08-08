@@ -1,0 +1,83 @@
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Album</title>
+  </head>
+
+  <body>
+    <style>
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .official-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .header .officials table tbody tr td {
+        padding-top: 250px;
+        padding-left: 80px;
+        padding-right: 50px;
+        margin: 0;
+      }
+      .header .officials table tbody tr .official-cell .official-info {
+        
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 15px;
+      }
+      .header .officials table tbody tr td .inner img {
+        width: 110px;
+        height: 110px;
+        image-orientation: from-image;
+        transform: rotate(0deg);
+      }
+    </style>
+    <div class="header">
+      <div class="officials">
+        <table class="official-table">
+          <tbody>
+            {% for official in officials %}
+            <tr>
+              <td class="official-cell">
+                <div class="official-info">
+                  <span
+                    >{{ official.fname|upper }} {{official.lname|upper}}
+                    ({{official.classroom|upper}})</span
+                  ><br />
+
+                  <span>{{ official.school|upper }}</span><br />
+                  <span
+                    >{{ official.sport|upper }} ({{official.gender|upper}})</span
+                  ><br />
+                </div>
+              </td>
+              <td class="official-cell">
+                <div class="official-image">
+                  {% if official.photo %}
+                  <img
+                    src="{{ official.photo.path }}"
+                    alt="{{ official.first_name }}"
+                  />
+                  {% else %}
+                  <img
+                    src="{% static 'images/profile.png' %}"
+                    alt="{{ official.last_name }}"
+                  />
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

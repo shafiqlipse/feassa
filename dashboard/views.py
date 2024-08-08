@@ -500,6 +500,50 @@ def TAthletes(request):
         return render(request, "teams/all_teams.html", {"filter": athlete_filter})
 
 
+def TOfficials(request):
+    # Get all officials
+    officials = Official.objects.all()
+
+    # Apply the filter
+    official_filter = officialFilter(request.GET, queryset=officials)
+    filtered_officials = official_filter.qs
+
+    if request.method == "POST":
+        # Check which form was submitted
+        if "Accreditation" in request.POST:
+            template = get_template("teams/ocert.html")
+            filename = "Filtered_Accreditation.pdf"
+        elif "Certificate" in request.POST:
+            template = get_template(
+                "teams/offcert.html"
+            )  # Your certificate template
+            filename = "Filtered_Certificate.pdf"
+        else:
+            return HttpResponse("Invalid form submission")
+
+        # Generate PDF
+        context = {"officials": filtered_officials}
+        html = template.render(context)
+
+        # Create a PDF
+        pdf_buffer = BytesIO()
+        pisa_status = pisa.CreatePDF(html, dest=pdf_buffer)
+
+        if pisa_status.err:
+            return HttpResponse("We had some errors <pre>" + html + "</pre>")
+
+        pdf_buffer.seek(0)
+
+        # Return the PDF as a response
+        response = HttpResponse(content_type="application/pdf")
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        response.write(pdf_buffer.getvalue())
+        return response
+    else:
+        # Render the filter form
+        return render(request, "teams/offs.html", {"filter": official_filter})
+
+
 def activity_log_view(request):
     activities = UserActivityLog.objects.all().order_by("-timestamp")
     return render(request, "dashboard/activity_log.html", {"activities": activities})
