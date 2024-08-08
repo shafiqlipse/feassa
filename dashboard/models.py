@@ -37,6 +37,7 @@ class Official(models.Model):
         max_length=25,
         choices=[
             ("Coach", "Coach"),
+            ("Games teacher", "Games teacher"),
             ("Head of delegation", "Head of delegation"),
             ("Field of play officer", "Field of play officer"),
             ("Medical", "Medical"),
