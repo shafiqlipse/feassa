@@ -1,0 +1,44 @@
+.wrapper {
+  background-image: url(../img/feassa.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper #athleteForm {
+  padding: 20px;
+  background-color: #fff;
+}
+.wrapper #athleteForm .field2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 600px) {
+  .wrapper #athleteForm .field2 {
+    flex-direction: column;
+  }
+  .wrapper #athleteForm .field2 .left {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+.wrapper #athleteForm .field2 .left h2 {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.wrapper #athleteForm .field2 .left .field img {
+  width: 200px;
+}
+@media (max-width: 600px) {
+  .wrapper #athleteForm .field2 .left .field img {
+    width: 100%;
+  }
+}
+.wrapper #athleteForm .field2 .fielj {
+  width: 100%;
+}/*# sourceMappingURL=noc.css.map */

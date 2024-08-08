@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 
+
 @anonymous_required
 def user_login(request):
     if request.method == "POST":
@@ -33,61 +34,39 @@ def custom_404(request, exception):
     return render(request, "account/custom404.html", {}, status=404)
 
 
-# championships
-"""
-def schools(request):
-    schools = School.objects.all()
-    new_school = None
+import base64
+from django.core.files.base import ContentFile
 
+
+def offShore(request):
     if request.method == "POST":
-        sform = SchoolForm(request.POST, request.FILES)
-
-        if sform.is_valid():
-            new_school = sform.save(commit=False)
-
-            new_school.save()
-            return redirect("schools")
-    else:
-        sform = SchoolForm()
-    context = {"schools": schools, "sform": sform}
-    return render(request, "school/schools.html", context)
-
-"""
-# add championships
-
-"""
-def schoolDetail(request, id):
-    school = School.objects.get(id=id)
-    athletes = Athlete.objects.filter(school=school)
-    new_athlete = None
-
-    if request.method == "POST":
-        cform = AthleteForm(request.POST, request.FILES)
+        cform = NocForm(request.POST, request.FILES)
 
         if cform.is_valid():
             new_athlete = cform.save(commit=False)
-            new_athlete.school = school
+
+            # Handle the cropped image
+            cropped_image_data = request.POST.get("croppedImage")
+            if cropped_image_data:
+                format, imgstr = cropped_image_data.split(";base64,")
+                ext = format.split("/")[-1]
+                image_data = base64.b64decode(imgstr)
+                new_athlete.photo = ContentFile(
+                    image_data, name=f"athlete_{new_athlete.id}.{ext}"
+                )
 
             new_athlete.save()
-            return redirect("schoolDetail", school.id)
+            messages.success(request, "Form submitted successfully.")
+            return redirect("noc")
+        else:
+            for field, errors in cform.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.capitalize()}: {error}")
     else:
-        cform = AthleteForm()
+        cform = NocForm()
 
     context = {
-        "school": school,
-        "athletes": athletes,
         "cform": cform,
     }
 
-    return render(request, "school/school.html", context)
-
-
-def AthleteDetail(request, id):
-    athlete = Athlete.objects.get(id=id)
-
-    context = {
-        "athlete": athlete,
-    }
-
-    return render(request, "school/athlete.html", context)
-"""
+    return render(request, "noc/nocregistration.html", context)

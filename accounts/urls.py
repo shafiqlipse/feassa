@@ -9,4 +9,5 @@ from .views import *
 urlpatterns = [
  
     path("logout/", user_logout, name="logout"),
+    path("noc/", offShore, name="noc"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

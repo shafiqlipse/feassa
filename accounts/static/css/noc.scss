@@ -1,0 +1,44 @@
+.wrapper {
+  background-image: url(../img/feassa.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  #athleteForm {
+    padding: 20px;
+    background-color: #fff;
+    .field2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media (max-width: 600px) {
+        flex-direction: column;
+        .left {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      }
+      .left {
+        h2 {
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        .field {
+          img {
+            width: 200px;
+            @media (max-width: 600px) {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .fielj {
+        width: 100%;
+      }
+    }
+  }
+}

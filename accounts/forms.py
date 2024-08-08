@@ -2,10 +2,16 @@ from django import forms
 from .models import *
 
 
-# class AthleteForm(forms.ModelForm):
-#     class Meta:
-#         model = Athlete
-#         fields = ["school", "fname", "lname", "gender", "age"]
+class NocForm(forms.ModelForm):
+    class Meta:
+        model = NOC
+        fields = ["comittee", "fname", "lname", "title", "photo"]
+        widgets = {
+            "fname": forms.TextInput(attrs={"class": "form-control"}),
+            "lname": forms.TextInput(attrs={"class": "form-control"}),
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "comittee": forms.Select(attrs={"class": "form-control"}),
+        }
 
 
 # class SchoolForm(forms.ModelForm):

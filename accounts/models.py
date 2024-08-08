@@ -75,3 +75,32 @@ class Athlete(models.Model):
 
     def __str__(self):
         return f"{self.fname} {self.lname}"
+
+
+class NOC(models.Model):
+    fname = models.CharField(max_length=50)
+    comittee = models.CharField(
+        choices=(
+            ("Technical ", "Technical "),
+            ("Welfare ", "Welfare "),
+            ("Protocol", "Protocol"),
+            ("Finance", "Finance"),
+            ("Competitions", "Competitions"),
+            ("Medical /Health", "Medical /Health"),
+            ("Security and Safety", "Security and Safety"),
+            ("Transport", "Transport"),
+            ("Corporate Relations", "Corporate Relations"),
+            ("Media", "Media"),
+            ("Secretariat", "Secretariat"),
+        ),
+        max_length=50,
+    )
+    lname = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to="off_photos/")
+
+    class Meta:
+        ordering = ["-fname"]
+
+    def __str__(self):
+        return f"{self.fname} {self.lname}"
