@@ -186,9 +186,16 @@ def allOfficials(request):
         if cform.is_valid():
             new_official = cform.save(commit=False)
             new_official.user = user
+
             # Handle the cropped image
-            if "photo" in request.FILES:
-                new_official.photo = request.FILES["photo"]
+            cropped_image_data = request.POST.get("croppedImage")
+            if cropped_image_data:
+                format, imgstr = cropped_image_data.split(";base64,")
+                ext = format.split("/")[-1]
+                image_data = base64.b64decode(imgstr)
+                new_official.photo = ContentFile(
+                    image_data, name=f"official_{new_official.id}.{ext}"
+                )
 
             new_official.save()
             messages.success(request, "Official added successfully.")

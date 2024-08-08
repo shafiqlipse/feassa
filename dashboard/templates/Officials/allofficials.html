@@ -6,11 +6,17 @@
 {%block content%}
 <div class="school">
 
-
-
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
   <div class="lo">  
     <div class="top flex">
-    <h1>Officials</h1> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Official</a>  </div>
+    <h1>Officials</h1> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Official</a>  
+    </div>
     <div class="official-list">
       <table id="myTable" class="display">
         <thead>
@@ -85,39 +91,20 @@
             <div class="fields grid2">
               <div class="left">
                 <h2>Official Info</h2>
-      
-                <div class="field">
-                  <label>{{cform.photo.label}}</label>
-                  <div id="image-container">
-                    {% if cform.instance.photo %}
-                    <img
-                      src="{{ cform.instance.photo.url }}"
-                      id="image-preview"
-                      alt="Current Photo"
-                    />
+                  <div class="field">
+                    <label>{{form.photo.label}}</label>
+                    {% if form.instance.photo %}
+                    <img src="{{ form.instance.photo.url }}" id="image-preview" alt="Current Photo" />
                     {% else %}
-                    <img
-                      src="{% static 'img/logos.jpg'%}"
-                      id="image-preview"
-                      alt="No Photo"
-                    />
+                    <img src="{% static 'images/profile.png'%}" id="image-preview" alt="No Photo" />
                     {% endif %}
                   </div>
+                  <div class="field">
+                    <input type="file" name="photo" accept="image/*" onchange="displayImage(this);" id="id_photo" />
+                  </div>
+                  <input type="hidden" name="croppedImage" id="croppedImage">
+                
                 </div>
-                <div class="field">
-                  <input
-                    type="file"
-                    name="photo"
-                    accept="image/*"
-                    id="id_photo"
-                    style="display: none"
-                  />
-                  <input type="hidden" name="cropped_photo" id="cropped_photo" />
-                </div>
-                <button type="button" id="crop-button" style="display: none">
-                  Crop Image
-                </button>
-              </div>
       
               <div class="left">
                 <div class="field-grid">
@@ -149,12 +136,7 @@
         </div>
       </div>
     </div>
-  </div>  {% if messages %}
-  <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-  </ul>
-  {% endif %}
+  </div> 
+
 </div>
 {% endblock %}
