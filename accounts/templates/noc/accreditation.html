@@ -19,42 +19,42 @@
           padding: 0; /* Remove default body padding */
         }
 
-        .officials table {
+        .athletes table {
           display: grid;
           grid-template-rows: repeat(2, 1fr); /* Two rows */
           grid-template-columns: repeat(2, 1fr); /* Two columns */
           gap: 10px; /* Adjust the gap between grid items */
         }
       }
-      .header .officials table tbody tr td table tr .td {
+      .header .athletes table tbody tr td table tr .td {
         padding-top: 120px;
         padding-bottom: 20px;
         padding-left: 40px;
         padding-right: 40px;
         margin: 0;
       }
-      .header .officials table tbody tr td table tr .td .inner {
+      .header .athletes table tbody tr td table tr .td .inner {
         width: 350px;
         text-align: center;
         text-transform: uppercase;
       }
-      .header .officials table tbody tr td table tr .td .inner img {
+      .header .athletes table tbody tr td table tr .td .inner img {
         width: 160px;
         height: 160px;
         image-orientation: from-image;
         transform: rotate(0deg);
       }
-      .header .officials table tbody tr td table tr .td .inner span {
+      .header .athletes table tbody tr td table tr .td .inner span {
       }
     </style>
     <div class="header">
-      <div class="officials">
+      <div class="athletes">
         <table>
           <tbody>
-            {% for official in officials %}
+            {% for athlete in officials %}
             <!---->
             {% if forloop.counter0|divisibleby:2 %}
-            <!-- Start a new row for every even-numbered official -->
+            <!-- Start a new row for every even-numbered athlete -->
             <tr>
               {% endif %}
               <td>
@@ -62,41 +62,36 @@
                   <tr>
                     <td class="td">
                       <div class="inner">
-                        <span
-                          >{{ official.nin|upper}}
-                          ({{official.gender|upper}})</span
-                        >
-                        <br />
-                        {% if official.photo %}
+                        
+                        {% if athlete.photo %}
                         <img
-                          src="{{ official.photo.path }}"
-                          alt="{{ official.fname }}"
+                          src="{{ athlete.photo.path }}"
+                          alt="{{ athlete.fname }}"
                         />
                         {% else %}
                         <img
                           src="{% static 'images/profile.png' %}"
-                          alt="{{ official.lname }}"
+                          alt="{{ athlete.lname }}"
                         />
                         {% endif %}
                         <br />
                         <span
                           ><strong
-                            >{{ official.fname|upper }}
-                            {{official.lname|upper}}</strong
+                            >{{ athlete.fname|upper }}
+                            {{athlete.lname|upper}}</strong
                           >
                         </span>
                         <br />
 
-                        <span>{{ official.school|upper }}</span><br />
-                        <span>{{ official.role|upper }}</span><br />
-                        <span>{{ official.date_of_birth|upper }}</span><br />
+                        <span>{{ athlete.comittee|upper }}</span><br />
+                        <span>{{ athlete.title|upper }}</span><br />
                       </div>
                     </td>
                   </tr>
                 </table>
               </td>
               {% if forloop.last or forloop.counter0|add:1|divisibleby:2 %}
-              <!-- End the row for the last or odd-numbered official -->
+              <!-- End the row for the last or odd-numbered athlete -->
             </tr>
             {% endif %} {% endfor %}
           </tbody>

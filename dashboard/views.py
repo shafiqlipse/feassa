@@ -13,13 +13,37 @@ def Dashboard(request):
     athletes_count = Athlete.objects.all().count()
     schools_count = School.objects.all().count()
     official_count = Official.objects.all().count()
-    team_count = SchoolTeam.objects.all().count()
+
+    # athletes_count = Athlete.objects.all().count()
+    kenya_schools = School.objects.filter(country="Kenya")
+    uganda_schools = School.objects.filter(country="Uganda")
+    tanzania_schools = School.objects.filter(country="Tanzania")
+    rwanda_schools = School.objects.filter(country="Rwanda")
+
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    kenya = School.objects.filter(country="Kenya").count()
+    uganda = School.objects.filter(country="Uganda").count()
+    tanzania = School.objects.filter(country="Tanzania").count()
+    rwanda = School.objects.filter(country="Rwanda").count()
+
+    # team_count = SchoolTeam.objects.all().count()
+    in_uganda_schools = Athlete.objects.filter(school__in=uganda_schools).count()
+    in_kenya_schools = Athlete.objects.filter(school__in=kenya_schools).count()
+    in_tanzania_schools = Athlete.objects.filter(school__in=tanzania_schools).count()
+    in_rwanda_schools = Athlete.objects.filter(school__in=rwanda_schools).count()
 
     context = {
         "schools_count": schools_count,
         "athletes_count": athletes_count,
         "official_count": official_count,
-        "team_count": team_count,
+        "kenya": kenya,
+        "uganda": uganda,
+        "tanzania": tanzania,
+        "rwanda": rwanda,
+        "in_uganda_schools": in_uganda_schools,
+        "in_kenya_schools": in_kenya_schools,
+        "in_tanzania_schools": in_tanzania_schools,
+        "in_rwanda_schools": in_rwanda_schools,
     }
     return render(request, "dashboard/home.html", context)
 
@@ -514,9 +538,7 @@ def TOfficials(request):
             template = get_template("teams/ocert.html")
             filename = "Filtered_Accreditation.pdf"
         elif "Certificate" in request.POST:
-            template = get_template(
-                "teams/offcert.html"
-            )  # Your certificate template
+            template = get_template("teams/offcert.html")  # Your certificate template
             filename = "Filtered_Certificate.pdf"
         else:
             return HttpResponse("Invalid form submission")

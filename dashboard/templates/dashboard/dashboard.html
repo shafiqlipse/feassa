@@ -39,6 +39,11 @@
       rel="stylesheet"
     />
     <link
+      id="pagestyle"
+      href="{% static 'css/css/material-dashboard.css'%}"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -131,6 +136,12 @@
               <a class="sidebar-link" href="{%url 'Offs'%}">
                 <i class="align-middle" data-feather="sliders"></i>
                 <span class="align-middle">Occreditation</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{%url 'noffs'%}">
+                <i class="align-middle" data-feather="sliders"></i>
+                <span class="align-middle">LOccreditation</span>
               </a>
             </li>
 

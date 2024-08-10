@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from .views import *
+from accounts.views import *
 
 # from competition.views import get_teams
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path("deleteofficial/<int:id>", deleteOfficial, name="officialdelete"),
     # --------------------------------
     path("Athletes/", TAthletes, name="Athletes"),
+    path("noffs/", nOfficials, name="noffs"),
     #  # team
     path("new_team/", create_team, name="new_team"),
     path("updateteam/<int:id>", update_team, name="updategteam"),

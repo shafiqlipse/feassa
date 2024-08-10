@@ -6,66 +6,119 @@
 
 <div class="home-page">
   <main class="content">
-    <div class="container-fluid p-0">
-      <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
-
-      <div class="row">
-        <div class="col-xl-6 col-xxl-5 d-flex">
-          <div class="w-100">
-            <div class="row">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title">Schools</h5>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="stat text-primary">
-                        <i class="align-middle" data-feather="user"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <h1 class="mt-1 mb-3">{{schools_count}}</h1>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title">Athletes</h5>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="stat text-primary">
-                        <i class="align-middle" data-feather="dollar-sign"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <h1 class="mt-1 mb-3">{{athletes_count}}</h1>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title">Officials</h5>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="stat text-primary">
-                        <i
-                          class="align-middle"
-                          data-feather="shopping-cart"
-                        ></i>
-                      </div>
-                    </div>
-                  </div>
-                  <h1 class="mt-1 mb-3">{{official_count}}</h1>
-                </div>
-              </div>
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div
+              class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute"
+            >
+              <img src="{% static 'img/ug.svg'%}" alt="" />
             </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Schools</p>
+              <h4 class="mb-0">{{uganda}}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0" />
+          <div class="card-footer p-3 flex">
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{in_uganda_schools}} </span
+              >Athletes
+            </p>
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{athletes_gcount}} </span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div
+              class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute"
+            >
+              <img src="{% static 'img/ke.svg'%}" alt="" />
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Schools</p>
+              <h4 class="mb-0">{{kenya}}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0" />
+          <div class="card-footer p-3 flex">
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{in_kenya_schools}} </span
+              >Athletes
+            </p>
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{athletes_gcount}} </span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div
+              class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute"
+            >
+              <img src="{% static 'img/tz.svg'%}" alt="" />
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Schools</p>
+              <h4 class="mb-0">{{tanzania}}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0" />
+          <div class="card-footer p-3 flex">
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{in_tanzania_schools}} </span
+              >Athletes
+            </p>
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{athletes_gcount}} </span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div
+              class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute"
+            >
+              <img src="{% static 'img/rd.svg'%}" alt="" />
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Schools</p>
+              <h4 class="mb-0">{{rwanda}}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0" />
+          <div class="card-footer p-3 flex">
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{in_rwanda_schools}} </span
+              >Athletes
+            </p>
+            <p class="mb-0">
+              <span class="text-success text-sm font-weight-bolder"
+                >+{{athletes_gcount}} </span
+              >
+            </p>
           </div>
         </div>
       </div>
