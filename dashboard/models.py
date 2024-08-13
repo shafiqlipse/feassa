@@ -34,7 +34,7 @@ class Official(models.Model):
         blank=True,
     )
     role = models.CharField(
-        max_length=25,
+        max_length=250,
         choices=[
             ("Coach", "Coach"),
             ("Games teacher", "Games teacher"),
@@ -61,11 +61,10 @@ class Official(models.Model):
         return f"{self.fname} {self.lname}"
 
 
-
 class UserActivityLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     activity = models.CharField(max_length=255)
     timestamp = models.DateTimeField()
 
     def __str__(self):
-        return f'{self.user} - {self.activity} at {self.timestamp}'
+        return f"{self.user} - {self.activity} at {self.timestamp}"
