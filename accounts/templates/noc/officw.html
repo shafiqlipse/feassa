@@ -1,0 +1,41 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}{{noc.fname}} {{noc.lname}}{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="athlete-dew">
+  <div class="athlete">
+    <div class="img glue">
+      {% if noc.photo %}
+      <img src="{{noc.photo.url}}" alt="" />
+      {% else %}
+      <img src="{% static 'images/profile.png'%}" alt="" />{% endif %}
+    </div>
+    <div class="athlete-details glue">
+      <h1>Official info</h1>
+      <hr />
+      <span
+        ><h2>names</h2>
+        :
+        <h3>{{noc.fname}} {{noc.lname}}</h3></span
+      >
+      <hr />
+      <span
+        ><h2>COMMITTEE</h2>
+        :
+        <h3>{{noc.comittee}}</h3></span
+      >
+      <hr />
+      <span
+        ><h2>TITLE</h2>
+        :
+        <h3>{{noc.title}}</h3></span
+      >
+      <hr />
+    </div>
+  </div>
+</div>
+{% endblock %}

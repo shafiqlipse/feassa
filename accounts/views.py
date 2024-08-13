@@ -71,6 +71,17 @@ def offShore(request):
 
     return render(request, "noc/nocregistration.html", context)
 
+
+def offShare(request, id):
+    noc = NOC.objects.get(id=id)
+
+    context = {
+        "noc": noc,
+    }
+
+    return render(request, "noc/officw.html", context)
+
+
 from django.shortcuts import render
 import base64
 import os
@@ -82,6 +93,7 @@ from xhtml2pdf import pisa
 from dashboard.filters import *
 from xhtml2pdf import pisa
 from io import BytesIO
+
 
 def nOfficials(request):
     # Get all officials
@@ -123,4 +135,3 @@ def nOfficials(request):
     else:
         # Render the filter form
         return render(request, "noc/noffs.html", {"filter": official_filter})
-

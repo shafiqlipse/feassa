@@ -20,7 +20,7 @@
     {% csrf_token %}
     <input type="submit" name="Accreditation" value="Accreditation" />
   </form>
-  
+
   <div class="filterlist glue">
     <div class="official-list">
       <table id="myTable" class="display">
@@ -35,7 +35,9 @@
           {% for teacher in filter.qs %}
           <tr>
             <td>
-              <a href="">{{teacher.fname}} {{teacher.lname}}</a>
+              <a href="{% url 'noch' teacher.id%}"
+                >{{teacher.fname}} {{teacher.lname}}</a
+              >
             </td>
             <td>{{teacher.comittee}}</td>
             <td>{{teacher.title}}</td>

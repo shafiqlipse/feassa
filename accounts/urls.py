@@ -10,4 +10,5 @@ urlpatterns = [
  
     path("logout/", user_logout, name="logout"),
     path("noc/", offShore, name="noc"),
+    path("noc/<int:id>", offShare, name="noch"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
