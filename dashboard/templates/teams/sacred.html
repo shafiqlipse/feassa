@@ -62,10 +62,24 @@
                   <tr>
                     <td class="td">
                       <div class="inner">
+                        {% if athlete.school.country == 'Uganda' %}
                         <span
-                          >000{{ athlete.id|upper}}
+                          >UG00{{ athlete.id|upper}}
                           ({{athlete.gender|upper}})</span
                         >
+                        {% elif athlete.school.country == 'Kenya' %}
+                        <span
+                          >KE00{{ athlete.id|upper}}
+                          ({{athlete.gender|upper}})</span
+                        >{% elif athlete.school.country == 'Tanzania' %}
+                        <span
+                          >TZ00{{ athlete.id|upper}}
+                          ({{athlete.gender|upper}})</span
+                        >{% elif athlete.school.country == 'Rwanda' %}
+                        <span
+                          >RW00{{ athlete.id|upper}}
+                          ({{athlete.gender|upper}})</span
+                        >{% endif %}
                         <br />
                         {% if athlete.photo %}
                         <img
