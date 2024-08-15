@@ -21,6 +21,38 @@ def Dashboard(request):
     rwanda_schools = School.objects.filter(country="Rwanda")
 
     # rwanda = School.objects.filter(country='Rwanda').count()
+    in_uganda_officials = Official.objects.filter(school__in=uganda_schools).count()
+    in_kenya_officials = Official.objects.filter(school__in=kenya_schools).count()
+    in_tanzania_officials = Official.objects.filter(school__in=tanzania_schools).count()
+    in_rwanda_officials = Official.objects.filter(school__in=rwanda_schools).count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    in_uganda_gofficials = Official.objects.filter(
+        school__in=uganda_schools, gender="Female"
+    ).count()
+    in_uganda_bofficials = Official.objects.filter(
+        school__in=uganda_schools, gender="Male"
+    ).count()
+    in_kenya_gofficials = Official.objects.filter(
+        school__in=kenya_schools, gender="Female"
+    ).count()
+    in_kenya_bofficials = Official.objects.filter(
+        school__in=kenya_schools, gender="Male"
+    ).count()
+    in_tanzania_gofficials = Official.objects.filter(
+        school__in=tanzania_schools, gender="Female"
+    ).count()
+    in_tanzania_bofficials = Official.objects.filter(
+        school__in=tanzania_schools, gender="Male"
+    ).count()
+    in_rwanda_gofficials = Official.objects.filter(
+        school__in=rwanda_schools, gender="Female"
+    ).count()
+    in_rwanda_bofficials = Official.objects.filter(
+        school__in=rwanda_schools, gender="Male"
+    ).count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
     kenya = School.objects.filter(country="Kenya").count()
     uganda = School.objects.filter(country="Uganda").count()
     tanzania = School.objects.filter(country="Tanzania").count()
@@ -60,6 +92,12 @@ def Dashboard(request):
         "schools_count": schools_count,
         "athletes_count": athletes_count,
         "official_count": official_count,
+        # oficials
+        "in_uganda_officials": in_uganda_officials,
+        "in_kenya_officials": in_kenya_officials,
+        "in_tanzania_officials": in_tanzania_officials,
+        "in_rwanda_officials": in_rwanda_officials,
+        # "in_uganda_officials": in_uganda_officials,
         "kenya": kenya,
         "uganda": uganda,
         "tanzania": tanzania,
@@ -76,6 +114,15 @@ def Dashboard(request):
         "in_kenya_boys": in_kenya_boys,
         "in_tanzania_boys": in_tanzania_boys,
         "in_rwanda_boys": in_rwanda_boys,
+        # "in_rwanda_boys": in_rwanda_boys,
+        "in_uganda_gofficials": in_uganda_gofficials,
+        "in_uganda_bofficials": in_uganda_bofficials,
+        "in_kenya_gofficials": in_kenya_gofficials,
+        "in_kenya_bofficials": in_kenya_bofficials,
+        "in_tanzania_gofficials": in_tanzania_gofficials,
+        "in_tanzania_bofficials": in_tanzania_bofficials,
+        "in_rwanda_gofficials": in_rwanda_gofficials,
+        "in_rwanda_bofficials": in_rwanda_bofficials,
     }
     return render(request, "dashboard/home.html", context)
 
