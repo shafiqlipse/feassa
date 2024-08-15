@@ -107,6 +107,11 @@ class NOC(models.Model):
             ),
             ("UMISSETA secretary", "UMISSETA secretary"),
             ("UMISSETA Treasury.", "UMISSETA Treasury"),
+            ("Team manager", "Team manager"),
+            ("Director FC&CCA", "Director FC&CCA"),
+            ("Director", "Director"),
+            ("Driver", "Driver"),
+            ("Ministry of Education", "Ministry of Education"),
         ),
         max_length=50,
     )
