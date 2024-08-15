@@ -28,9 +28,33 @@ def Dashboard(request):
 
     # team_count = SchoolTeam.objects.all().count()
     in_uganda_schools = Athlete.objects.filter(school__in=uganda_schools).count()
+    in_uganda_girls = Athlete.objects.filter(
+        school__in=uganda_schools, gender="Female"
+    ).count()
+    in_uganda_boys = Athlete.objects.filter(
+        school__in=uganda_schools, gender="Male"
+    ).count()
     in_kenya_schools = Athlete.objects.filter(school__in=kenya_schools).count()
+    in_kenya_girls = Athlete.objects.filter(
+        school__in=kenya_schools, gender="Female"
+    ).count()
+    in_kenya_boys = Athlete.objects.filter(
+        school__in=kenya_schools, gender="Male"
+    ).count()
     in_tanzania_schools = Athlete.objects.filter(school__in=tanzania_schools).count()
+    in_tanzania_girls = Athlete.objects.filter(
+        school__in=tanzania_schools, gender="Female"
+    ).count()
+    in_tanzania_boys = Athlete.objects.filter(
+        school__in=tanzania_schools, gender="Male"
+    ).count()
     in_rwanda_schools = Athlete.objects.filter(school__in=rwanda_schools).count()
+    in_rwanda_girls = Athlete.objects.filter(
+        school__in=rwanda_schools, gender="Female"
+    ).count()
+    in_rwanda_boys = Athlete.objects.filter(
+        school__in=rwanda_schools, gender="Male"
+    ).count()
 
     context = {
         "schools_count": schools_count,
@@ -44,6 +68,14 @@ def Dashboard(request):
         "in_kenya_schools": in_kenya_schools,
         "in_tanzania_schools": in_tanzania_schools,
         "in_rwanda_schools": in_rwanda_schools,
+        "in_uganda_girls": in_uganda_girls,
+        "in_kenya_girls": in_kenya_girls,
+        "in_tanzania_girls": in_tanzania_girls,
+        "in_rwanda_girls": in_rwanda_girls,
+        "in_uganda_boys": in_uganda_boys,
+        "in_kenya_boys": in_kenya_boys,
+        "in_tanzania_boys": in_tanzania_boys,
+        "in_rwanda_boys": in_rwanda_boys,
     }
     return render(request, "dashboard/home.html", context)
 
