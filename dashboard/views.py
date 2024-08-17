@@ -619,6 +619,9 @@ def TOfficials(request):
         elif "Certificate" in request.POST:
             template = get_template("teams/offcert.html")  # Your certificate template
             filename = "Filtered_Certificate.pdf"
+        elif "Invitation" in request.POST:
+            template = get_template("teams/Invitation.html")  # Your certificate template
+            filename = "Invitation.pdf"
         else:
             return HttpResponse("Invalid form submission")
 

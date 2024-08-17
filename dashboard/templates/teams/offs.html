@@ -24,6 +24,10 @@
     {% csrf_token %}
     <input type="submit" name="Certificate" value="Certificate" />
   </form>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" name="Invitation" value="Invitation" />
+  </form>
   <div class="filterlist glue">
     <div class="official-list">
       <table id="myTable" class="display">
