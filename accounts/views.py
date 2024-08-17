@@ -100,8 +100,8 @@ def nOfficials(request):
         if "Accreditation" in request.POST:
             template = get_template("noc/accreditation.html")
             filename = "Filtered_Accreditation.pdf"
-        elif "Certificate" in request.POST:
-            template = get_template("teams/offcert.html")  # Your certificate template
+        elif "Invitation" in request.POST:
+            template = get_template("teams/invitation.html")  # Your certificate template
             filename = "Filtered_Certificate.pdf"
         else:
             return HttpResponse("Invalid form submission")
