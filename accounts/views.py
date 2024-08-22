@@ -74,7 +74,7 @@ def offShare(request, id):
     return render(request, "noc/officw.html", context)
 
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 import base64
 import os
 from django.http import HttpResponse
@@ -127,3 +127,19 @@ def nOfficials(request):
     else:
         # Render the filter form
         return render(request, "noc/noffs.html", {"filter": official_filter})
+
+
+def deleteNoc(request, id):
+    noco = get_object_or_404(NOC, id=id)
+
+    if request.method == "POST":
+        noco.delete()
+        return redirect(
+            "noffs"
+        )  # Replace 'athlete_list' with the name of your list view or any other view
+
+    context = {
+        "noco": noco,
+    }
+
+    return render(request, "noc/delenoc.html", context)

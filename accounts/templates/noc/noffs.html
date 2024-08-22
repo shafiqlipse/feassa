@@ -32,6 +32,7 @@
             <th>Names</th>
             <th>Committee</th>
             <th>Title</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@
             </td>
             <td>{{teacher.comittee}}</td>
             <td>{{teacher.title}}</td>
+            <td><a href="{%url 'delenoch' teacher.id%}" class='btn btn-danger'>Delete</a></td>
           </tr>
 
           {%endfor%}
