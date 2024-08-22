@@ -42,19 +42,15 @@
       <div class="athletes">
         <table class="athlete-table">
           <tbody>
-            {% for athlete in athletes %}
+            {% for athlete in officials %}
             <tr>
               <td class="athlete-cell">
                 <div class="athlete-info">
-                  <span
-                    >{{ athlete.fname|upper }} {{athlete.lname|upper}}
-                    ({{athlete.classroom|upper}})</span
+                  <span>{{ athlete.fname|upper }} {{athlete.lname|upper}} </span
                   ><br />
 
                   <span>{{ athlete.comittee|upper }}</span><br />
-                  <span
-                    >{{ athlete.title|upper }} ({{athlete.gender|upper}})</span
-                  ><br />
+                  <span>{{ athlete.title|upper }}</span><br />
                 </div>
               </td>
               <td class="athlete-cell">
