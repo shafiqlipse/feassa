@@ -20,38 +20,32 @@
       <div class="fields grid2">
         <div class="left">
           <h2>Official Info</h2>
-
           <div class="field">
-            <label>{{cform.photo.label}}</label>
-            <div id="image-container">
-              {% if cform.instance.photo %}
-              <img
-                src="{{ cform.instance.photo.url }}"
-                id="image-preview"
-                alt="Current Photo"
-              />
-              {% else %}
-              <img
-                src="{% static 'img/logos.jpg'%}"
-                id="image-preview"
-                alt="No Photo"
-              />
-              {% endif %}
-            </div>
+            <label>{{form.photo.label}}</label>
+            {% if form.instance.photo %}
+            <img
+              src="{{ form.instance.photo.url }}"
+              id="image-preview"
+              alt="Current Photo"
+            />
+            {% else %}
+            <img
+              src="{% static 'images/profile.png'%}"
+              id="image-preview"
+              alt="No Photo"
+            />
+            {% endif %}
           </div>
           <div class="field">
             <input
               type="file"
               name="photo"
               accept="image/*"
+              onchange="displayImage(this);"
               id="id_photo"
-              style="display: none"
             />
-            <input type="hidden" name="cropped_photo" id="cropped_photo" />
           </div>
-          <button type="button" id="crop-button" style="display: none">
-            Crop Image
-          </button>
+          <input type="hidden" name="croppedImage" id="croppedImage" />
         </div>
 
         <div class="left">
@@ -59,17 +53,13 @@
             <div class="field"><label>First Name</label>{{cform.fname}}</div>
 
             <div class="field"><label>Last Name</label>{{cform.lname}}</div>
-            <div class="field">
-              <label>LIN/ PASSPORT</label>{{cform.id_number}}
-            </div>
+            <div class="field"><label>NIN/ PASSPORT</label>{{cform.nin}}</div>
+            <div class="field"><label>Email</label>{{cform.email}}</div>
 
-            <div class="field-grid grid2">
-              <div class="field"><label>Sport</label>{{cform.sport}}</div>
+            <div class="field-grid">
+              <div class="field"><label>School</label>{{cform.school}}</div>
               <div class="field"><label>Gender</label>{{cform.gender}}</div>
-            </div>
-
-            <div class="field">
-              <label for="date_of_birth">Date of Birth</label>{{cform.date_of_birth}}
+              <div class="field"><label>Role</label>{{cform.role}}</div>
             </div>
           </div>
 
