@@ -1,0 +1,64 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}{{media.fname}} {{media.lname}}{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="page-container">
+  <div class="page-title-head d-flex align-items-center gap-2">
+    <div class="flex-grow-1">
+      <h1 class="fs-20 text-uppercase fw-bold mb-0">
+        {{media.fname}} {{media.lname}}
+      </h1>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0 fs-13">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Feassa</a>
+        </li>
+
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Media</a>
+        </li>
+
+        <li class="breadcrumb-item active">{{media.fname}} {{media.lname}}</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4 col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <img
+                src="{{ media.photo.url }}"
+                alt="{{media.fname}} {{media.lname}}"
+                class="img-fluid mb-3"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-md-9">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="fs-14 text-uppercase fw-bold mb-2">
+                Media Information
+              </h5>
+              <p><strong>Names:</strong> {{media.fname}} {{media.lname}}</p>
+              <p><strong>Media House:</strong> {{media.media_house}}</p>
+              <p><strong>Role:</strong> {{media.role}}</p>
+              <p><strong>Media Type:</strong> {{media.media_type}}</p>
+              <p><strong>Country:</strong> {{media.country}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>

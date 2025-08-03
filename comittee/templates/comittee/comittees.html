@@ -1,0 +1,75 @@
+{% extends "dashboard/dashboard.html" %} {%load static%}
+<!---->
+{% load static %}
+<!---->
+{% block title %}Officials{% endblock %}
+<!---->
+{% block content %}
+
+<div class="page-container">
+  <div class="page-title-head d-flex align-items-center gap-2">
+    <div class="flex-grow-1">
+      <h1 class="fs-16 text-uppercase fw-bold mb-0">Officials</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <table
+            id="schools"
+            class="table table-striped dt-responsive nowrap w-100"
+          >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Comittee</th>
+                <th>Gender</th>
+                <th>Title</th>
+
+                {% if user.is_admin %}
+                <th>Edit</th>
+                <th>Delete</th>
+                {% endif %}
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for committee in comittees %}
+              <tr>
+                <td>
+                  <a href="{% url 'committee' committee.id%}"
+                    >{{committee.fname}} {{committee.lname}}</a
+                  >
+                </td>
+                <td>{{committee.comittee}}</td>
+                <td>{{committee.gender}}</td>
+                <td>{{committee.title}}</td>
+                {% if user.is_admin %}
+                <td>
+                  <a href="" class="badge badge-primary p-2"
+                    ><i class="fa fa-pencil"></i>Edit</a
+                  >
+                </td>
+                <td>
+                  <a href="" class="badge badge-danger p-2"
+                    ><i class="fa fa-trash"></i>Delete</a
+                  >
+                </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- end card body-->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col-->
+  </div>
+  <!-- end row-->
+</div>
+
+{% endblock %}

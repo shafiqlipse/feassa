@@ -1,0 +1,16 @@
+# Django settings
+feassa/settings.py
+
+# Django migrations
+accounts/migrations/*
+comittee/migrations/*
+dashboard/migrations/*
+school/migrations/*
+
+
+# Media and uploaded files (one level up)
+athlete_photos/
+photos/
+off_photos/
+qr_codes/
+media_photos/

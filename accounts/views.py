@@ -10,7 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 @anonymous_required
-def user_login(request):
+def loginUser(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -21,7 +21,7 @@ def user_login(request):
             return redirect("dashboard")  # Adjust the URL name for your dashboard view
         else:
             messages.error(request, "Invalid username or password.")
-    return render(request, "accounts/login.html")
+    return render(request, "auth/login.html")
 
 
 def user_logout(request):
@@ -29,117 +29,3 @@ def user_logout(request):
     logout(request)
     return redirect("login")
 
-
-def custom_404(request, exception):
-    return render(request, "account/custom404.html", {}, status=404)
-
-
-import base64
-from django.core.files.base import ContentFile
-
-
-def offShore(request):
-    if request.method == "POST":
-        cform = NocForm(request.POST, request.FILES)
-
-        if cform.is_valid():
-            new_athlete = cform.save(commit=False)
-
-            # Handle the cropped image
-
-            new_athlete.save()
-            messages.success(request, "Form submitted successfully.")
-            return redirect("noc")
-        else:
-            for field, errors in cform.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field.capitalize()}: {error}")
-    else:
-        cform = NocForm()
-
-    context = {
-        "cform": cform,
-    }
-
-    return render(request, "noc/nocregistration.html", context)
-
-
-def offShare(request, id):
-    noc = NOC.objects.get(id=id)
-
-    context = {
-        "noc": noc,
-    }
-
-    return render(request, "noc/officw.html", context)
-
-
-from django.shortcuts import render, redirect, get_object_or_404
-import base64
-import os
-from django.http import HttpResponse
-from django.template.loader import get_template
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
-from dashboard.filters import *
-from xhtml2pdf import pisa
-from io import BytesIO
-
-
-def nOfficials(request):
-    # Get all officials
-    nofficials = NOC.objects.all()
-
-    # Apply the filter
-    official_filter = nocFilter(request.GET, queryset=nofficials)
-    filtered_officials = official_filter.qs
-
-    if request.method == "POST":
-        # Check which form was submitted
-        if "Accreditation" in request.POST:
-            template = get_template("noc/accreditation.html")
-            filename = "Filtered_Accreditation.pdf"
-        elif "Certficate" in request.POST:
-            template = get_template("noc/certnoc.html")  # Your certificate template
-            filename = "noc_Certificate.pdf"
-        else:
-            return HttpResponse("Invalid form submission")
-
-        # Generate PDF
-        context = {"officials": filtered_officials}
-        html = template.render(context)
-
-        # Create a PDF
-        pdf_buffer = BytesIO()
-        pisa_status = pisa.CreatePDF(html, dest=pdf_buffer)
-
-        if pisa_status.err:
-            return HttpResponse("We had some errors <pre>" + html + "</pre>")
-
-        pdf_buffer.seek(0)
-
-        # Return the PDF as a response
-        response = HttpResponse(content_type="application/pdf")
-        response["Content-Disposition"] = f'attachment; filename="{filename}"'
-        response.write(pdf_buffer.getvalue())
-        return response
-    else:
-        # Render the filter form
-        return render(request, "noc/noffs.html", {"filter": official_filter})
-
-
-def deleteNoc(request, id):
-    noco = get_object_or_404(NOC, id=id)
-
-    if request.method == "POST":
-        noco.delete()
-        return redirect(
-            "noffs"
-        )  # Replace 'athlete_list' with the name of your list view or any other view
-
-    context = {
-        "noco": noco,
-    }
-
-    return render(request, "noc/delenoc.html", context)

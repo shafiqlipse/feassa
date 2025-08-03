@@ -1,0 +1,67 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}{{official.fname}} {{official.lname}}{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="page-container">
+  <div class="page-title-head d-flex align-items-center gap-2">
+    <div class="flex-grow-1">
+      <h1 class="fs-20 text-uppercase fw-bold mb-0">
+        {{official.fname}} {{official.lname}}
+      </h1>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0 fs-13">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Feassa</a>
+        </li>
+
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Officials</a>
+        </li>
+
+        <li class="breadcrumb-item active">
+          {{official.fname}} {{official.lname}}
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4 col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <img
+                src="{{ official.photo.url }}"
+                alt="{{official.fname}} {{official.lname}}"
+                class="img-fluid mb-3"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-md-9">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="fs-14 text-uppercase fw-bold mb-2">
+                Official Information
+              </h5>
+              <p><strong>Names:</strong> {{official.fname}} {{official.lname}}</p>
+              <p><strong>School:</strong> {{official.school}}</p>
+              <p><strong>Role:</strong> {{official.role}}</p>
+              <p><strong>Gender:</strong> {{official.gender}}</p>
+              <p><strong>Email:</strong> {{official.email}}</p>
+              <p><strong>ID Number:</strong> {{official.nin}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
