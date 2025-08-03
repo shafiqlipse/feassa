@@ -167,7 +167,7 @@ def mediaAccreditation(request):
         return response
     else:
         # Render the filter form
-        return render(request, "reports/media/mediasReport.html", {"filter": media_filter})
+        return render(request, "reports/media/mediaReports.html", {"filter": media_filter})
 
 
 def media(request):

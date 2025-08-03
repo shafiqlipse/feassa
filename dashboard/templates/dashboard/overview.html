@@ -12,7 +12,7 @@
     <div class="text-end">
       <ol class="breadcrumb m-0 py-0 fs-13">
         <li class="breadcrumb-item">
-          <a href="javascript: void(0);">Greeva</a>
+          <a href="javascript: void(0);">FEASSA</a>
         </li>
 
         <li class="breadcrumb-item active">Dashboard</li>
@@ -25,7 +25,7 @@
       <div class="card overflow-hidden">
         <div class="card-body">
           <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">
-            Total Orders
+            Total Schools
           </h5>
           <div class="d-flex align-items-center gap-2 my-2 py-1">
             <div class="user-img fs-42 flex-shrink-0">
@@ -35,7 +35,7 @@
                 ></iconify-icon>
               </span>
             </div>
-            <h3 class="mb-0 fw-bold">687.3k</h3>
+            <h3 class="mb-0 fw-bold">{{ schools_count }}</h3>
             <iconify-icon
               icon="solar:cart-2-line-duotone"
               class="ms-auto display-1 position-absolute opacity-25 text-muted widget-icon"
@@ -56,7 +56,7 @@
       <div class="card overflow-hidden">
         <div class="card-body">
           <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">
-            Total Returns
+            Total Athletes
           </h5>
           <div class="d-flex align-items-center gap-2 my-2 py-1">
             <div class="user-img fs-42 flex-shrink-0">
@@ -66,7 +66,7 @@
                 ></iconify-icon>
               </span>
             </div>
-            <h3 class="mb-0 fw-bold">9.62k</h3>
+            <h3 class="mb-0 fw-bold">{{ athletes_count }}</h3>
             <iconify-icon
               icon="solar:banknote-2-line-duotone"
               class="ms-auto display-1 position-absolute opacity-25 text-muted widget-icon"
@@ -87,7 +87,7 @@
       <div class="card overflow-hidden">
         <div class="card-body">
           <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">
-            Avg. Sales Earnings
+            Total Committees
           </h5>
           <div class="d-flex align-items-center gap-2 my-2 py-1">
             <div class="user-img fs-42 flex-shrink-0">
@@ -97,9 +97,7 @@
                 ></iconify-icon>
               </span>
             </div>
-            <h3 class="mb-0 fw-bold">
-              $98.24 <small class="text-muted">USD</small>
-            </h3>
+            <h3 class="mb-0 fw-bold">{{ committees_count }}</h3>
             <iconify-icon
               icon="solar:cardholder-line-duotone"
               class="ms-auto display-1 position-absolute opacity-25 text-muted widget-icon"
@@ -120,7 +118,7 @@
       <div class="card overflow-hidden">
         <div class="card-body">
           <h5 class="text-muted fs-13 text-uppercase" title="Number of Orders">
-            Number of Visits
+            Number of Officials
           </h5>
           <div class="d-flex align-items-center gap-2 my-2 py-1">
             <div class="user-img fs-42 flex-shrink-0">
@@ -128,7 +126,7 @@
                 <iconify-icon icon="solar:eye-bold-duotone"></iconify-icon>
               </span>
             </div>
-            <h3 class="mb-0 fw-bold">87.94M</h3>
+            <h3 class="mb-0 fw-bold">{{ official_count }}</h3>
             <iconify-icon
               icon="solar:eye-scan-bold-duotone"
               class="ms-auto display-1 position-absolute opacity-25 text-muted widget-icon"
@@ -147,7 +145,6 @@
   </div>
   <!-- end row -->
 
-
   <div class="row">
     <div class="col-xxl-6">
       <div class="card">
@@ -155,17 +152,9 @@
           class="d-flex card-header justify-content-between align-items-center"
         >
           <h4 class="header-title">Breakdown by Country</h4>
-          <a href="javascript:void(0);" class="btn btn-sm btn-light"
-            >Add Brand <i class="ti ti-plus ms-1"></i
-          ></a>
         </div>
         <div class="card-body p-0">
-          <div class="bg-light bg-opacity-50 py-1 text-center">
-            <p class="m-0">
-              <b>69</b> Active brands out of
-              <span class="fw-medium">102</span>
-            </p>
-          </div>
+          <div class="bg-light bg-opacity-50 py-1 text-center"></div>
           <div class="table-responsive">
             <table
               class="table table-custom table-centered table-sm table-nowrap table-hover mb-0"
@@ -179,285 +168,39 @@
                           class="avatar-title bg-primary-subtle rounded-circle"
                         >
                           <img
-                            src="assets/images/products/logo/logo-1.svg"
+                            src="{% static 'img/ug.svg'%}"
                             alt=""
                             height="22"
                           />
                         </span>
                       </div>
                       <div>
-                        <span class="text-muted fs-12">Electronics</span>
+                        <span class="text-muted fs-12">USSSA</span>
                         <br />
-                        <h5 class="fs-14 mt-1">ElectroMart - USA</h5>
+                        <h5 class="fs-14 mt-1">Uganda - UG</h5>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Established</span>
-                    <h5 class="fs-14 mt-1 fw-normal">Since 2015</h5>
+                    <span class="text-muted fs-12">Schools</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_uganda_schools}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Stores</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">300</h5>
+                    <span class="text-muted fs-12">Athletes</span> <br />
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_uganda_athletes}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Products</span>
-                    <h5 class="fs-14 mt-1 fw-normal">5,200</h5>
+                    <span class="text-muted fs-12">Officials</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_uganda_officials}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Status</span>
+                    <span class="text-muted fs-12">Media</span>
                     <h5 class="fs-14 mt-1 fw-normal">
                       <i class="ti ti-circle-filled fs-12 text-success"></i>
                       Active
                     </h5>
                   </td>
                 </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="avatar-md flex-shrink-0 me-2">
-                        <span
-                          class="avatar-title bg-info-subtle rounded-circle"
-                        >
-                          <img
-                            src="assets/images/products/logo/logo-2.svg"
-                            alt=""
-                            height="22"
-                          />
-                        </span>
-                      </div>
-                      <div>
-                        <span class="text-muted fs-12">Furniture</span>
-                        <br />
-                        <h5 class="fs-14 mt-1">FurniStyle - UK</h5>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Established</span>
-                    <h5 class="fs-14 mt-1 fw-normal">Since 2010</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Stores</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">120</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Products</span>
-                    <h5 class="fs-14 mt-1 fw-normal">1,100</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Status</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-success"></i>
-                      Active
-                    </h5>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="avatar-md flex-shrink-0 me-2">
-                        <span
-                          class="avatar-title bg-secondary-subtle rounded-circle"
-                        >
-                          <img
-                            src="assets/images/products/logo/logo-3.svg"
-                            alt=""
-                            height="22"
-                          />
-                        </span>
-                      </div>
-                      <div>
-                        <span class="text-muted fs-12">Automotive</span>
-                        <br />
-                        <h5 class="fs-14 mt-1">AutoGear - Germany</h5>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Established</span>
-                    <h5 class="fs-14 mt-1 fw-normal">Since 2005</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Stores</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">50</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Products</span>
-                    <h5 class="fs-14 mt-1 fw-normal">850</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Status</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-warning"></i>
-                      Pending
-                    </h5>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="avatar-md flex-shrink-0 me-2">
-                        <span
-                          class="avatar-title bg-danger-subtle rounded-circle"
-                        >
-                          <img
-                            src="assets/images/products/logo/logo-4.svg"
-                            alt=""
-                            height="22"
-                          />
-                        </span>
-                      </div>
-                      <div>
-                        <span class="text-muted fs-12">Fashion</span>
-                        <br />
-                        <h5 class="fs-14 mt-1">StyleCore - Italy</h5>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Established</span>
-                    <h5 class="fs-14 mt-1 fw-normal">Since 1998</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Stores</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">200</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Products</span>
-                    <h5 class="fs-14 mt-1 fw-normal">2,300</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Status</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-danger"></i>
-                      Inactive
-                    </h5>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="avatar-md flex-shrink-0 me-2">
-                        <span
-                          class="avatar-title bg-success-subtle rounded-circle"
-                        >
-                          <img
-                            src="assets/images/products/logo/logo-5.svg"
-                            alt=""
-                            height="22"
-                          />
-                        </span>
-                      </div>
-                      <div>
-                        <span class="text-muted fs-12">Tech</span>
-                        <br />
-                        <h5 class="fs-14 mt-1">TechVerse - India</h5>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Established</span>
-                    <h5 class="fs-14 mt-1 fw-normal">Since 2020</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Stores</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">400</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Products</span>
-                    <h5 class="fs-14 mt-1 fw-normal">7,500</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Status</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-success"></i>
-                      Active
-                    </h5>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- end table-responsive-->
-        </div>
-        <!-- end card-body-->
-
-        <div class="card-footer">
-          <div
-            class="align-items-center justify-content-between row text-center text-sm-start"
-          >
-            <div class="col-sm">
-              <div class="text-muted">
-                Showing <span class="fw-semibold">5</span> of
-                <span class="fw-semibold">15</span> Results
-              </div>
-            </div>
-            <div class="col-sm-auto mt-3 mt-sm-0">
-              <ul
-                class="pagination pagination-boxed pagination-sm mb-0 justify-content-center"
-              >
-                <li class="page-item disabled">
-                  <a href="#" class="page-link"
-                    ><i class="ti ti-chevron-left"></i
-                  ></a>
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link"
-                    ><i class="ti ti-chevron-right"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- -->
-        </div>
-      </div>
-      <!-- end card-->
-    </div>
-    <!-- end col-->
-
-    <div class="col-xxl-6">
-      <div class="card card-h-100">
-        <div class="card-header d-flex flex-wrap align-items-center gap-2">
-          <h4 class="header-title me-auto">Breakdown of Athletes by Sport</h4>
-
-          <div class="d-flex gap-2 justify-content-end text-end">
-            <a href="javascript:void(0);" class="btn btn-sm btn-light"
-              >Import <i class="ti ti-download ms-1"></i
-            ></a>
-            <a href="javascript:void(0);" class="btn btn-sm btn-primary"
-              >Export <i class="ti ti-file-export ms-1"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="card-body p-0">
-          <div class="bg-light bg-opacity-50 py-1 text-center">
-            <p class="m-0">
-              <b>895k</b> Active users out of
-              <span class="fw-medium">965k</span>
-            </p>
-          </div>
-
-          <div class="table-responsive">
-            <table
-              class="table table-custom table-centered table-sm table-nowrap table-hover mb-0"
-            >
-              <tbody>
                 <tr>
                   <td>
                     <div class="d-flex align-items-center">
@@ -466,296 +209,162 @@
                           class="avatar-title bg-primary-subtle rounded-circle"
                         >
                           <img
-                            src="assets/images/users/avatar-1.jpg"
+                            src="{% static 'img/ke.svg'%}"
                             alt=""
                             height="22"
-                            class="rounded-circle"
                           />
                         </span>
                       </div>
                       <div>
-                        <span class="text-muted fs-12">Name</span>
+                        <span class="text-muted fs-12">KSSSA</span>
                         <br />
-                        <h5 class="fs-14 mt-1">John Doe</h5>
+                        <h5 class="fs-14 mt-1">Kenya - KE</h5>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Email</span>
-                    <h5 class="fs-14 mt-1 fw-normal">john.doe@example.com</h5>
+                    <span class="text-muted fs-12">Schools</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_kenya_schools}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Role</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">Administrator</h5>
+                    <span class="text-muted fs-12">Athletes</span> <br />
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_kenya_athletes}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Status</span>
+                    <span class="text-muted fs-12">Officials</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_kenya_officials}}</h5>
+                  </td>
+                  <td>
+                    <span class="text-muted fs-12">Media</span>
                     <h5 class="fs-14 mt-1 fw-normal">
                       <i class="ti ti-circle-filled fs-12 text-success"></i>
                       Active
                     </h5>
                   </td>
-                  <td style="width: 30px">
-                    <div class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle text-muted drop-arrow-none card-drop p-0"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="ti ti-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >View Profile</a
-                        >
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Deactivate</a
-                        >
-                      </div>
-                    </div>
-                  </td>
                 </tr>
-
                 <tr>
                   <td>
                     <div class="d-flex align-items-center">
                       <div class="avatar-md flex-shrink-0 me-2">
                         <span
-                          class="avatar-title bg-info-subtle rounded-circle"
+                          class="avatar-title bg-primary-subtle rounded-circle"
                         >
                           <img
-                            src="assets/images/users/avatar-2.jpg"
+                            src="{% static 'img/tz.svg'%}"
                             alt=""
                             height="22"
-                            class="rounded-circle"
                           />
                         </span>
                       </div>
                       <div>
-                        <span class="text-muted fs-12">Name</span>
+                        <span class="text-muted fs-12">TSSSA</span>
                         <br />
-                        <h5 class="fs-14 mt-1">Jane Smith</h5>
+                        <h5 class="fs-14 mt-1">Tanzania - TZ</h5>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Email</span>
-                    <h5 class="fs-14 mt-1 fw-normal">jane.smith@example.com</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Role</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">Editor</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Status</span>
+                    <span class="text-muted fs-12">Schools</span>
                     <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-warning"></i>
-                      Pending
-                    </h5>
-                  </td>
-                  <td style="width: 30px">
-                    <div class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle text-muted drop-arrow-none card-drop p-0"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="ti ti-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >View Profile</a
-                        >
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Activate</a
-                        >
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="avatar-md flex-shrink-0 me-2">
-                        <span
-                          class="avatar-title bg-secondary-subtle rounded-circle"
-                        >
-                          <img
-                            src="assets/images/users/avatar-3.jpg"
-                            alt=""
-                            height="22"
-                            class="rounded-circle"
-                          />
-                        </span>
-                      </div>
-                      <div>
-                        <span class="text-muted fs-12">Name</span>
-                        <br />
-                        <h5 class="fs-14 mt-1">Michael Brown</h5>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Email</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      michael.brown@example.com
+                      {{in_tanzania_schools}}
                     </h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Role</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">Viewer</h5>
+                    <span class="text-muted fs-12">Athletes</span> <br />
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_tanzania_athletes}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Status</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-danger"></i>
-                      Inactive
-                    </h5>
-                  </td>
-                  <td style="width: 30px">
-                    <div class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle text-muted drop-arrow-none card-drop p-0"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="ti ti-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Activate</a
-                        >
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Delete</a
-                        >
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="avatar-md flex-shrink-0 me-2">
-                        <span
-                          class="avatar-title bg-warning-subtle rounded-circle"
-                        >
-                          <img
-                            src="assets/images/users/avatar-4.jpg"
-                            alt=""
-                            height="22"
-                            class="rounded-circle"
-                          />
-                        </span>
-                      </div>
-                      <div>
-                        <span class="text-muted fs-12">Name</span>
-                        <br />
-                        <h5 class="fs-14 mt-1">Emily Davis</h5>
-                      </div>
-                    </div>
+                    <span class="text-muted fs-12">Officials</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_tanzania_officials}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Email</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      emily.davis@example.com
-                    </h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Role</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">Manager</h5>
-                  </td>
-                  <td>
-                    <span class="text-muted fs-12">Status</span>
+                    <span class="text-muted fs-12">Media</span>
                     <h5 class="fs-14 mt-1 fw-normal">
                       <i class="ti ti-circle-filled fs-12 text-success"></i>
                       Active
                     </h5>
                   </td>
-                  <td style="width: 30px">
-                    <div class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle text-muted drop-arrow-none card-drop p-0"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="ti ti-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >View Profile</a
-                        >
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Deactivate</a
-                        >
-                      </div>
-                    </div>
-                  </td>
                 </tr>
-
                 <tr>
                   <td>
                     <div class="d-flex align-items-center">
                       <div class="avatar-md flex-shrink-0 me-2">
                         <span
-                          class="avatar-title bg-danger-subtle rounded-circle"
+                          class="avatar-title bg-primary-subtle rounded-circle"
                         >
                           <img
-                            src="assets/images/users/avatar-5.jpg"
+                            src="{% static 'img/rd.svg'%}"
                             alt=""
                             height="22"
-                            class="rounded-circle"
                           />
                         </span>
                       </div>
                       <div>
-                        <span class="text-muted fs-12">Name</span>
+                        <span class="text-muted fs-12">RSSSA</span>
                         <br />
-                        <h5 class="fs-14 mt-1">Robert Taylor</h5>
+                        <h5 class="fs-14 mt-1">Rwanda - RW</h5>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Email</span>
-                    <h5 class="fs-14 mt-1 fw-normal">
-                      robert.taylor@example.com
-                    </h5>
+                    <span class="text-muted fs-12">Schools</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_rwanda_schools}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Role</span> <br />
-                    <h5 class="fs-14 mt-1 fw-normal">Support</h5>
+                    <span class="text-muted fs-12">Athletes</span> <br />
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_rwanda_athletes}}</h5>
                   </td>
                   <td>
-                    <span class="text-muted fs-12">Status</span>
+                    <span class="text-muted fs-12">Officials</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_rwanda_officials}}</h5>
+                  </td>
+                  <td>
+                    <span class="text-muted fs-12">Media</span>
                     <h5 class="fs-14 mt-1 fw-normal">
-                      <i class="ti ti-circle-filled fs-12 text-warning"></i>
-                      Pending
+                      <i class="ti ti-circle-filled fs-12 text-success"></i>
+                      Active
                     </h5>
                   </td>
-                  <td style="width: 30px">
-                    <div class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle text-muted drop-arrow-none card-drop p-0"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="ti ti-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >View Profile</a
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-md flex-shrink-0 me-2">
+                        <span
+                          class="avatar-title bg-primary-subtle rounded-circle"
                         >
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Activate</a
-                        >
+                          <img
+                            src="{% static 'img/br.svg'%}"
+                            alt=""
+                            height="22"
+                          />
+                        </span>
+                      </div>
+                      <div>
+                        <span class="text-muted fs-12">BSSSA</span>
+                        <br />
+                        <h5 class="fs-14 mt-1">Burundi - BI</h5>
                       </div>
                     </div>
+                  </td>
+                  <td>
+                    <span class="text-muted fs-12">Schools</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_burundi_schools}}</h5>
+                  </td>
+                  <td>
+                    <span class="text-muted fs-12">Athletes</span> <br />
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_burundi_athletes}}</h5>
+                  </td>
+                  <td>
+                    <span class="text-muted fs-12">Officials</span>
+                    <h5 class="fs-14 mt-1 fw-normal">{{in_burundi_officials}}</h5>
+                  </td>
+                  <td>
+                    <span class="text-muted fs-12">Media</span>
+                    <h5 class="fs-14 mt-1 fw-normal">
+                      <i class="ti ti-circle-filled fs-12 text-success"></i>
+                      Active
+                    </h5>
                   </td>
                 </tr>
               </tbody>
@@ -764,49 +373,13 @@
           <!-- end table-responsive-->
         </div>
         <!-- end card-body-->
-
-        <div class="card-footer">
-          <div
-            class="align-items-center justify-content-between row text-center text-sm-start"
-          >
-            <div class="col-sm">
-              <div class="text-muted">
-                Showing <span class="fw-semibold">5</span> of
-                <span class="fw-semibold">10</span> Results
-              </div>
-            </div>
-            <div class="col-sm-auto mt-3 mt-sm-0">
-              <ul
-                class="pagination pagination-boxed pagination-sm mb-0 justify-content-center"
-              >
-                <li class="page-item disabled">
-                  <a href="#" class="page-link"
-                    ><i class="ti ti-chevron-left"></i
-                  ></a>
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link"
-                    ><i class="ti ti-chevron-right"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- -->
-        </div>
       </div>
       <!-- end card-->
     </div>
     <!-- end col-->
+
+
   </div>
   <!-- end row-->
-
-
 </div>
 {% endblock %}
