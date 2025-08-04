@@ -6,9 +6,11 @@ from accounts.models import *
 from django.contrib import messages
 from django.core.files.base import ContentFile
 import base64
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='login')
 def AllSchools(request):
 
     schools = School.objects.all()
@@ -19,7 +21,7 @@ def AllSchools(request):
 
     return render(request, "school/Allschools.html", context)
 
-
+@login_required(login_url='login')
 def Schools(request):
     user = request.user
 
@@ -46,7 +48,7 @@ def Schools(request):
 
     return render(request, "school/schools.html", context)
 
-
+@login_required(login_url='login')
 def SchoolDetail(request, id):
     school = get_object_or_404(School, id=id)
     athletes = Athlete.objects.filter(school=school)
@@ -104,7 +106,7 @@ def athleteDetail(request, id):
 
     return render(request, "athletes/athlete.html", context)
 
-
+@login_required(login_url='login')
 def Athletes(request):
 
     athletes = Athlete.objects.all()
@@ -115,7 +117,7 @@ def Athletes(request):
 
     return render(request, "athletes/athletes.html", context)
 
-
+@login_required(login_url='login')
 def athleteUpdate(request, id):
     athlete = get_object_or_404(Athlete, id=id)
 
@@ -136,7 +138,7 @@ def athleteUpdate(request, id):
 
     return render(request, "athletes/updateathlete.html", context)
 
-
+@login_required(login_url='login')
 def deleteAthlete(request, id):
     athlete = get_object_or_404(Athlete, id=id)
 
@@ -154,7 +156,7 @@ def deleteAthlete(request, id):
 
 
 # _+++++++++++++++++Officials++++++++++++++++++++++++++++++
-
+@login_required(login_url='login')
 def officialDetail(request, id):
     official = Official.objects.get(id=id)
 
@@ -164,7 +166,7 @@ def officialDetail(request, id):
 
     return render(request, "Officials/official.html", context)
 
-
+@login_required(login_url='login')
 def allOfficials(request):
     user = request.user
     officials = Official.objects.filter(user=user)
@@ -210,7 +212,7 @@ def allOfficials(request):
 
     return render(request, "Officials/allofficials.html", context)
 
-
+@login_required(login_url='login')
 def Officials(request):
 
     officials = Official.objects.all()
@@ -221,7 +223,7 @@ def Officials(request):
 
     return render(request, "Officials/officials.html", context)
 
-
+@login_required(login_url='login')
 def officialUpdate(request, id):
     official = get_object_or_404(Official, id=id)
 
@@ -242,7 +244,7 @@ def officialUpdate(request, id):
 
     return render(request, "Officials/updateofficial.html", context)
 
-
+@login_required(login_url='login')
 def deleteOfficial(request, id):
     official = get_object_or_404(Official, id=id)
 
@@ -271,6 +273,7 @@ from django.core.files.storage import default_storage
 from .filters import *
 from django.conf import settings
 
+@login_required(login_url='login')
 def athletesReports(request):
     # Get all athletes
     athletes = Athlete.objects.all()
@@ -317,6 +320,7 @@ def athletesReports(request):
 
 
 # Officials Reports
+@login_required(login_url='login')
 def officialsReports(request):
     # Get all officials
     officials = Official.objects.all()

@@ -4,6 +4,7 @@ from .models import *
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from accounts.decorators import school_required, anonymous_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.files.base import ContentFile
@@ -49,7 +50,7 @@ def committee(request):
 
     return render(request, "comittee/addcomittee.html", context)
 
-
+@login_required(login_url='login')
 def committees(request):
     comittees = NOC.objects.all()
 
@@ -59,7 +60,7 @@ def committees(request):
 
     return render(request, "comittee/comittees.html", context)
 
-
+@login_required(login_url='login')
 def committeeDetail(request, id):
     comittee = NOC.objects.get(id=id)
 
@@ -77,6 +78,7 @@ from .filters import *
 import base64
 from django.conf import settings
 # This function is used to generate reports for comittees
+@login_required(login_url='login')
 def comitteesReports(request):
     # Get all comittees
     comittees = NOC.objects.all()
@@ -126,6 +128,7 @@ def comitteesReports(request):
 
 
 # This function is used to generate reports for medias
+@login_required(login_url='login')
 def mediaAccreditation(request):
     # Get all medias
     medias = Media.objects.all()
@@ -208,7 +211,7 @@ def media(request):
 
     return render(request, "media/addmedia.html", context)
 
-
+@login_required(login_url='login')
 def mediaList(request):
     medias = Media.objects.all()
 
@@ -218,7 +221,7 @@ def mediaList(request):
 
     return render(request, "media/medias.html", context)
 
-
+@login_required(login_url='login')
 def mediaDetail(request, id):
     media = Media.objects.get(id=id)
 

@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from comittee.models import *
 from school.models import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required(login_url='login')
 def Dashboard(request):
     committees_count = NOC.objects.all().count()
     athletes_count = Athlete.objects.all().count()

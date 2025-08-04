@@ -13,7 +13,7 @@ def staff_required(view_func):
             return view_func(request, *args, **kwargs)
         else:
             return render(
-                request, "accounts/login.html"
+                request, "auth/login.html"
             )  # You can customize this template
 
     return _wrapped_view
@@ -26,7 +26,7 @@ def school_required(view_func):
             return view_func(request, *args, **kwargs)
         else:
             return render(
-                request, "accounts/login.html"
+                request, "auth/login.html"
             )  # You can customize this template
 
     return _wrapped_view

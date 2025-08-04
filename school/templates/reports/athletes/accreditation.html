@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Album</title>
+    <title>Accreditation</title>
   </head>
 
   <body>
@@ -26,16 +26,25 @@
           gap: 10px; /* Adjust the gap between grid items */
         }
       }
-      .header .athletes .table tbody .upper {
-        padding-top: 140px;
-        padding-bottom: 20px;
-        padding-left: 40px;
+      .header .athletes table tbody tr td {
+        padding-top: 105px;
+        padding-bottom: 40px;
+        padding-left: 50px;
         padding-right: 40px;
         margin: 0;
       }
-      .header .athletes .table tbody .upper .photo {
-        width: 100px;
-        height: 100px;
+      .header .athletes table tbody tr td table tr .td .inner {
+        width: 350px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .header .athletes table tbody tr td table tr .td .inner img {
+        width: 160px;
+        height: 160px;
+        image-orientation: from-image;
+        transform: rotate(0deg);
+      }
+      .header .athletes table tbody tr td table tr .td .inner span {
       }
     </style>
     <div class="header">
@@ -46,30 +55,15 @@
 
             <tr>
               {% endif %}
-
               <td>
-                <table class="table">
-                  <tbody>
-                    <tr class="upper">
-                      <td class="photo">
-                        {% if athlete.school.country == 'Uganda' %}
+                <table>
+                  <tr>
+                    <td class="td">
+                      <div class="inner">
                         <span
-                          >UG00{{ athlete.id|upper}}
+                          >{{ team.sport|upper}}
                           ({{athlete.gender|upper}})</span
                         >
-                        {% elif athlete.school.country == 'Kenya' %}
-                        <span
-                          >KE00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >{% elif athlete.school.country == 'Tanzania' %}
-                        <span
-                          >TZ00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >{% elif athlete.school.country == 'Rwanda' %}
-                        <span
-                          >RW00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >{% endif %}
                         <br />
                         {% if athlete.photo %}
                         <img
@@ -82,53 +76,18 @@
                           alt="{{ athlete.lname }}"
                         />
                         {% endif %}
-                      </td>
-                      <td class="qr_code">
-                        <img
-                          src="{{ athlete.qr_code.path }}"
-                          alt="{{ athlete.fname }}"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        {% if athlete.school.country == 'Uganda' %}
-                        <img
-                          src="https://feassa.org/static/img/ug.svg"
-                          alt="{{ athlete.lname }}"
-                        />
-                        {% elif athlete.school.country == 'Kenya' %}
-                        <img
-                          src="https://feassa.org/static/img/ke.svg"
-                          alt="{{ athlete.lname }}"
-                        />{% elif athlete.school.country == 'Tanzania' %}
-                        <img
-                          src="https://feassa.org/static/img/tz.svg"
-                          alt="{{ athlete.lname }}"
-                        />{% elif athlete.school.country == 'Rwanda' %}
-                        <img
-                          src="https://feassa.org/static/img/rd.svg"
-                          alt="{{ athlete.lname }}"
-                        />{% elif athlete.school.country == 'Burundi' %}
-                        <img
-                          src="https://feassa.org/static/img/br.svg"
-                          alt="{{ athlete.lname }}"
-                        />{% endif %}
-                      </td>
-                      <td>
-                        <span
-                          ><strong
-                            >{{ athlete.fname|upper }}
-                            {{athlete.lname|upper}}</strong
-                          >
-                        </span>
                         <br />
-
+                        <span
+                          >{{ athlete.fname|upper }} {{ athlete.mname|upper }}
+                          {{athlete.lname|upper}}</span
+                        >
+                        <br />
+                        <span>{{ athlete.index_number|upper }}</span><br />
                         <span>{{ athlete.school|upper }}</span><br />
-                        <span>{{ athlete.sport|upper }}</span><br />
-                      </td>
-                    </tr>
-                  </tbody>
+                        <span>{{ athlete.date_of_birth|upper }}</span><br />
+                      </div>
+                    </td>
+                  </tr>
                 </table>
               </td>
               {% if forloop.last or forloop.counter0|add:1|divisibleby:2 %}
