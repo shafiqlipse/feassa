@@ -36,7 +36,7 @@ def committee(request):
                     )
             new_comittee.save()
             messages.success(request, "Form submitted successfully.")
-            return redirect("noc")
+            return redirect("success")
         else:
             for field, errors in cform.errors.items():
                 for error in errors:
@@ -197,7 +197,7 @@ def media(request):
                     )
             new_media.save()
             messages.success(request, "Form submitted successfully.")
-            return redirect("noc")
+            return redirect("success")
         else:
             for field, errors in cform.errors.items():
                 for error in errors:
@@ -231,3 +231,5 @@ def mediaDetail(request, id):
 
     return render(request, "media/media.html", context)
 
+def success(request):
+    return render(request, "comittee/success.html")

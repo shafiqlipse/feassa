@@ -8,6 +8,7 @@ from .views import *
 
 urlpatterns = [
  
+    path("success/", success, name="success"),
     path("noc/", committee, name="noc"),
     path("committees/", committees, name="committees"),
     path("committees_reports/", comitteesReports, name="committees_reports"),
