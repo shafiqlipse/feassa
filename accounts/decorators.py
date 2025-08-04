@@ -37,7 +37,7 @@ def anonymous_required(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
         if request.user.is_authenticated:
-            return render(request, "dashboard/home.html")  # Customize this template
+            return render(request, "dashboard/overview.html")  # Customize this template
         else:
             return view_func(request, *args, **kwargs)
 
