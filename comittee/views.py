@@ -120,7 +120,7 @@ def comitteesReports(request):
         return response
     else:
         # Render the filter form
-        return render(request, "reports/media/comitteesReport.html", {"filter": comittee_filter})
+        return render(request, "reports/comitees/comitteesReport.html", {"filter": comittee_filter})
 
 # Note: The above code assumes you have a template named "reports/media/accreditation.html"
 # and "reports/media/certificate.html" for generating the respective reports.
