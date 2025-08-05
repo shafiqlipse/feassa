@@ -105,6 +105,14 @@ def athleteDetail(request, id):
     }
 
     return render(request, "athletes/athlete.html", context)
+# _+++++++++++++++++Athletes++++++++++++++++++++++++++++++
+
+def qr_code(request, id):
+    athlete = Athlete.objects.get(id=id)
+    context = {
+        "athlete": athlete,
+    }
+    return render(request, "athletes/qr_code.html", context)
 
 @login_required(login_url='login')
 def Athletes(request):

@@ -13,6 +13,7 @@ urlpatterns = [
     # ------------Athletes-------------------
     path("athletes/", Athletes, name="athletes"),
     path("athlete/<int:id>", athleteDetail, name="athlete"),
+    path("qathlete/<int:id>", qr_code, name="qathlete"),
     path("athleteupdate/<int:id>", athleteUpdate, name="athleteupdate"),
     path("deleteathlete/<int:id>", deleteAthlete, name="athletedelete"),
     # ------------Officials-------------------

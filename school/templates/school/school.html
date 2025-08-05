@@ -56,7 +56,7 @@
             <tbody>
               {% for athlete in athletes %}
               <tr>
-                <td><a href="{% url 'athlete' athlete.id%}">{{athlete.fname}} {{athlete.lname}}</a></td>
+                <td><a href="{% url 'qathlete' athlete.id%}">{{athlete.fname}} {{athlete.lname}}</a></td>
                 <td>{{athlete.id_number}}</td>
                 <td>{{athlete.sport}}</td>
                 <td>{{athlete.gender}}</td>
