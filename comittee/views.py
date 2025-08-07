@@ -90,11 +90,11 @@ def comitteesReports(request):
     if request.method == "POST":
         # Check which form was submitted
         if "Accreditation" in request.POST:
-            template = get_template("reports/media/accreditation.html")
+            template = get_template("reports/comitees/accreditation.html")
             filename = "Filtered_Accreditation.pdf"
         elif "Certificate" in request.POST:
             template = get_template(
-                "reports/media/certificate.html"
+                "reports/comitees/certificate.html"
             )  # Your certificate template
             filename = "Filtered_Certificate.pdf"
         else:

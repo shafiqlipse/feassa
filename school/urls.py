@@ -10,6 +10,7 @@ urlpatterns = [
     path("schools/", Schools, name="schools"),
     path("allschools/", AllSchools, name="allschools"),
     path("school/<int:id>", SchoolDetail, name="school"),
+    path("deleteschool/<int:id>", deleteSchool, name="deleteschool"),
     # ------------Athletes-------------------
     path("athletes/", Athletes, name="athletes"),
     path("athlete/<int:id>", athleteDetail, name="athlete"),

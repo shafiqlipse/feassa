@@ -270,6 +270,22 @@ def deleteOfficial(request, id):
 
 # _+++++++++++++++++REPORTS++++++++++++++++++++++++++++++
 
+def deleteSchool(request, id):
+    school = get_object_or_404(School, id=id)
+
+    if request.method == "POST":
+        school.delete()
+        return redirect(
+            "schools"
+        )  # Replace 'athlete_list' with the name of your list view or any other view
+
+    context = {
+        "school": school,
+    }
+
+    return render(request, "school/deleteschool.html", context)
+
+
 
 from xhtml2pdf import pisa
 from django.template.loader import get_template
