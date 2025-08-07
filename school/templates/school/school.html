@@ -46,10 +46,9 @@
                 <th>Sport</th>
                 <th>Gender</th>
                 <th>Class</th>
-                {% if user.is_admin %}
                 <th>Edit</th>
                 <th>Delete</th>
-                {% endif %}
+               
               </tr>
             </thead>
 
@@ -61,10 +60,10 @@
                 <td>{{athlete.sport}}</td>
                 <td>{{athlete.gender}}</td>
                 <td>{{athlete.classroom}}</td>
-                {% if user.is_admin %}
+                
                 <td><a href="{%url 'athleteupdate' athlete.id%}" class="del"><i class="fa fa-pencil"></i>Edit</a></td>
                 <td><a href="{%url 'athletedelete' athlete.id%}" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a></td>
-                {% endif %}
+              
               </tr>
               {% endfor %}
             </tbody>
