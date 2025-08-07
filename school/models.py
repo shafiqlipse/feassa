@@ -101,11 +101,15 @@ class Official(models.Model):
             ("Matron", "Matron"),
             ("Patron", "Patron"),
             ("Chaperone", "Chaperone"),
+            ("Sight guide", "Sight guide"),
+            ("Sign language interpreter", "Sign language interpreter"),
             ("Team Manager", "Team Manager"),
             ("Other", "Other"),
         ],
         null=True,
         blank=True,
+        
+
     )
     photo = models.ImageField(
         upload_to="photos/",
