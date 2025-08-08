@@ -44,12 +44,15 @@
       .header .athletes table tbody tr td table tr .td .inner .text span strong {
         margin-top: 20px;
         text-align: left;
-        font-size: 12px;
+        font-size: 11px;
         width: 100%;
       }
-      .header .athletes table tbody tr td table tr .td .inner .text span {
-        font-size: 12px;
-        text-align: left;
+      .header .athletes table tbody tr td table tr .td .inner .text school {
+        font-size: 10px;
+    
+      }
+      .header .athletes table tbody tr td table tr .td .inner {
+        width: 300px;
       }
     </style>
     <div class="header">
@@ -101,7 +104,7 @@
                             ></span
                           >
                           <br />
-                          <span>{{ athlete.school|upper }}</span><br />
+                          <span class='school'>{{ athlete.school|upper }}</span><br />
                           <span>{{ athlete.date_of_birth|upper }}</span><br />
                         </span>
                       </span>
