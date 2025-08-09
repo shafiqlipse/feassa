@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
 from django.contrib.auth import login, logout
@@ -69,6 +69,58 @@ def committeeDetail(request, id):
     }
 
     return render(request, "comittee/comittee.html", context)
+
+def edit_committee(request, id):
+    committee = NOC.objects.get(id=id)
+
+    if request.method == "POST":
+        cform = NocForm(request.POST, request.FILES, instance=committee)
+
+        if cform.is_valid():
+            updated_committee = cform.save(commit=False)
+
+            # Handle the cropped image
+            cropped_data = request.POST.get("photo_cropped")
+            if cropped_data:
+                try:
+                    format, imgstr = cropped_data.split(";base64,")
+                    ext = format.split("/")[-1]
+                    data = ContentFile(
+                        base64.b64decode(imgstr), name=f"photo.{ext}"
+                    )
+                    updated_committee.photo = data
+                except (ValueError, TypeError):
+                    messages.error(request, "Invalid image data.")
+                    return render(
+                        request, "comittee/addcomittee.html", {"cform": cform, "committee": committee}
+                    )
+
+            updated_committee.save()
+            messages.success(request, "Committee updated successfully.")
+            return redirect("committees")
+        else:
+            for field, errors in cform.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.capitalize()}: {error}")
+    else:
+        cform = NocForm(instance=committee)
+
+    context = {
+        "cform": cform,
+        "committee": committee,
+    }
+    return render(request, "comittee/addcomittee.html", context)
+# return render(request, "comittee/addcomittee.html", context)
+def delete_committee(request, id):
+    comittee = get_object_or_404(NOC, id=id)
+
+    if request.method == "POST":
+        comittee.delete()
+        messages.success(request, "Committee deleted successfully.")
+        return redirect("committees")  # Change to your actual list view name
+
+    return render(request, "comittee/deletecomitee.html", {"comittee": comittee})
+# return render(request, "comittee/addcomittee.html", context)
 
 from xhtml2pdf import pisa
 from io import BytesIO
