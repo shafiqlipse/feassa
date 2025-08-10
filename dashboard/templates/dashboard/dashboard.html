@@ -179,24 +179,24 @@
                 class="side-nav-link"
               >
                 <span class="menu-icon"><i class="ti ti-map-pin"></i></span>
-                <span class="menu-text"> Maps </span>
+                <span class="menu-text"> Data </span>
                 <span class="menu-arrow"></span>
               </a>
               <div class="collapse" id="sidebarMaps">
                 <ul class="sub-menu">
                   <li class="side-nav-item">
-                    <a href="maps-google.html" class="side-nav-link">
-                      <span class="menu-text">Google Maps</span>
+                    <a href="{% url 'export_acsv' %}" class="side-nav-link">
+                      <span class="menu-text">Athletes</span>
                     </a>
                   </li>
                   <li class="side-nav-item">
-                    <a href="maps-vector.html" class="side-nav-link">
-                      <span class="menu-text">Vector Maps</span>
+                    <a href="{% url 'export_ocsv' %}" class="side-nav-link">
+                      <span class="menu-text">Officials</span>
                     </a>
                   </li>
                   <li class="side-nav-item">
-                    <a href="maps-leaflet.html" class="side-nav-link">
-                      <span class="menu-text">Leaflet Maps</span>
+                    <a href="{% url 'export_scsv' %}" class="side-nav-link">
+                      <span class="menu-text">Schools</span>
                     </a>
                   </li>
                 </ul>

@@ -388,3 +388,119 @@ def officialsReports(request):
         # Render the filter form
         return render(request, "reports/officials/AthletesReport.html", {"filter": official_filter})
 
+
+import csv
+from django.http import HttpResponse
+
+
+def export_acsv(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="athletes.csv"'
+
+    # Create a CSV writer object using the HttpResponse as the file.
+    writer = csv.writer(response)
+
+    # Write the header row
+    writer.writerow(
+        [
+            "id",
+            "first_name",
+            "last_name",
+            "school",
+            "classroom",
+            "gender",
+            "sport",
+            "country",
+        ]
+    )  # Replace with your model's fields
+
+    # Write data rows
+    for obj in Athlete  .objects.all():
+        writer.writerow(
+            [
+                obj.id,
+                obj.fname,
+                obj.lname,
+                obj.school,
+                obj.classroom,
+                obj.gender,
+                obj.sport,
+                obj.school.country,
+        
+            ]
+        )  # Replace with your model's fields
+
+    return response
+
+
+def export_scsv(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="schools.csv"'
+
+    # Create a CSV writer object using the HttpResponse as the file.
+    writer = csv.writer(response)
+
+    # Write the header row
+    writer.writerow(
+        [
+            "id",
+            "name",
+            "country",
+        ]
+    )  # Replace with your model's fields
+
+    # Write data rows
+    for obj in School.objects.all():
+        writer.writerow(
+            [
+                obj.id,
+                obj.name,
+                obj.country,
+        
+            ]
+        )  # Replace with your model's fields
+
+    return response
+
+
+
+def export_ocsv(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="officials.csv"'
+
+    # Create a CSV writer object using the HttpResponse as the file.
+    writer = csv.writer(response)
+
+    # Write the header row
+    writer.writerow(
+        [
+            "id",
+            "fname",
+            "lname",
+            "school",
+            "gender",
+            "role",
+            "country",
+        ]
+    )  # Replace with your model's fields
+
+    # Write data rows
+    for obj in Official.objects.all():
+        writer.writerow(
+            [
+                obj.id,
+                obj.fname,
+                obj.lname,
+                obj.school,
+                obj.gender,
+                obj.role,
+                obj.school.country,
+        
+            ]
+        )  # Replace with your model's fields
+
+    return response
+
