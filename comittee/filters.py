@@ -4,6 +4,14 @@ from .models import *
 
 # _+++++++++++++++++Filters++++++++++++++++++++++++++++++
 class comitteeFilter(django_filters.FilterSet):
+    name = django_filters.ModelMultipleChoiceFilter(
+        queryset=NOC.objects.all(),
+        label="Name",
+        method="filter_by_full_name",
+        widget=forms.SelectMultiple(
+            attrs={"class": "form-control js-example-basic-multiple-name"}
+        )
+    )
     title = django_filters.MultipleChoiceFilter(
         choices=lambda: [(n, n) for n in NOC.objects.values_list('title', flat=True).distinct()],
         label="Title",
@@ -39,8 +47,20 @@ class comitteeFilter(django_filters.FilterSet):
             "comittee",
             "gender",
             "title",
+            "name",
         ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Show "First Last" in the dropdown
+        self.filters['name'].field.label_from_instance = (
+            lambda obj: f"{obj.fname} {obj.lname}"
+        )
 
+    def filter_by_full_name(self, queryset, name, value):
+        """Filter by selected official IDs, while keeping other filters."""
+        if value:
+            queryset = queryset.filter(id__in=[v.id for v in value])
+        return queryset
 
 class mediaFilter(django_filters.FilterSet):
 
