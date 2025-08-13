@@ -24,29 +24,42 @@ def AllSchools(request):
 @login_required(login_url='login')
 def Schools(request):
     user = request.user
-
     schools = School.objects.filter(user=user)
     new_school = None
+    school_to_edit = None
+
+    # Check if we're editing
+    school_id = request.GET.get("edit") or request.POST.get("school_id")
+    if school_id:
+        school_to_edit = get_object_or_404(School, id=school_id, user=user)
 
     if request.method == "POST":
-        cform = SchoolForm(request.POST, request.FILES)
+        if school_to_edit:
+            cform = SchoolForm(request.POST, request.FILES, instance=school_to_edit)
+        else:
+            cform = SchoolForm(request.POST, request.FILES)
 
         if cform.is_valid():
             new_school = cform.save(commit=False)
-            new_school.user = user
-            new_school.country = user.country
-
+            if not school_to_edit:  # Only set these when creating
+                new_school.user = user
+                new_school.country = user.country
             new_school.save()
             return redirect("schools")
     else:
-        cform = SchoolForm()
+        if school_to_edit:
+            cform = SchoolForm(instance=school_to_edit)
+        else:
+            cform = SchoolForm()
 
     context = {
         "schools": schools,
         "cform": cform,
+        "school_to_edit": school_to_edit,
     }
 
     return render(request, "school/schools.html", context)
+
 
 @login_required(login_url='login')
 def SchoolDetail(request, id):
