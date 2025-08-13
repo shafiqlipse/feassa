@@ -67,7 +67,8 @@ class Athlete(models.Model):
 
         # Save model with the updated QR code
         super().save(*args, **kwargs)
-
+    def __str__(self):
+        return f"{self.fname} {self.lname}"
 
 class Official(models.Model):
     fname = models.CharField(max_length=100, null=True, blank=True, default="")

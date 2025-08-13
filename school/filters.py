@@ -32,6 +32,11 @@ class athleteFilter(django_filters.FilterSet):
 
 
 class officialFilter(django_filters.FilterSet):
+    fname = django_filters.MultipleChoiceFilter(
+        choices=lambda: [(n, n) for n in Official.objects.values_list('fname', flat=True).distinct()],
+        label="Name",
+        widget=forms.SelectMultiple(attrs={"class": "form-control js-example-basic-multiple-name"})
+    )
     school = django_filters.ModelChoiceFilter(
         queryset=School.objects.all(),
         label="School",
@@ -51,6 +56,7 @@ class officialFilter(django_filters.FilterSet):
             "school",
             "gender",
             "role",
+            "fname",
         ]  # Add all fields you want to filter on
 
 
