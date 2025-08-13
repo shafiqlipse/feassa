@@ -16,6 +16,7 @@ class NOC(models.Model):
             ("Transport", "Transport"),
             ("Corporate Relations", "Corporate Relations"),
             ("Secretariat", "Secretariat"),
+            ("Executive committee", "Executive committee"),
             ("Government official", "Government official"),
             ("Sports coordinators", "Sports coordinators"),
 
