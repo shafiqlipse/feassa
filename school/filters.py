@@ -43,8 +43,27 @@ class officialFilter(django_filters.FilterSet):
         widget=forms.Select(attrs={"class": "form-control js-example-basic-single"})
     )
 
-    gender = django_filters.ChoiceFilter(
-        choices=[("Male", "Male"), ("Female", "Female")],
+    role = django_filters.ChoiceFilter(
+        choices=[     ("Coach", "Coach"),
+            ("Games teacher", "Games teacher"),
+            ("Head of delegation", "Head of delegation"),
+            ("Field of play officer", "Field of play officer"),
+            ("Medical", "Medical"),
+            ("Security", "Security"),
+            ("Young reporter", "Young reporter"),
+            ("Press", "Press"),
+            ("Volunteer", "Volunteer"),
+            ("President", "President"),
+            ("Secretary General", "Secretary General"),
+            ("Treasurer", "Treasurer"),
+            ("Sports coordinators", "Sports coordinators"),
+            ("Matron", "Matron"),
+            ("Patron", "Patron"),
+            ("Chaperone", "Chaperone"),
+            ("Sight guide", "Sight guide"),
+            ("Sign language interpreter", "Sign language interpreter"),
+            ("Team Manager", "Team Manager"),
+            ("Other", "Other"),],
         label="Gender",
         widget=forms.Select(attrs={"class": "form-control"})
     )
@@ -54,7 +73,6 @@ class officialFilter(django_filters.FilterSet):
         model = Official
         fields = [
             "school",
-            "gender",
             "role",
             "fname",
         ]  # Add all fields you want to filter on
