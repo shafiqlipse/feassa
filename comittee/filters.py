@@ -4,7 +4,11 @@ from .models import *
 
 # _+++++++++++++++++Filters++++++++++++++++++++++++++++++
 class comitteeFilter(django_filters.FilterSet):
-
+    title = django_filters.MultipleChoiceFilter(
+        choices=lambda: [(n, n) for n in NOC.objects.values_list('title', flat=True).distinct()],
+        label="Title",
+        widget=forms.SelectMultiple(attrs={"class": "form-control js-example-basic-multiple-name"})
+    )
     comittee = django_filters.ChoiceFilter(
         choices=[         ("Technical ", "Technical "),
             ("Welfare ", "Welfare "),
@@ -33,8 +37,8 @@ class comitteeFilter(django_filters.FilterSet):
         model = NOC
         fields = [
             "comittee",
-        
             "gender",
+            "title",
         ]
 
 
