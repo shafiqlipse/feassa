@@ -29,6 +29,7 @@ class comitteeFilter(django_filters.FilterSet):
             ("Corporate Relations", "Corporate Relations"),
             ("Secretariat", "Secretariat"),
             ("Government official", "Government official"),
+            ("Executive committee", "Executive committee"),
             ("Sports coordinators", "Sports coordinators"),],
         label="Comittee",
         widget=forms.Select(attrs={"class": "form-control"})
