@@ -45,10 +45,9 @@
             <th>Gender</th>     
             <th>Role</th>
 
-                {% if user.is_admin %}
                 <th>Edit</th>
                 <th>Delete</th>
-                {% endif %}
+        
               </tr>
             </thead>
 
@@ -63,7 +62,6 @@
                 <td>{{official.school}}</td>
                   <td>{{official.gender}}</td>
                 <td>{{official.role}}</td>
-              {% if user.is_admin %}
                 <td>
                   <a href="{%url 'officialupdate' official.id%}" class="badge badge-primary p-2"
                     ><i class="fa fa-pencil"></i>Edit</a
@@ -74,7 +72,7 @@
                     ><i class="fa fa-trash"></i>Delete</a
                   >
                 </td>
-              {% endif %}
+           
               </tr>
               {% endfor %}
             </tbody>
