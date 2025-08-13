@@ -13,6 +13,11 @@ class AthleteAdmin(admin.ModelAdmin):  # Inherit from admin.ModelAdmin
     list_display = ("fname", "lname", "id_number", "gender", "classroom", "school", "date_of_birth")
     search_fields = ("fname", "lname", "id_number")  # Use school__name instead of school
     list_filter = ("classroom", "gender")
+
+class NocAdmin(admin.ModelAdmin):  # Inherit from admin.ModelAdmin
+    list_display = ("fname", "lname")
+    search_fields = ("fname", "lname")  # Use school__name instead of school
+
 # Register your models here.
 admin.site.register(Athlete, AthleteAdmin) 
 
@@ -22,7 +27,7 @@ class SchoolAdmin(admin.ModelAdmin):  # Inherit from admin.ModelAdmin
 
 # Register your models here.
 admin.site.register(User, UserAdmin)
-admin.site.register(NOC)
+admin.site.register(NOC,NocAdmin)
 admin.site.register(Sport)
 admin.site.register(Media)
 admin.site.register(Official)
