@@ -55,6 +55,12 @@ class mediaFilter(django_filters.FilterSet):
         label="Role",
         widget=forms.Select(attrs={"class": "form-control"})
     )
+
+    country = django_filters.CharFilter(
+
+        label="Country",
+        widget=forms.TextInput(attrs={"class": "form-control"})
+    )
     # Add more fields as needed
 
     media_type = django_filters.ChoiceFilter(
@@ -76,6 +82,7 @@ class mediaFilter(django_filters.FilterSet):
         fields = [
             "media_type",
             "role",
+            "country",
         ]  # Add all fields you want to filter on
 
 

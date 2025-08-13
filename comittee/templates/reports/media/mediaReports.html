@@ -1,7 +1,7 @@
 {% extends "dashboard/dashboard.html" %}
 
 <!--static-->
-{% block title %}Athletes{% endblock %}
+{% block title %}Media{% endblock %}
 <!--static-->
 {% load static %}
 <!--khfufufu-->
@@ -10,7 +10,7 @@
   <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
       <h4 class="fs-16 text-uppercase fw-bold mb-0">
-        Athletes Accreditation and Certificates
+        Media Accreditation and Certificates
       </h4>
     </div>
 
@@ -25,7 +25,7 @@
         </li>
 
         <li class="breadcrumb-item active">
-          Athletes Accreditation and Certificates
+          Media Accreditation and Certificates
         </li>
       </ol>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="header-title">Athletes Accreditation and Certificates</h4>
+          <h4 class="header-title">Media Accreditation and Certificates</h4>
           <p class="text-muted font-14">
             To start generating reports, select the athletes you want to include
             in the accreditation or certificate. You can filter athletes by
@@ -48,16 +48,16 @@
             <form method="get" class="form-control">
               <div class="row">
                 <div class="form-group col-md-3">
-                  <label for="id_school">School</label>
-                  {{ filter.form.school }}
+                  <label for="id_school">Media Type</label>
+                  {{ filter.form.media_type }}
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="id_school">Sport</label>
-                  {{ filter.form.sport }}
+                  <label for="id_school">Role</label>
+                  {{ filter.form.role }}
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="id_school">Gender</label>
-                  {{ filter.form.gender }}
+                  <label for="id_school">Country</label>
+                  {{ filter.form.country }}
                 </div>
               </div>
               <button type="submit" class="btn btn-primary">Search</button>
@@ -90,12 +90,11 @@
           >
             <thead>
               <tr>
-                <th>Athlete</th>
-                <th>ID Number</th>
-                <th>School</th>
-                <th>Gender</th>
-                <th>Class</th>
-                <th>Date of Birth</th>
+                <th>Media</th>
+                <th>Media House</th>
+                <th>Media Type</th>
+                <th>Role</th>
+                <th>Country</th>
               </tr>
             </thead>
 
@@ -105,12 +104,10 @@
                 <td>
                   <a href="">{{teacher.fname}} {{teacher.lname}}</a>
                 </td>
-                <td>{{teacher.id_number}}</td>
-                <td>{{teacher.school}}</td>
-                <td>{{teacher.gender}}</td>
-                <td>{{teacher.classroom}}</td>
-
-                <td>{{teacher.date_of_birth}}</td>
+                <td>{{teacher.media_house}}</td>
+                <td>{{teacher.media_type}}</td>
+                <td>{{teacher.role}}</td>
+                <td>{{teacher.country}}</td>
               </tr>
 
               {%endfor%}
