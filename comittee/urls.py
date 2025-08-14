@@ -15,6 +15,7 @@ urlpatterns = [
     path("committee/<int:id>", committeeDetail, name="committee"),
     path("committee/<int:id>/edit", edit_committee, name="edit_committee"),
     path("committee/<int:id>/delete", delete_committee, name="delete_committee"),
+    path("media/<int:id>/delete", delete_media, name="delete_media"),
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
     path("media/", media, name="media"),
     path("media_list/", mediaList, name="media_list"),

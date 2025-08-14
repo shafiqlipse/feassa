@@ -65,6 +65,10 @@ class comitteeFilter(django_filters.FilterSet):
 
 class mediaFilter(django_filters.FilterSet):
 
+    media_house = django_filters.CharFilter(
+                label="Comittee",
+        widget=forms.TextInput(attrs={"class": "form-control"})
+    )
 
     role = django_filters.ChoiceFilter(
         choices=[     ("Photographer ", "Photographer "),
@@ -108,6 +112,7 @@ class mediaFilter(django_filters.FilterSet):
             "media_type",
             "role",
             "country",
+            "media_house",
         ]  # Add all fields you want to filter on
 
 

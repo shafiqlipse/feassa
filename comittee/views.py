@@ -225,6 +225,16 @@ def mediaAccreditation(request):
         return render(request, "reports/media/mediaReports.html", {"filter": media_filter})
 
 
+def delete_media(request, id):
+    media = get_object_or_404(Media, id=id)
+
+    if request.method == "POST":
+        media.delete()
+        messages.success(request, "Media deleted successfully.")
+        return redirect("media_list")  # Change to your actual list view name
+
+    return render(request, "media/delete_media.html", {"media": media})
+# return render(request, "comittee/addcomittee.html", context)
 def media(request):
     if request.method == "POST":
         cform = MediaForm(request.POST, request.FILES)
