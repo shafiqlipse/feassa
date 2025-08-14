@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Album</title>
+    <title>FEASSA</title>
   </head>
 
   <body>
     <style>
       @media print {
         @page {
-          size: A4 portrait; /* Set the size of the page to A4 in portrait orientation */
-          margin: 0; /* Remove default margin */
+          size: A4 portrait;
+          margin: 1cm; /* Add some margin to prevent content clipping */
         }
 
         body {
@@ -27,9 +27,9 @@
         }
       }
       .header .athletes table tbody tr td table tr .td {
-        padding-top: 140px;
-        padding-bottom: 20px;
-        padding-left: 40px;
+        padding-top: 105px;
+        padding-bottom: 40px;
+        padding-left: 50px;
         padding-right: 40px;
         margin: 0;
       }
@@ -39,22 +39,24 @@
         text-transform: uppercase;
       }
       .header .athletes table tbody tr td table tr .td .inner img {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
         image-orientation: from-image;
         transform: rotate(0deg);
       }
-      .header .athletes table tbody tr td table tr .td .inner span {
+      .header .athletes table tbody tr td table tr .td .inner span strong {
+        font-size: 18px;
+        font-weight: bold;
       }
     </style>
     <div class="header">
       <div class="athletes">
         <table>
           <tbody>
-            {% for athlete in athletes %}
+            {% for comittee in medias %}
             <!---->
             {% if forloop.counter0|divisibleby:2 %}
-            <!-- Start a new row for every even-numbered athlete -->
+            <!-- Start a new row for every even-numbered comittee -->
             <tr>
               {% endif %}
               <td>
@@ -62,80 +64,35 @@
                   <tr>
                     <td class="td">
                       <div class="inner">
-                        {% if athlete.school.country == 'Uganda' %}
-                        <span
-                          >UG00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >
-                        {% elif athlete.school.country == 'Kenya' %}
-                        <span
-                          >KE00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >{% elif athlete.school.country == 'Tanzania' %}
-                        <span
-                          >TZ00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >{% elif athlete.school.country == 'Rwanda' %}
-                        <span
-                          >RW00{{ athlete.id|upper}}
-                          ({{athlete.gender|upper}})</span
-                        >{% endif %}
-                        <br />
-                        {% if athlete.photo %}
+                        {% if comittee.photo %}
                         <img
-                          src="{{ athlete.photo.path }}"
-                          alt="{{ athlete.fname }}"
+                          src="{{ comittee.photo.path }}"
+                          alt="{{ comittee.first_name }}"
                         />
                         {% else %}
                         <img
                           src="{% static 'images/profile.png' %}"
-                          alt="{{ athlete.lname }}"
+                          alt="{{ comittee.last_name }}"
                         />
                         {% endif %}
                         <br />
-                        <table>
-                          <tr>
-                            <td>
-                              {% if athlete.school.country == 'Uganda' %}
-                              <img
-                                src="{% static 'img/ug.svg' %}"
-                                alt="{{ athlete.lname }}"
-                              />
-                              {% elif athlete.school.country == 'Kenya' %}
-                              <img
-                                src="{% static 'img/ke.svg' %}"
-                                alt="{{ athlete.lname }}"
-                              />{% elif athlete.school.country == 'Tanzania' %}
-                              <img
-                                src="{% static 'img/tz.svg' %}"
-                                alt="{{ athlete.lname }}"
-                              />{% elif athlete.school.country == 'Rwanda' %}
-                              <img
-                                src="{% static 'img/rd.svg' %}"
-                                alt="{{ athlete.lname }}"
-                              />{% endif %}
-                            </td>
-                            <td>
-                              <span
-                                ><strong
-                                  >{{ athlete.fname|upper }}
-                                  {{athlete.lname|upper}}</strong
-                                >
-                              </span>
-                              <br />
-
-                              <span>{{ athlete.school|upper }}</span><br />
-                              <span>{{ athlete.sport|upper }}</span><br />
-                            </td>
-                          </tr>
-                        </table>
+                        <br />
+                        <span
+                          ><strong
+                            >{{ comittee.fname|upper }} {{comittee.lname|upper}}
+                          </strong>
+                        </span>
+                        <br />
+                        <span>{{ comittee.media_house|upper }} </span><br />
+                        <span> {{comittee.role|upper }}</span><br />
+                        <span></span><br />
                       </div>
                     </td>
                   </tr>
                 </table>
               </td>
               {% if forloop.last or forloop.counter0|add:1|divisibleby:2 %}
-              <!-- End the row for the last or odd-numbered athlete -->
+              <!-- End the row for the last or odd-numbered comittee -->
             </tr>
             {% endif %} {% endfor %}
           </tbody>
