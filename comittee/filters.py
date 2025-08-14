@@ -84,14 +84,32 @@ class mediaFilter(django_filters.FilterSet):
         label="Role",
         widget=forms.Select(attrs={"class": "form-control"})
     )
-
+    name = django_filters.ModelMultipleChoiceFilter(
+        queryset=Media.objects.all(),
+        label="Name",
+        method="filter_by_full_name",
+        widget=forms.SelectMultiple(
+            attrs={"class": "form-control js-example-basic-multiple-name"}
+        )
+    )
     country = django_filters.CharFilter(
 
         label="Country",
         widget=forms.TextInput(attrs={"class": "form-control"})
     )
     # Add more fields as needed
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Show "First Last" in the dropdown
+        self.filters['name'].field.label_from_instance = (
+            lambda obj: f"{obj.fname} {obj.lname}"
+        )
 
+    def filter_by_full_name(self, queryset, name, value):
+        """Filter by selected official IDs, while keeping other filters."""
+        if value:
+            queryset = queryset.filter(id__in=[v.id for v in value])
+        return queryset
     media_type = django_filters.ChoiceFilter(
         choices=[("NewsPaper ", "NewsPaper "),
             ("Radio ", "Radio "),
@@ -110,7 +128,7 @@ class mediaFilter(django_filters.FilterSet):
         model = Media
         fields = [
             "media_type",
-            "role",
+            "name",
             "country",
             "media_house",
         ]  # Add all fields you want to filter on
