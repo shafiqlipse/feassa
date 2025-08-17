@@ -10,14 +10,15 @@
       <div class="card">
         <div class="card-body">
           <h1 class="header-title">SCHOOLS</h1>
+          {% if user.is_admin %}
           <button
             type="button"
             class="btn btn-primary"
             data-toggle="modal"
             data-target="#exampleModal"
           >
-            Add school
-          </button>
+            Add school</button
+          >{% endif %}  
           <table
             id="schools"
             class="table table-striped dt-responsive nowrap w-100"

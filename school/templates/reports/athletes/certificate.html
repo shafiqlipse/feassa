@@ -3,39 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Album</title>
+    <title>Certificate</title>
   </head>
 
   <body>
     <style>
       @page {
-        size: A4 portrait;
-        margin: 0;
+        size: letter portrait;
+        width: 512pt;
+        height: 692pt;
+        background-image: url("https://feassa.org/cert.jpg");
       }
       body {
         margin: 0;
         padding: 0;
       }
       .athlete-table {
-        width: 100%;
         border-collapse: collapse;
       }
-      .header .athletes table tbody tr td {
-        padding-top: 250px;
-        padding-left: 60px;
-        padding-right: 30px;
-        margin: 0;
+      .header .athletes table tbody tr {
+        padding-top: 175.5pt;
+      }
+      .header .athletes table tbody tr td .athlete-info {
+        padding-left: 50pt;
       }
       .header .athletes table tbody tr .athlete-cell .athlete-info {
-        font-size: 1.4em; /* Adjust font size */
-        text-align: center; /* Align text to the left */
-        width: 500px; /* Set a fixed width to ensure text fits on one line */
+        text-align: center;
+        font-size: 16px;
+      }
+      .header .athletes table tbody tr td .athlete-image {
+        text-align: center;
       }
       .header .athletes table tbody tr .athlete-cell .athlete-image img {
         width: 120px;
         height: 120px;
-        image-orientation: from-image;
-        transform: rotate(0deg);
+        margin-left: 120pt;
+      }
+      .header .athletes table tbody tr .athlete-cell .athlete-name {
+        text-align: center;
+        font-family: Geneva, sans;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 17px;
       }
     </style>
     <div class="header">
@@ -46,9 +55,8 @@
             <tr>
               <td class="athlete-cell">
                 <div class="athlete-info">
-                  <span
-                    >{{ athlete.fname|upper }} {{athlete.lname|upper}}
-                    ({{athlete.classroom|upper}})</span
+                  <span class="athlete-name"
+                    >{{ athlete.fname|upper }} {{athlete.lname|upper}} </span
                   ><br />
 
                   <span>{{ athlete.school|upper }}</span><br />
