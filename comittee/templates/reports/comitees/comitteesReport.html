@@ -66,7 +66,6 @@
               </div>
               <button type="submit" class="btn btn-primary">Search</button>
             </form>
-            {% if user.is_admin %}
             <form method="post" class="mt-3">
               {% csrf_token %}
               <input
@@ -76,7 +75,6 @@
                 class="btn btn-success"
               />
             </form>
-            {% endif %}
             <form method="post" class="ms-3 mt-3">
               {% csrf_token %}
               <input
