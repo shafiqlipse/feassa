@@ -29,4 +29,7 @@ urlpatterns = [
     path("export_acsv/", export_acsv, name="export_acsv"),
     path("export_scsv/", export_scsv, name="export_scsv"),
     path("export_ocsv/", export_ocsv, name="export_ocsv"),
+    # path("export_ocsv/", export_ocsv, name="export_ocsv"),
+    # path("export_ocsv/", export_ocsv, name="export_ocsv"),
+    path("register_position/", manage_positions, name="register_position"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -517,3 +517,20 @@ def export_ocsv(request):
 
     return response
 
+def manage_positions(request):
+    if request.method == 'POST':
+        formset = PositionFormSet(request.POST)
+        if formset.is_valid():
+            try:
+                formset.save()
+                return redirect('register_position')
+            except ValueError as e:
+                formset.non_form_errors = str(e)  # Add error to formset
+    else:
+        # Show empty form + existing records (for display/deletion only)
+        formset = PositionFormSet(
+    queryset=Position.objects.all().order_by("-id")[:5]
+)
+
+
+    return render(request, "position/register_position.html", {"formset": formset})

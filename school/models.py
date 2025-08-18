@@ -122,3 +122,19 @@ class Official(models.Model):
     def __str__(self):
         return f"{self.fname} {self.lname}"
 
+
+
+class Position(models.Model):
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
+
+    gender = models.CharField(
+        choices=(("Male", "Male"), ("Female", "Female")), max_length=50
+    )
+    position = models.IntegerField()
+
+    class Meta:
+        unique_together = ("school", "sport", "gender")
+
+    def __str__(self):
+        return f"{self.school} - {self.sport} - {self.gender} - Position {self.position}"

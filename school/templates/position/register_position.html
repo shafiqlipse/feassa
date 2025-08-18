@@ -1,0 +1,101 @@
+{% extends "dashboard/dashboard.html" %} {%load static%}
+<!---->
+{% block title %} Schools{% endblock %}
+<!---->
+
+{%block content%}
+<div class="page-container">
+  <div class="page-title-head d-flex align-items-center gap-2">
+    <div class="flex-grow-1">
+      <h4 class="fs-16 text-uppercase fw-bold mb-0">Positions</h4>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0 fs-13">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">FEASSA</a>
+        </li>
+
+        <li class="breadcrumb-item active">Positions</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <!---->
+            {{ formset.management_form }} {% if formset.non_form_errors %}
+            <div class="alert alert-danger">{{ formset.non_form_errors }}</div>
+            {% endif %}
+
+            <table id="schools" class="display">
+              <thead>
+                <tr>
+                  <th>School</th>
+                  <th>Sport</th>
+                  <th>Gender</th>
+                  <th>Position</th>
+                  <th>Delete?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for form in formset %}
+                <tr>
+                  <td>
+                    {{ form.id }} {% if form.instance.pk %}
+                    <!---->
+                    {# Display existing value #}<!---->
+                    {{ form.instance.school }}<!---->
+                    {# Hidden field to maintain data if deleted #}
+                    <!---->{{ form.school.as_hidden }}
+                    <!---->{% else %} {# Editable field for new records #}
+                    <!---->{{ form.school }}<!---->
+                    {% endif %}
+                  </td>
+                  <td>
+                    <!---->
+                    {% if form.instance.pk %}<!---->
+                    {{ form.instance.sport }}<!---->
+                    {{ form.sport.as_hidden }}<!---->
+                    {% else %}<!---->
+                    {{ form.sport }}<!---->
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if form.instance.pk %}
+                    <!---->{{ form.instance.gender }}<!---->
+                    {{ form.gender.as_hidden }}<!---->
+                    {% else %}
+                    <!---->{{ form.gender }}<!---->
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if form.instance.pk %}
+                    <!---->{{ form.instance.position }}<!---->
+                    {{ form.position.as_hidden }}<!---->
+                    {% else %} {{ form.position }}<!---->
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if form.instance.pk %}
+                    <!---->{{ form.DELETE }} {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Save</button>
+          </form>
+        </div>
+        <!-- end card body-->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col-->
+  </div>
+  <!-- end row-->
+</div>
+{% endblock %}
