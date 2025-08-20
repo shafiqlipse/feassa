@@ -66,7 +66,12 @@
               <a href="{% url 'dashboard' %}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
                 <span class="menu-text"> Dashboard </span>
-                <span class="badge bg-success rounded-pill">5</span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'register_position' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                <span class="menu-text"> Positions </span>
               </a>
             </li>
 
@@ -131,6 +136,11 @@
                   <li class="side-nav-item">
                     <a href="{% url 'officialsreport' %}" class="side-nav-link">
                       <span class="menu-text">Other Officials</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a href="{% url 'positionsreport' %}" class="side-nav-link">
+                      <span class="menu-text">Merit Certificates</span>
                     </a>
                   </li>
                 </ul>
