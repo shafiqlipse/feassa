@@ -21,15 +21,6 @@
           height: 632pt;
           text-align: center;
         }
-        @frame footer_frame {
-          /* Another static Frame */
-          -pdf-frame-content: footer_content;
-
-          width: 512pt;
-          top: 670pt;
-          height: 450pt;
-          text-align: center;
-        }
       }
       .school {
         page-break-after: always;
@@ -51,13 +42,16 @@
         font-family: georgia, serif;
         line-height: 18pt;
       }
-      #footer_content {
+      #content {
         font-size: 35px;
         font-family: Courier, serif;
         line-height: 18pt;
         padding-left: 50pt;
         padding-right: 50pt;
         font-weight: bold;
+        width: 212pt;
+        margin-top: 170pt;
+        text-align: center;
       }
     </style>
   </head>
@@ -65,17 +59,18 @@
   <body>
     <div class="header" style="text-align: center">
       <div class="athletes">
-        {% for position in positions %}
+        {% for posit in posiytions %}
         <div class="school">
-          <h2>{{position.school|upper}}</h2>
+          <h2>{{posit.school|upper}}</h2>
           <p>for participating in</p>
           <h3>
-            {{position.sport|upper}} {% if position.gender == 'Male' %}BOYS
-            {%else %} GIRLS{% endif %}
+            {{posit.sport|upper}} {% if posit.gender == 'Male' %}BOYS {%else %}
+            GIRLS{% endif %}
           </h3>
+          <div id="content">in position {{posit.position}}</div>
         </div>
         <!-- Content for Static Frame 'footer_frame' -->
-        <div id="footer_content">in position {{position.position}}</div>
+
         {% endfor %}
       </div>
     </div>

@@ -564,7 +564,7 @@ def positionsReports(request):
             return HttpResponse("Invalid form submission")
 
         # Generate PDF
-        context = {"positions": filtered_positions}
+        context = {"posiytions": filtered_positions}
         html = template.render(context)
 
         # Create a PDF
