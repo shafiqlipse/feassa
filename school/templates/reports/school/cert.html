@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <style>
+      @page {
+        size: a4 portrait;
+        background-image: url("https://feassa.org/merit.jpg");
+
+        @frame header_frame {
+          /* Static Frame */
+          -pdf-frame-content: header_content;
+
+          width: 512pt;
+          top: 50pt;
+          height: 40pt;
+          text-align: center;
+        }
+        @frame content_frame {
+          /* Content Frame */
+
+          width: 512pt;
+          top: 360pt;
+          height: 632pt;
+          text-align: center;
+        }
+        @frame footer_frame {
+          /* Another static Frame */
+          -pdf-frame-content: footer_content;
+
+          width: 512pt;
+          top: 632pt;
+          height: 320pt;
+          text-align: center;
+        }
+      }
+      .school h2 {
+        font-size: 35px;
+        font-family: Courier, serif;
+        line-height: 18pt;
+        padding-left: 50pt;
+        padding-right: 50pt;
+      }
+      .school h3 {
+        font-size: 35px;
+        font-family: Courier, serif;
+        line-height: 18pt;
+      }
+      .school p {
+        font-size: 20px;
+        font-family: georgia, serif;
+        line-height: 18pt;
+      }
+      #footer_content {
+        font-size: 35px;
+        font-family: Courier, serif;
+        line-height: 18pt;
+        padding-left: 50pt;
+        padding-right: 50pt;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header" style="text-align: center">
+      <div class="athletes">
+        {% for athlete in athletes %}
+        <div class="school">
+          <h2>{{athlete.fname|upper}} {{athlete.lname|upper}}</h2>
+          <p>for participating in</p>
+          <h3>
+            {{athlete.sport|upper}} {% if athlete.gender == 'Male' %}BOYS
+            {%else%} GIRLS{% endif %}
+          </h3>
+        </div>
+        <!-- Content for Static Frame 'footer_frame' -->
+        <div id="footer_content">in position {{ athlete.school_position }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

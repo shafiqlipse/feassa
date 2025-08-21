@@ -585,3 +585,58 @@ def positionsReports(request):
         # Render the filter form
         return render(request, "reports/school/meritReport.html", {"filter": positions_filter})
 
+
+from django.db.models import Subquery, OuterRef
+def meritReports(request):
+    # Get all positions
+
+    positions = Position.objects.filter(
+        school=OuterRef("school"),
+        sport=OuterRef("sport"),
+        gender=OuterRef("gender")
+    ).values("position")[:1]
+
+    athletes = Athlete.objects.annotate(
+        school_position=Subquery(positions)
+    )
+
+
+    # Apply the filter
+    positions_filter = PositionFilter(request.GET, queryset=athletes)
+    filtered_positions = positions_filter.qs
+
+    if request.method == "POST":
+        # Check which form was submitted
+        if "Accreditation" in request.POST:
+            template = get_template("reports/officials/accreditation.html")
+            filename = "Filtered_Accreditation.pdf"
+        elif "Certificate" in request.POST:
+            template = get_template(
+                "reports/school/cert.html"
+            )  # Your certificate template
+            filename = "Athlete_Certificate.pdf"
+        else:
+            return HttpResponse("Invalid form submission")
+
+        # Generate PDF
+        context = {"athletes": filtered_positions}
+        html = template.render(context)
+
+        # Create a PDF
+        pdf_buffer = BytesIO()
+        pisa_status = pisa.CreatePDF(html, dest=pdf_buffer)
+
+        if pisa_status.err:
+            return HttpResponse("We had some errors <pre>" + html + "</pre>")
+
+        pdf_buffer.seek(0)
+
+        # Return the PDF as a response
+        response = HttpResponse(content_type="application/pdf")
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        response.write(pdf_buffer.getvalue())
+        return response
+    else:
+        # Render the filter form
+        return render(request, "reports/school/meritCert.html", {"filter": positions_filter})
+

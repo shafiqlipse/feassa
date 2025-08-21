@@ -1,0 +1,110 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}Officials{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="page-container">
+  <div class="page-title-head d-flex align-items-center gap-2">
+    <div class="flex-grow-1">
+      <h4 class="fs-16 text-uppercase fw-bold mb-0">
+        Officials Accreditation and Certificates
+      </h4>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0 fs-13">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">FEASSA</a>
+        </li>
+
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Reports</a>
+        </li>
+
+        <li class="breadcrumb-item active">
+          Officials Accreditation and Certificates
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Officials Accreditation and Certificates</h4>
+          <p class="text-muted font-14">
+            To start generating reports, select the officials you want to
+            include in the accreditation or certificate. You can filter
+            officials by school, sport and gender and then search. Once you have
+            selected the officials, you can generate the accreditation or
+            certificate by clicking the respective button below.
+          </p>
+
+          <div class="nav nav-tabs nav-bordered mb-3">
+            <form method="get" class="form-control">
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <label for="id_school">School</label>
+                  {{ filter.form.school }}
+                </div>
+
+                <div class="form-group col-md-3">
+                  <label for="id_school">Sport</label>
+                  {{ filter.form.sport }}
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+            <form method="post" class="ms-3 mt-3">
+              {% csrf_token %}
+              <input
+                type="submit"
+                name="Certificate"
+                value="Certificate"
+                class="btn btn-secondary"
+              />
+            </form>
+          </div>
+          <!-- end nav-->
+
+          <table
+            id="schools"
+            class="table table-striped dt-responsive nowrap w-100"
+          >
+            <thead>
+              <tr>
+                <th>School</th>
+                <th>Sport</th>
+                <th>Gender</th>
+                <th>Position</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for position in filter.qs %}
+              <tr>
+                <td>{{position.school}}</td>
+                <td>{{position.sport}}</td>
+                <td>{{position.gender}}</td>
+                <td>{{position.position}}</td>
+              </tr>
+
+              {%endfor%}
+            </tbody>
+          </table>
+        </div>
+        <!-- end card body-->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col-->
+  </div>
+  <!-- end row-->
+</div>
+
+{% endblock %}

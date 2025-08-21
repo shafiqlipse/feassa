@@ -27,6 +27,7 @@ urlpatterns = [
     path("athletesreport/", athletesReports, name="athletesreport"),
     path("officialsreport/", officialsReports, name="officialsreport"),
     path("positionsreport/", positionsReports, name="positionsreport"),
+    path("merit_reports/", meritReports, name="meritReports"),
     path("export_acsv/", export_acsv, name="export_acsv"),
     path("export_scsv/", export_scsv, name="export_scsv"),
     path("export_ocsv/", export_ocsv, name="export_ocsv"),
