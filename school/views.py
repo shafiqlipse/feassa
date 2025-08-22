@@ -640,3 +640,6 @@ def meritReports(request):
         # Render the filter form
         return render(request, "reports/school/meritCert.html", {"filter": positions_filter})
 
+def allPositions(request):
+    positions = Position.objects.all()
+    return render(request, "school/allPositions.html", {"positions": positions})
