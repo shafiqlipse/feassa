@@ -3,7 +3,7 @@
     <style>
       @page {
         size: a4 portrait;
-
+        /*background-image: url("https://feassa.org/merit.jpg");*/
         @frame header_frame {
           /* Static Frame */
           -pdf-frame-content: header_content;
@@ -19,15 +19,6 @@
           width: 512pt;
           top: 360pt;
           height: 632pt;
-          text-align: center;
-        }
-        @frame footer_frame {
-          /* Another static Frame */
-          -pdf-frame-content: footer_content;
-
-          width: 512pt;
-          top: 632pt;
-          height: 320pt;
           text-align: center;
         }
       }
@@ -51,13 +42,16 @@
         font-family: georgia, serif;
         line-height: 18pt;
       }
-      #footer_content {
+      #content {
         font-size: 35px;
         font-family: Courier, serif;
         line-height: 18pt;
         padding-left: 50pt;
         padding-right: 50pt;
         font-weight: bold;
+        width: 212pt;
+        margin-top: 190pt;
+        text-align: center;
       }
     </style>
   </head>
@@ -73,9 +67,10 @@
             {{athlete.sport|upper}} {% if athlete.gender == 'Male' %}BOYS
             {%else%} GIRLS{% endif %}
           </h3>
+          <div id="content">in position {{ athlete.school_position }}</div>
         </div>
         <!-- Content for Static Frame 'footer_frame' -->
-        <div id="footer_content">in position {{ athlete.school_position }}</div>
+
         {% endfor %}
       </div>
     </div>
