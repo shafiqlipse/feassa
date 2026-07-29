@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FEASSA</title>
+    <title>Album</title>
   </head>
 
   <body>
     <style>
       @media print {
         @page {
-          size: A4 portrait;
-          margin: 1cm; /* Add some margin to prevent content clipping */
+          size: A4 portrait; /* Set the size of the page to A4 in portrait orientation */
+          margin: 0; /* Remove default margin */
         }
 
         body {
@@ -27,9 +27,9 @@
         }
       }
       .header .athletes table tbody tr td table tr .td {
-        padding-top: 105px;
-        padding-bottom: 40px;
-        padding-left: 50px;
+        padding-top: 140px;
+        padding-bottom: 20px;
+        padding-left: 40px;
         padding-right: 40px;
         margin: 0;
       }
@@ -39,24 +39,22 @@
         text-transform: uppercase;
       }
       .header .athletes table tbody tr td table tr .td .inner img {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
         image-orientation: from-image;
         transform: rotate(0deg);
       }
-      .header .athletes table tbody tr td table tr .td .inner span strong {
-        font-size: 18px;
-        font-weight: bold;
+      .header .athletes table tbody tr td table tr .td .inner span {
       }
     </style>
     <div class="header">
       <div class="athletes">
         <table>
           <tbody>
-            {% for media in medias %}
+            {% for athlete in officials %}
             <!---->
             {% if forloop.counter0|divisibleby:2 %}
-            <!-- Start a new row for every even-numbered media -->
+            <!-- Start a new row for every even-numbered athlete -->
             <tr>
               {% endif %}
               <td>
@@ -64,35 +62,35 @@
                   <tr>
                     <td class="td">
                       <div class="inner">
-                        {% if media.photo %}
+                        {% if athlete.photo %}
                         <img
-                          src="{{ media.photo.path }}"
-                          alt="{{ media.first_name }}"
+                          src="{{ athlete.photo.path }}"
+                          alt="{{ athlete.fname }}"
                         />
                         {% else %}
                         <img
                           src="{% static 'images/profile.png' %}"
-                          alt="{{ media.last_name }}"
+                          alt="{{ athlete.lname }}"
                         />
                         {% endif %}
                         <br />
-                        <br />
                         <span
                           ><strong
-                            >{{ media.fname|upper }} {{media.lname|upper}}
-                          </strong>
+                            >{{ athlete.fname|upper }}
+                            {{athlete.lname|upper}}</strong
+                          >
                         </span>
                         <br />
-                        <span>{{ media.media_type|upper }} </span><br />
-                        <span> {{media.role|upper }}</span><br />
-                        <span>{{media.country}}</span><br />
+
+                        <span>{{ athlete.comittee|upper }}</span><br />
+                        <span>{{ athlete.title|upper }}</span><br />
                       </div>
                     </td>
                   </tr>
                 </table>
               </td>
               {% if forloop.last or forloop.counter0|add:1|divisibleby:2 %}
-              <!-- End the row for the last or odd-numbered media -->
+              <!-- End the row for the last or odd-numbered athlete -->
             </tr>
             {% endif %} {% endfor %}
           </tbody>

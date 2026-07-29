@@ -53,10 +53,10 @@
       <div class="athletes">
         <table>
           <tbody>
-            {% for media in medias %}
+            {% for officials in match_officials %}
             <!---->
             {% if forloop.counter0|divisibleby:2 %}
-            <!-- Start a new row for every even-numbered media -->
+            <!-- Start a new row for every even-numbered officials -->
             <tr>
               {% endif %}
               <td>
@@ -64,35 +64,35 @@
                   <tr>
                     <td class="td">
                       <div class="inner">
-                        {% if media.photo %}
+                        {% if officials.photo %}
                         <img
-                          src="{{ media.photo.path }}"
-                          alt="{{ media.first_name }}"
+                          src="{{ officials.photo.path }}"
+                          alt="{{ officials.first_name }}"
                         />
                         {% else %}
                         <img
                           src="{% static 'images/profile.png' %}"
-                          alt="{{ media.last_name }}"
+                          alt="{{ officials.last_name }}"
                         />
                         {% endif %}
                         <br />
                         <br />
                         <span
                           ><strong
-                            >{{ media.fname|upper }} {{media.lname|upper}}
+                            >{{ officials.fname|upper }} {{officials.lname|upper}}
                           </strong>
                         </span>
                         <br />
-                        <span>{{ media.media_type|upper }} </span><br />
-                        <span> {{media.role|upper }}</span><br />
-                        <span>{{media.country}}</span><br />
+                        <span>{{ officials.sport|upper }} </span><br />
+                        <span> {{officials.role|upper }}</span><br />
+                        <span>{{officials.country}}</span><br />
                       </div>
                     </td>
                   </tr>
                 </table>
               </td>
               {% if forloop.last or forloop.counter0|add:1|divisibleby:2 %}
-              <!-- End the row for the last or odd-numbered media -->
+              <!-- End the row for the last or odd-numbered officials -->
             </tr>
             {% endif %} {% endfor %}
           </tbody>

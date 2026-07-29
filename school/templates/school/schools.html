@@ -10,15 +10,15 @@
       <div class="card">
         <div class="card-body">
           <h1 class="header-title">SCHOOLS</h1>
-
+          {% if user.is_superuser %}~{% else %}
           <button
             type="button"
             class="btn btn-primary"
             data-toggle="modal"
             data-target="#exampleModal"
           >
-            Add school
-          </button>
+            Add school</button
+          >{% endif %}
           <table
             id="schools"
             class="table table-striped dt-responsive nowrap w-100"
@@ -115,12 +115,7 @@
           <input type="hidden" name="school_id" id="edit_school_id" />
           <div class="form-group">
             <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              id="edit_school_name"
-              class="form-control"
-            />
+            {{form.name}}
           </div>
           <div class="form-group">
             <label>Logo</label>

@@ -16,7 +16,7 @@
         margin: 0;
         padding: 0;
       }
-      .media-table {
+      .athlete-table {
         width: 100%;
         border-collapse: collapse;
       }
@@ -26,12 +26,12 @@
         padding-right: 30px;
         margin: 0;
       }
-      .header .athletes table tbody tr .media-cell .media-info {
+      .header .athletes table tbody tr .athlete-cell .athlete-info {
         font-size: 1.4em; /* Adjust font size */
         text-align: center; /* Align text to the left */
         width: 500px; /* Set a fixed width to ensure text fits on one line */
       }
-      .header .athletes table tbody tr .media-cell .media-image img {
+      .header .athletes table tbody tr .athlete-cell .athlete-image img {
         width: 120px;
         height: 120px;
         image-orientation: from-image;
@@ -40,34 +40,30 @@
     </style>
     <div class="header">
       <div class="athletes">
-        <table class="media-table">
+        <table class="athlete-table">
           <tbody>
-            {% for media in athletes %}
+            {% for athlete in officials %}
             <tr>
-              <td class="media-cell">
-                <div class="media-info">
-                  <span
-                    >{{ media.fname|upper }} {{media.lname|upper}}
-                    ({{media.classroom|upper}})</span
+              <td class="athlete-cell">
+                <div class="athlete-info">
+                  <span>{{ athlete.fname|upper }} {{athlete.lname|upper}} </span
                   ><br />
 
-                  <span>{{ media.school|upper }}</span><br />
-                  <span
-                    >{{ media.sport|upper }} ({{media.gender|upper}})</span
-                  ><br />
+                  <span>{{ athlete.comittee|upper }}</span><br />
+                  <span>{{ athlete.title|upper }}</span><br />
                 </div>
               </td>
-              <td class="media-cell">
-                <div class="media-image">
-                  {% if media.photo %}
+              <td class="athlete-cell">
+                <div class="athlete-image">
+                  {% if athlete.photo %}
                   <img
-                    src="{{ media.photo.path }}"
-                    alt="{{ media.first_name }}"
+                    src="{{ athlete.photo.path }}"
+                    alt="{{ athlete.first_name }}"
                   />
                   {% else %}
                   <img
                     src="{% static 'images/profile.png' %}"
-                    alt="{{ media.last_name }}"
+                    alt="{{ athlete.last_name }}"
                   />
                   {% endif %}
                 </div>

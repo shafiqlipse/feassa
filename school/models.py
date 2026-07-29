@@ -12,6 +12,16 @@ from accounts.models import *
 class School(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=245)
+    level = models.CharField(
+            choices=(
+                ("Primary ", "Primary "),
+                ("Secondary", "Secondary "),
+                ("National Team", "National Team"),
+                ("Other", "Other"),
+    
+            ),
+            max_length=50,blank=True, null=True
+        )
     country = models.CharField(max_length=245)
     badge = models.ImageField(upload_to="badge/", blank=True, null=True)
 

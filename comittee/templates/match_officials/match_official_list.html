@@ -1,0 +1,65 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}Officials{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="page-title-head d-flex align-items-center gap-2">
+  <div class="flex-grow-1">
+    <h4 class="fs-16 text-uppercase fw-bold mb-0">Match Officials</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div
+        class="card-header border-bottom border-dashed d-flex align-items-center"
+      >
+        <h4 class="header-title">Match Officials</h4>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive-sm">
+          <table id="schools" class="display">
+            <thead>
+              <tr>
+                <th>Names</th>
+                <th>Sport</th>
+                <th>Role</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for official in match_officials%}
+              <tr>
+                <td>
+                  <a href="{% url 'match_official' official.id %}"
+                    >{{official.fname}} {{official.lname}}</a
+                  >
+                </td>
+                <td>{{official.sport}}</td>
+                <td>{{official.role}}</td>
+                <td>{{official.gender}}</td>
+                <td>{{official.country}}</td>
+                <td><a href="" class="btn btn-danger">Delete</a></td>
+              </tr>
+
+              {%endfor%}
+            </tbody>
+          </table>
+        </div>
+        <!-- end table-responsive-->
+      </div>
+      <!-- end card body-->
+    </div>
+    <!-- end card -->
+  </div>
+  <!-- end col-->
+</div>
+
+{% endblock %}

@@ -19,7 +19,7 @@ def AllSchools(request):
         "schools": schools,
     }
 
-    return render(request, "school/Allschools.html", context)
+    return render(request, "school/schools.html", context)
 
 @login_required(login_url='login')
 def Schools(request):
@@ -74,22 +74,6 @@ def SchoolDetail(request, id):
             new_athlete = cform.save(commit=False)
             new_athlete.school = school
 
-            # Handle the cropped image
-            cropped_data = request.POST.get("photo_cropped")
-            if cropped_data:
-                try:
-                    format, imgstr = cropped_data.split(";base64,")
-                    ext = format.split("/")[-1]
-                    data = ContentFile(
-                        base64.b64decode(imgstr), name=f"photo.{ext}"
-                    )
-                    new_athlete.photo = data
-                except (ValueError, TypeError):
-                    messages.error(request, "Invalid image data.")
-                    return render(
-                        request, "athletes/newAthlete.html", {"cform": cform}
-                    )
-
             new_athlete.save()
             messages.success(request, "Athlete added successfully.")
             return redirect("school", school.id)
@@ -118,7 +102,6 @@ def athleteDetail(request, id):
     }
 
     return render(request, "athletes/athlete.html", context)
-# _+++++++++++++++++Athletes++++++++++++++++++++++++++++++
 
 def qr_code(request, id):
     athlete = Athlete.objects.get(id=id)
@@ -129,14 +112,25 @@ def qr_code(request, id):
 
 @login_required(login_url='login')
 def Athletes(request):
-
-    athletes = Athlete.objects.all()
+    user = request.user
+    schools = School.objects.filter(country = user.country)
+    athletes = Athlete.objects.filter(school__in=schools)
 
     context = {
         "athletes": athletes,
     }
 
     return render(request, "athletes/athletes.html", context)
+
+
+@login_required(login_url='login')
+def all_athletes(request):
+    all_athletes = Athlete.objects.all()
+    context = {
+        "all_athletes": all_athletes,
+    }
+
+    return render(request, "athletes/all_athletes.html", context)
 
 @login_required(login_url='login')
 def athleteUpdate(request, id):
@@ -188,7 +182,7 @@ def officialDetail(request, id):
     return render(request, "Officials/official.html", context)
 
 @login_required(login_url='login')
-def allOfficials(request):
+def officials(request):
     user = request.user
     officials = Official.objects.filter(user=user)
     new_official = None
@@ -199,22 +193,6 @@ def allOfficials(request):
         if cform.is_valid():
             new_official = cform.save(commit=False)
             new_official.user = user
-
-            # Handle cropped image data for the "photo" field
-            cropped_data = request.POST.get("photo_cropped")
-            if cropped_data:
-                try:
-                    format, imgstr = cropped_data.split(";base64,")
-                    ext = format.split("/")[-1]
-                    data = ContentFile(
-                        base64.b64decode(imgstr), name=f"photo.{ext}"
-                    )
-                    new_official.photo = data
-                except (ValueError, TypeError):
-                    messages.error(request, "Invalid image data.")
-                    return render(
-                        request, "athletes/newAthlete.html", {"form": cform}
-                    )
 
             new_official.save()
             messages.success(request, "Official added successfully.")
@@ -231,10 +209,10 @@ def allOfficials(request):
         "officials": officials,
     }
 
-    return render(request, "Officials/allofficials.html", context)
+    return render(request, "Officials/officials.html", context)
 
 @login_required(login_url='login')
-def Officials(request):
+def all_officials(request):
 
     officials = Official.objects.all()
 
@@ -242,7 +220,7 @@ def Officials(request):
         "officials": officials,
     }
 
-    return render(request, "Officials/officials.html", context)
+    return render(request, "Officials/all_officials.html", context)
 
 @login_required(login_url='login')
 def officialUpdate(request, id):
@@ -312,6 +290,61 @@ from django.conf import settings
 
 @login_required(login_url='login')
 def athletesReports(request):
+    user = request.user
+    country = user.country
+    schools = School.objects.filter(country = country)
+    
+    # Get all athletes
+    athletes = Athlete.objects.filter(school__in = schools)
+
+    # Apply the filter
+    athlete_filter = athleteFilter(request.GET, queryset=athletes)
+    filtered_athletes = athlete_filter.qs
+
+    if request.method == "POST":
+        # Check which form was submitted
+        if "Accreditation" in request.POST:
+            template = get_template("reports/athletes/accreditation.html")
+            filename = "Filtered_Accreditation.pdf"
+        elif "Certificate" in request.POST:
+            template = get_template(
+                "reports/athletes/certificate.html"
+            )  # Your certificate template
+            filename = "Filtered_Certificate.pdf"
+        elif "Merit" in request.POST:
+            template = get_template(
+                "reports/athletes/positions.html"
+            )  # Your certificate template
+            filename = "Merit_Certificate.pdf"
+        else:
+            return HttpResponse("Invalid form submission")
+
+        # Generate PDF
+        context = {"athletes": filtered_athletes,  "MEDIA_URL": settings.MEDIA_URL,}
+        html = template.render(context)
+
+        # Create a PDF
+        pdf_buffer = BytesIO()
+        pisa_status = pisa.CreatePDF(html, dest=pdf_buffer)
+
+        if pisa_status.err:
+            return HttpResponse("We had some errors <pre>" + html + "</pre>")
+
+        pdf_buffer.seek(0)
+
+        # Return the PDF as a response
+        response = HttpResponse(content_type="application/pdf")
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        response.write(pdf_buffer.getvalue())
+        return response
+    else:
+        # Render the filter form
+        return render(request, "reports/athletes/AthletesReport.html", {"filter": athlete_filter})
+
+
+@login_required(login_url='login')
+def all_athletesReports(request):
+   
     # Get all athletes
     athletes = Athlete.objects.all()
 
@@ -365,6 +398,55 @@ def athletesReports(request):
 @login_required(login_url='login')
 def officialsReports(request):
     # Get all officials
+    user = request.user
+    officials = Official.objects.filter(user = user)
+
+    # Apply the filter
+    official_filter = officialFilter(request.GET, queryset=officials)
+    filtered_officials = official_filter.qs
+
+    if request.method == "POST":
+        # Check which form was submitted
+        if "Accreditation" in request.POST:
+            template = get_template("reports/officials/accreditation.html")
+            filename = "Filtered_Accreditation.pdf"
+        elif "Certificate" in request.POST:
+            template = get_template(
+                "reports/officials/certificate.html"
+            )  # Your certificate template
+            filename = "Filtered_Certificate.pdf"
+        else:
+            return HttpResponse("Invalid form submission")
+
+        # Generate PDF
+        context = {"officials": filtered_officials}
+        html = template.render(context)
+
+        # Create a PDF
+        pdf_buffer = BytesIO()
+        pisa_status = pisa.CreatePDF(html, dest=pdf_buffer)
+
+        if pisa_status.err:
+            return HttpResponse("We had some errors <pre>" + html + "</pre>")
+
+        pdf_buffer.seek(0)
+
+        # Return the PDF as a response
+        response = HttpResponse(content_type="application/pdf")
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        response.write(pdf_buffer.getvalue())
+        return response
+    else:
+        # Render the filter form
+        return render(request, "reports/officials/AthletesReport.html", {"filter": official_filter})
+
+
+
+# Officials Reports
+@login_required(login_url='login')
+def all_officialsReports(request):
+    # Get all officials
+
     officials = Official.objects.all()
 
     # Apply the filter

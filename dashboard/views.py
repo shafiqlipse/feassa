@@ -106,7 +106,8 @@ def Dashboard(request):
     in_burundi_boys = Athlete.objects.filter(
         school__in=burundi_schools, gender="Male"
     ).count()
-
+    # media officials and journalists in different countries
+    media_from_uganda = Media.objects.filter(country = "Uganda").count
     context = {
         "schools_count": schools_count,
         "athletes_count": athletes_count,
@@ -160,6 +161,8 @@ def Dashboard(request):
         "in_burundi_gofficials": in_burundi_gofficials,
         "in_rwanda_bofficials": in_rwanda_bofficials,
         "in_burundi_bofficials": in_burundi_bofficials,
+        # "in_burundi_bofficials": in_burundi_bofficials,
+        "media_from_uganda":media_from_uganda,
     }
     return render(request, "dashboard/overview.html", context)
 

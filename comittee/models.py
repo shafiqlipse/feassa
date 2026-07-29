@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import Sport
 
 # Create your models here.
 
@@ -20,12 +21,77 @@ class NOC(models.Model):
             ("Government official", "Government official"),
             ("Sports coordinators", "Sports coordinators"),
 
-
+        ),
+        max_length=50,
+    )
+    country = models.CharField(
+        choices=(
+            ("Uganda", "Uganda"),
+            ("Kenya", "Kenya"),
+            ("Tanzania", "Tanzania"),
+            ("Rwanda", "Rwanda"),
+            ("Burundi", "Burundi"),
+            ("Zanzibar", "Zanzibar"),
+            ("South Sudan", "South Sudan"),
+            ("Other", "Other"),
+           
         ),
         max_length=50,
     )
     lname = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to="off_photos/")
+    gender = models.CharField(
+        max_length=10,
+        choices=[("Male", "Male"), ("Female", "Female")],
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ["-fname"]
+
+    def __str__(self):
+        return f"{self.fname} {self.lname}"
+    
+    
+    
+class OfficiatingOfficials(models.Model):
+    fname = models.CharField(max_length=50)
+    role = models.CharField(
+        choices=(
+            ("Referee ", "Referee "),
+            ("Umpire ", "Umpire "),
+            ("Judge", "Judge"),
+            ("Assistant Referee", "Assistant Referee"),
+            ("Line Umpire", "Line Umpire"),
+            ("Timekeeper", "Timekeeper"),
+            ("Match Commissioner", "Match Commissioner"),
+            ("Finish Judge", "Finish Judge"),
+            ("Inspector", "Inspector"),
+            ("Anti-Doping Officer", "Anti-Doping Officer"),
+
+
+        ),
+        max_length=50,
+    )
+    sport = models.ForeignKey(Sport, verbose_name="sport", on_delete=models.CASCADE)
+       
+    country = models.CharField(
+        choices=(
+            ("Uganda", "Uganda"),
+            ("Kenya", "Kenya"),
+            ("Tanzania", "Tanzania"),
+            ("Rwanda", "Rwanda"),
+            ("Burundi", "Burundi"),
+            ("Zanzibar", "Zanzibar"),
+            ("South Sudan", "South Sudan"),
+            ("Other", "Other"),
+           
+        ),
+        max_length=50,
+    )
+    lname = models.CharField(max_length=50)
     photo = models.ImageField(upload_to="off_photos/")
     gender = models.CharField(
         max_length=10,
@@ -74,7 +140,19 @@ class Media(models.Model):
     )
     lname = models.CharField(max_length=50)
     media_house = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
+    country = models.CharField(
+        choices=(
+            ("Uganda", "Uganda"),
+            ("Kenya", "Kenya"),
+            ("Tanzania", "Tanzania"),
+            ("Rwanda", "Rwanda"),
+            ("Burundi", "Burundi"),
+            ("Zanzibar", "Zanzibar"),
+            ("South Sudan", "South Sudan"),
+            ("Other", "Other"),
+        ),
+        max_length=50,
+    )
     photo = models.ImageField(upload_to="media_photos/")
 
     class Meta:

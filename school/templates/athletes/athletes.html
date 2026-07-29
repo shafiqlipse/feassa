@@ -11,7 +11,11 @@
   <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
       <h4 class="fs-16 text-uppercase fw-bold mb-0">Athletes</h4>
-      <a href="{% url 'export_acsv' %}" class="fs-16 text-uppercase fw-bold mb-0">Export as CSV</a>
+      <a
+        href="{% url 'export_acsv' %}"
+        class="fs-16 text-uppercase fw-bold mb-0"
+        >Export as CSV</a
+      >
     </div>
   </div>
   <div class="row">
@@ -29,10 +33,6 @@
                 <th>Sport</th>
                 <th>Gender</th>
                 <th>Class</th>
-                {% if user.is_superuser %}
-                <th>Edit</th>
-                <th>Delete</th>
-                {% endif %}
               </tr>
             </thead>
 
@@ -48,20 +48,6 @@
                 <td>{{athlete.sport}}</td>
                 <td>{{athlete.gender}}</td>
                 <td>{{athlete.classroom}}</td>
-                {% if user.is_superuser %}
-                <td>
-                  <a href="{%url 'athleteupdate' athlete.id%}" class="del"
-                    ><i class="fa fa-pencil"></i>Edit</a
-                  >
-                </td>
-                <td>
-                  <a
-                    href="{%url 'athletedelete' athlete.id%}"
-                    class="btn btn-danger"
-                    ><i class="fa fa-trash"></i>Delete</a
-                  >
-                </td>
-                {% endif %}
               </tr>
               {% endfor %}
             </tbody>

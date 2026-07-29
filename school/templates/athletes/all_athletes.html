@@ -1,21 +1,26 @@
-{% extends "dashboard/dashboard.html" %} {%load static%}
-<!---->
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}{{athlete.fname}} {{athlete.lname}}{% endblock %}
+<!--static-->
 {% load static %}
-<!---->
-{% block title %}Officials{% endblock %}
-<!---->
+<!--khfufufu-->
 {% block content %}
 
 <div class="page-container">
   <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
-      <h1 class="fs-16 text-uppercase fw-bold mb-0">Officials</h1>
+      <h4 class="fs-16 text-uppercase fw-bold mb-0">Athletes</h4>
+      <a
+        href="{% url 'export_acsv' %}"
+        class="fs-16 text-uppercase fw-bold mb-0"
+        >Export as CSV</a
+      >
     </div>
   </div>
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header"></div>
         <div class="card-body">
           <table
             id="schools"
@@ -24,11 +29,11 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Comittee</th>
+                <th>School</th>
+                <th>Sport</th>
                 <th>Gender</th>
-                <th>Title</th>
-
-                {% if user.is_admin %}
+                <th>Class</th>
+                {% if user.is_superuser %}
                 <th>Edit</th>
                 <th>Delete</th>
                 {% endif %}
@@ -36,24 +41,27 @@
             </thead>
 
             <tbody>
-              {% for committee in comittees %}
+              {% for athlete in all_athletes %}
               <tr>
                 <td>
-                  <a href="{% url 'committee' committee.id%}"
-                    >{{committee.fname}} {{committee.lname}}</a
+                  <a href="{% url 'qathlete' athlete.id%}"
+                    >{{athlete.fname}} {{athlete.lname}}</a
                   >
                 </td>
-                <td>{{committee.comittee}}</td>
-                <td>{{committee.gender}}</td>
-                <td>{{committee.title}}</td>
-                {% if user.is_admin %}
+                <td>{{athlete.school}}</td>
+                <td>{{athlete.sport}}</td>
+                <td>{{athlete.gender}}</td>
+                <td>{{athlete.classroom}}</td>
+                {% if user.is_superuser %}
                 <td>
-                  <a href="" class="badge badge-primary p-2"
+                  <a href="{%url 'athleteupdate' athlete.id%}" class="del"
                     ><i class="fa fa-pencil"></i>Edit</a
                   >
                 </td>
                 <td>
-                  <a href="" class="badge badge-danger p-2"
+                  <a
+                    href="{%url 'athletedelete' athlete.id%}"
+                    class="btn btn-danger"
                     ><i class="fa fa-trash"></i>Delete</a
                   >
                 </td>

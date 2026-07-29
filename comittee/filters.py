@@ -63,10 +63,79 @@ class comitteeFilter(django_filters.FilterSet):
             queryset = queryset.filter(id__in=[v.id for v in value])
         return queryset
 
+
+
+# _+++++++++++++++++Filters++++++++++++++++++++++++++++++
+class match_official_filter(django_filters.FilterSet):
+    name = django_filters.ModelMultipleChoiceFilter(
+        queryset=OfficiatingOfficials.objects.all(),
+        label="Name",
+        method="filter_by_full_name",
+        widget=forms.SelectMultiple(
+            attrs={"class": "form-control js-example-basic-multiple-name"}
+        )
+    )
+    sport = django_filters.ModelMultipleChoiceFilter(
+        queryset=Sport.objects.all(),
+        field_name="sport",
+        label="Sport",
+        widget=forms.SelectMultiple(
+            attrs={"class": "form-control js-example-basic-multiple-name"}
+        )
+    )
+    role = django_filters.ChoiceFilter(
+        choices=[  
+            ("Referee ", "Referee "),
+            ("Umpire ", "Umpire "),
+            ("Judge", "Judge"),
+            ("Assistant Referee", "Assistant Referee"),
+            ("Line Umpire", "Line Umpire"),
+            ("Timekeeper", "Timekeeper"),
+            ("Match Commissioner", "Match Commissioner"),
+            ("Finish Judge", "Finish Judge"),
+            ("Inspector", "Inspector"),
+            ("Anti-Doping Officer", "Anti-Doping Officer"),
+
+],
+        label="Role",
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+
+    gender = django_filters.ChoiceFilter(
+        choices=[("Male", "Male"), ("Female", "Female")],
+        label="Gender",
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    # Add more fields as needed
+
+    class Meta:
+        model = NOC
+        fields = [
+            "role",
+            "gender",
+            "sport",
+            "name",
+        ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Show "First Last" in the dropdown
+        self.filters['name'].field.label_from_instance = (
+            lambda obj: f"{obj.fname} {obj.lname}"
+        )
+
+    def filter_by_full_name(self, queryset, name, value):
+        """Filter by selected official IDs, while keeping other filters."""
+        if value:
+            queryset = queryset.filter(id__in=[v.id for v in value])
+        return queryset
+
+
+
+# _+++++++++++++++++Filters++++++++++++++++++++++++++++++
 class mediaFilter(django_filters.FilterSet):
 
     media_house = django_filters.CharFilter(
-                label="Comittee",
+                label="Media House  ",
         widget=forms.TextInput(attrs={"class": "form-control"})
     )
 

@@ -28,8 +28,10 @@
                 <th>Media Type</th>
                 <th>Role</th>
 
+                {% if user.is_admin %}
                 <th>Edit</th>
                 <th>Delete</th>
+                {% endif %}
               </tr>
             </thead>
 
@@ -44,19 +46,18 @@
                 <td>{{media.media_house}}</td>
                 <td>{{media.media_type}}</td>
                 <td>{{media.role}}</td>
-
+                {% if user.is_admin %}
                 <td>
                   <a href="" class="badge badge-primary p-2"
                     ><i class="fa fa-pencil"></i>Edit</a
                   >
                 </td>
                 <td>
-                  <a
-                    href="{% url 'delete_media' media.id%}"
-                    class="badge badge-danger p-2"
+                  <a href="" class="badge badge-danger p-2"
                     ><i class="fa fa-trash"></i>Delete</a
                   >
                 </td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>

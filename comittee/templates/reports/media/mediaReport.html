@@ -1,7 +1,7 @@
 {% extends "dashboard/dashboard.html" %}
 
 <!--static-->
-{% block title %}Comittees{% endblock %}
+{% block title %}Athletes{% endblock %}
 <!--static-->
 {% load static %}
 <!--khfufufu-->
@@ -10,7 +10,7 @@
   <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
       <h4 class="fs-16 text-uppercase fw-bold mb-0">
-        Comittees Accreditation and Certificates
+        Athletes Accreditation and Certificates
       </h4>
     </div>
 
@@ -25,7 +25,7 @@
         </li>
 
         <li class="breadcrumb-item active">
-          Comittees Accreditation and Certificates
+          Athletes Accreditation and Certificates
         </li>
       </ol>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="header-title">Comittees Accreditation and Certificates</h4>
+          <h4 class="header-title">Athletes Accreditation and Certificates</h4>
           <p class="text-muted font-14">
             To start generating reports, select the athletes you want to include
             in the accreditation or certificate. You can filter athletes by
@@ -48,12 +48,16 @@
             <form method="get" class="form-control">
               <div class="row">
                 <div class="form-group col-md-3">
-                  <label for="id_school">Comittee</label>
-                  {{ filter.form.comittee }}
+                  <label for="id_school">Media</label>
+                  {{ filter.form.media_type }}
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="id_school">Gender</label>
-                  {{ filter.form.gender }}
+                  <label for="id_school">Role</label>
+                  {{ filter.form.role }}
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="id_school">Country</label>
+                  {{ filter.form.country }}
                 </div>
               </div>
               <button type="submit" class="btn btn-primary">Search</button>
@@ -86,12 +90,12 @@
           >
             <thead>
               <tr>
-                <th>Official</th>
-                <th>Comittee</th>
-                <th>Title</th>
-                <th>Gender</th>
-
-          
+                <th>Journalist</th>
+                <th>Media_type</th>
+                <th>Role</th>
+                <th>House</th>
+                <th>Country</th>
+               
               </tr>
             </thead>
 
@@ -101,10 +105,12 @@
                 <td>
                   <a href="">{{teacher.fname}} {{teacher.lname}}</a>
                 </td>
-                <td>{{teacher.comittee}}</td>
-                <td>{{teacher.title}}</td>
-                <td>{{teacher.gender}}</td>
+                <td>{{teacher.media_type}}</td>
+                <td>{{teacher.role}}</td>
+                <td>{{teacher.media_house}}</td>
+                <td>{{teacher.country}}</td>
 
+                
               </tr>
 
               {%endfor%}

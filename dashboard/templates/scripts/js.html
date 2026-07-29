@@ -23,31 +23,19 @@
 <script src="{% static 'js/app.js'%}"></script>
 
 <!-- Apex Chart js -->
-{% comment %}
-<script src="{% static 'js/apexcharts.min.js'%}"></script>
-{% endcomment %}
+
 
 <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
 <!-- Vector Map Js -->
-{% comment %}
-<script src="{% static 'js/jsvectormap.min.js'%}"></script>
-<script src="{% static 'js/world-merc.js'%}"></script>
-<script src="{% static 'js/world.js'%}"></script>
-{% endcomment %}
 
-<!-- Projects Analytics Dashboard App js -->
-{% comment %}
-<script src="{% static 'js/dashboard.js'%}"></script>
-{% endcomment %}
 <!-- Vendor js -->
 <script
   src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
   crossorigin="anonymous"
 ></script>
-<script src="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.js"></script>
-
-<script src="{% static 'js/opper.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+  <script src="{% static 'js/photo.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
 
 <script>
@@ -64,12 +52,4 @@
     $(".js-example-basic-single").select2();
   });
 </script>
-{% comment %} migrations.CreateModel( name='Position', fields=[ ('id',
-models.BigAutoField(auto_created=True, primary_key=True, serialize=False,
-verbose_name='ID')), ('gender', models.CharField(choices=[('Male', 'Male'),
-('Female', 'Female')], max_length=50)), ('position', models.IntegerField()),
-('school', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-to='school.school')), ('sport',
-models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-to='accounts.sport')), ], options={ 'unique_together': {('school', 'sport',
-'gender')}, }, ), {% endcomment %}
+

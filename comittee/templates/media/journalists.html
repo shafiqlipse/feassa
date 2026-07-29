@@ -1,0 +1,65 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}Officials{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="page-title-head d-flex align-items-center gap-2">
+  <div class="flex-grow-1">
+    <h4 class="fs-16 text-uppercase fw-bold mb-0">Journalists</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div
+        class="card-header border-bottom border-dashed d-flex align-items-center"
+      >
+        <h4 class="header-title">Journalists</h4>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive-sm">
+          <table id="schools" class="display">
+            <thead>
+              <tr>
+                <th>Names</th>
+                <th>Media type</th>
+                <th>Role</th>
+                <th>House</th>
+                <th>Country</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for teacher in medias %}
+              <tr>
+                <td>
+                  <a href="{% url 'media_detail' teacher.id %}"
+                    >{{teacher.fname}} {{teacher.lname}}</a
+                  >
+                </td>
+                <td>{{teacher.media_type}}</td>
+                <td>{{teacher.role}}</td>
+                <td>{{teacher.media_house}}</td>
+                <td>{{teacher.country}}</td>
+                <td><a href="" class="btn btn-danger">Delete</a></td>
+              </tr>
+
+              {%endfor%}
+            </tbody>
+          </table>
+        </div>
+        <!-- end table-responsive-->
+      </div>
+      <!-- end card body-->
+    </div>
+    <!-- end card -->
+  </div>
+  <!-- end col-->
+</div>
+
+{% endblock %}

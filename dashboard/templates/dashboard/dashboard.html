@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   {% load static %}
   <head>
@@ -58,6 +58,7 @@
         </button>
 
         <div data-simplebar>
+          {% if user.is_superuser %}
           <!--- Sidenav Menu -->
           <ul class="side-nav">
             <li class="side-nav-title">Navigation</li>
@@ -68,28 +69,17 @@
                 <span class="menu-text"> Dashboard </span>
               </a>
             </li>
-            <li class="side-nav-item">
-              <a href="{% url 'register_position' %}" class="side-nav-link">
-                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
-                <span class="menu-text">Add Positions </span>
-              </a>
-            </li>
-            <li class="side-nav-item">
-              <a href="{% url 'allpositions' %}" class="side-nav-link">
-                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
-                <span class="menu-text"> Positions </span>
-              </a>
-            </li>
+            <li class="side-nav-title">Apps</li>
 
             <li class="side-nav-item">
-              <a href="{% url 'schools'%}" class="side-nav-link">
+              <a href="{% url 'allschools'%}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-calendar"></i></span>
                 <span class="menu-text"> Schools </span>
               </a>
             </li>
 
             <li class="side-nav-item">
-              <a href="{% url 'athletes' %}" class="side-nav-link">
+              <a href="{% url 'allathletes' %}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-inbox"></i></span>
                 <span class="menu-text"> Athletes </span>
               </a>
@@ -102,6 +92,28 @@
               </a>
             </li>
 
+            <li class="side-nav-title">Committees</li>
+
+            <li class="side-nav-item">
+              <a href="{% url 'all_committee_members'%}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Committee Members </span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'all_media_list' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Media Officers</span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'all_match_official'%}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Techinical Officers </span>
+              </a>
+            </li>
+
+            <li class="side-nav-title">Reports</li>
             <li class="side-nav-item">
               <a
                 data-bs-toggle="collapse"
@@ -113,40 +125,31 @@
                 <span class="menu-icon"
                   ><i class="ti ti-file-invoice"></i
                 ></span>
-                <span class="menu-text"> Reports</span>
+                <span class="menu-text"> School Reports</span>
                 <span class="menu-arrow"></span>
               </a>
               <div class="collapse" id="sidebarInvoice">
                 <ul class="sub-menu">
                   <li class="side-nav-item">
-                    <a href="{% url 'athletesreport' %}" class="side-nav-link">
+                    <a
+                      href="{% url 'all_athletesreport' %}"
+                      class="side-nav-link"
+                    >
                       <span class="menu-text">Athlete Reports</span>
                     </a>
                   </li>
+
                   <li class="side-nav-item">
                     <a
-                      href="{% url 'committees_reports' %}"
+                      href="{% url 'all_officialsreports' %}"
                       class="side-nav-link"
                     >
-                      <span class="menu-text">Committee Reports</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a
-                      href="{% url 'media_accreditation' %}"
-                      class="side-nav-link"
-                    >
-                      <span class="menu-text">Media Accreditation</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a href="{% url 'officialsreport' %}" class="side-nav-link">
-                      <span class="menu-text">Other Officials</span>
+                      <span class="menu-text">Officials</span>
                     </a>
                   </li>
                   <li class="side-nav-item">
                     <a href="{% url 'positionsreport' %}" class="side-nav-link">
-                      <span class="menu-text">Merit Certificates</span>
+                      <span class="menu-text">School merit Certificates</span>
                     </a>
                   </li>
                   <li class="side-nav-item">
@@ -167,30 +170,49 @@
                 class="side-nav-link"
               >
                 <span class="menu-icon"><i class="ti ti-files"></i></span>
-                <span class="menu-text"> Officers </span>
+                <span class="menu-text"> Committee Reports </span>
                 <span class="menu-arrow"></span>
               </a>
               <div class="collapse" id="sidebarPages">
                 <ul class="sub-menu">
                   <li class="side-nav-item">
-                    <a href="{% url 'committees' %}" class="side-nav-link">
+                    <a
+                      href="{% url 'all_comitteesReports' %}"
+                      class="side-nav-link"
+                    >
                       <span class="menu-text">Committees</span>
                     </a>
                   </li>
                   <li class="side-nav-item">
-                    <a href="{% url 'media_list' %}" class="side-nav-link">
+                    <a
+                      href="{% url 'all_media_accreditation' %}"
+                      class="side-nav-link"
+                    >
                       <span class="menu-text">Media</span>
                     </a>
                   </li>
                   <li class="side-nav-item">
-                    <a href="pages-faq.html" class="side-nav-link">
-                      <span class="menu-text">Other Officials</span>
+                    <a href="{% url 'all_match_officials_accreditation'%}" class="side-nav-link">
+                      <span class="menu-text">Technical Officials</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
 
+            <li class="side-nav-title">Data</li>
+            <li class="side-nav-item">
+              <a href="{% url 'register_position' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                <span class="menu-text">Add Positions </span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'allpositions' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                <span class="menu-text"> Positions </span>
+              </a>
+            </li>
             <li class="side-nav-item">
               <a
                 data-bs-toggle="collapse"
@@ -224,7 +246,146 @@
               </div>
             </li>
           </ul>
+          {% else %}
+          <!--- Sidenav Menu -->
+          <ul class="side-nav">
+            <li class="side-nav-title">Navigation</li>
 
+            <li class="side-nav-item">
+              <a href="{% url 'dashboard' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                <span class="menu-text"> Dashboard </span>
+              </a>
+            </li>
+            <li class="side-nav-title">Apps</li>
+
+            <li class="side-nav-item">
+              <a href="{% url 'schools'%}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-calendar"></i></span>
+                <span class="menu-text"> Schools </span>
+              </a>
+            </li>
+
+            <li class="side-nav-item">
+              <a href="{% url 'athletes' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-inbox"></i></span>
+                <span class="menu-text"> Athletes </span>
+              </a>
+            </li>
+
+            <li class="side-nav-item">
+              <a href="{% url 'officials'%}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Officials </span>
+              </a>
+            </li>
+
+            <li class="side-nav-title">Committees</li>
+
+            <li class="side-nav-item">
+              <a href="{% url 'committees'%}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Committee Members </span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'media_list' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Media Officers</span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'match_officials_list'%}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-folder"></i></span>
+                <span class="menu-text"> Techinical Officers </span>
+              </a>
+            </li>
+
+            <li class="side-nav-title">Reports</li>
+            <li class="side-nav-item">
+              <a
+                data-bs-toggle="collapse"
+                href="#sidebarInvoice"
+                aria-expanded="false"
+                aria-controls="sidebarInvoice"
+                class="side-nav-link"
+              >
+                <span class="menu-icon"
+                  ><i class="ti ti-file-invoice"></i
+                ></span>
+                <span class="menu-text"> School Reports</span>
+                <span class="menu-arrow"></span>
+              </a>
+              <div class="collapse" id="sidebarInvoice">
+                <ul class="sub-menu">
+                  <li class="side-nav-item">
+                    <a href="{% url 'athletesreport' %}" class="side-nav-link">
+                      <span class="menu-text">Athlete Reports</span>
+                    </a>
+                  </li>
+
+                  <li class="side-nav-item">
+                    <a href="{% url 'officialsreport' %}" class="side-nav-link">
+                      <span class="menu-text">Officials</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a href="{% url 'positionsreport' %}" class="side-nav-link">
+                      <span class="menu-text">School merit Certificates</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a href="{% url 'meritReports' %}" class="side-nav-link">
+                      <span class="menu-text">Athlete Merit Certificates</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="side-nav-item">
+              <a
+                data-bs-toggle="collapse"
+                href="#sidebarPages"
+                aria-expanded="false"
+                aria-controls="sidebarPages"
+                class="side-nav-link"
+              >
+                <span class="menu-icon"><i class="ti ti-files"></i></span>
+                <span class="menu-text"> Committee Reports </span>
+                <span class="menu-arrow"></span>
+              </a>
+              <div class="collapse" id="sidebarPages">
+                <ul class="sub-menu">
+                  <li class="side-nav-item">
+                    <a
+                      href="{% url 'committees_reports' %}"
+                      class="side-nav-link"
+                    >
+                      <span class="menu-text">Committees</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a
+                      href="{% url 'media_accreditation' %}"
+                      class="side-nav-link"
+                    >
+                      <span class="menu-text">Media</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a
+                      href="{% url 'match_officials_accreditation'%}"
+                      class="side-nav-link"
+                    >
+                      <span class="menu-text">Technical Officials</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          {% endif %}
           <div class="clearfix"></div>
         </div>
       </div>
@@ -490,7 +651,7 @@
                 © FEASSA - By
                 <span
                   class="fw-bold text-decoration-underline text-uppercase text-reset fs-12"
-                  >Shafiq</span
+                  >Feassa it team</span
                 >
               </div>
               <div class="col-md-6">

@@ -32,7 +32,7 @@ class AthleteForm(forms.ModelForm):
 class SchoolForm(forms.ModelForm):
     class Meta:
         model = School
-        fields = ["name", "badge"]
+        fields = ["name", "level", "badge"]
 
 
 class OfficialForm(forms.ModelForm):

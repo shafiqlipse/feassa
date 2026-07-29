@@ -1,0 +1,69 @@
+{% extends "dashboard/dashboard.html" %}
+
+<!--static-->
+{% block title %}{{match_official.fname}} {{match_official.lname}}{% endblock %}
+<!--static-->
+{% load static %}
+<!--khfufufu-->
+{% block content %}
+<div class="page-container">
+  <div class="page-title-head d-flex align-items-center gap-2">
+    <div class="flex-grow-1">
+      <h1 class="fs-20 text-uppercase fw-bold mb-0">
+        {{match_official.fname}} {{match_official.lname}}
+      </h1>
+    </div>
+
+    <div class="text-end">
+      <ol class="breadcrumb m-0 py-0 fs-13">
+        <li class="breadcrumb-item">
+          <a href="javascript: void(0);">Feassa</a>
+        </li>
+
+        <li class="breadcrumb-item">
+          <a href="{% url 'match_officials_list' %}">Match Officials</a>
+        </li>
+
+        <li class="breadcrumb-item active">
+          {{match_official.fname}} {{match_official.lname}}
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4 col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <img
+                src="{{ match_official.photo.url }}"
+                alt="{{match_official.fname}} {{match_official.lname}}"
+                class="img-fluid mb-3"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-md-9">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="fs-14 text-uppercase fw-bold mb-2">
+                Media Information
+              </h5>
+              <p>
+                <strong>Names:</strong> {{match_official.fname}}
+                {{match_official.lname}}
+              </p>
+              <p><strong>Sport:</strong> {{match_official.sport}}</p>
+              <p><strong>Role:</strong> {{match_official.role}}</p>
+              <p><strong>Gender:</strong> {{match_official.gender}}</p>
+              <p><strong>Country:</strong> {{match_official.country}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>

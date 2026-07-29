@@ -10,5 +10,5 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('auth/', include('accounts.urls')),
     path('schools/', include('school.urls')),
-    path('comittee/', include('comittee.urls')),
+    path('committee/', include('comittee.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
