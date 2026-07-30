@@ -33,6 +33,10 @@ class SchoolForm(forms.ModelForm):
     class Meta:
         model = School
         fields = ["name", "level", "badge"]
+        widgets = {
+             "name": forms.TextInput(attrs={"class": "form-control"}),
+                        "level": forms.Select(attrs={"class": "form-control"}),
+        }
 
 
 class OfficialForm(forms.ModelForm):

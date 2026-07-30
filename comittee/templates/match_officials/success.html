@@ -1,0 +1,81 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+ <head>
+    <meta charset="utf-8" />
+    <title>Dashboard | FEASSA - East African Schools Sports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="Registration and Management system for the Federation of EastAfrican Schools Sports Associations."
+      name="description"
+    />
+    <meta content="Shafiq" name="author" />
+
+    <!-- App favicon -->
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/logo-sm.png' %}"
+      type="image/x-icon"
+    />
+
+    {% include "styles/styles.html" %}
+  </head>
+
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f9fa;
+  }
+  .success-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+  .success-box img {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+  .amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+  }
+  .message {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  .details {
+    font-size: 14px;
+    color: #777;
+  }
+  .done-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+</style>
+<div class="schools-dew content-wrapper">
+  <div class="success-box">
+ 
+    <div class="amount">Thank You {{match_official}}</div>
+    <div class="message"><strong>Your data has been submited Successfully</div>
+    <div class="details">
+      
+    </div>
+    <a href="https://feassa.org" class="done-btn">DONE</a>
+  </div>
+</div>
+    <!-- END wrapper -->
+
+  {% include "scripts/js.html" %}
+  </body>
+</html>

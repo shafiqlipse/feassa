@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
+
+from django.urls import reverse
 from django.contrib.auth import login, logout
-from django.shortcuts import render, redirect
 from accounts.decorators import school_required, anonymous_required
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -30,7 +31,7 @@ def committee(request):
 
             new_comittee.save()
             messages.success(request, "Form submitted successfully.")
-            return redirect("success")
+            return  redirect(reverse('committee_success', args=[new_comittee.id]))
         else:
             for field, errors in cform.errors.items():
                 for error in errors:
@@ -42,7 +43,18 @@ def committee(request):
         "cform": cform,
     }
 
-    return render(request, "noc/addcommittee.html", context)
+    return render(request, "comittee/addcommittee.html", context)
+
+def committee_success(request,id):
+    committee = NOC.objects.filter(id=id).first()
+    
+    if not committee:
+        return render(request, 'registration_failed.html', {'error': 'Journalist not registered'})
+
+    return render(request, 'comittee/success.html', {
+        'committee': committee,
+
+    })
 
 @login_required(login_url='login')
 def all_committee_members(request):
@@ -343,7 +355,7 @@ def media(request):
 
             new_media.save()
             messages.success(request, "Form submitted successfully.")
-            return redirect("success")
+            return  redirect(reverse('media_success', args=[new_media.id]))  
         else:
             for field, errors in cform.errors.items():
                 for error in errors:
@@ -357,6 +369,19 @@ def media(request):
 
     return render(request, "media/addmedia.html", context)
 
+
+def media_success(request,id):
+    media = Media.objects.filter(id=id).first()
+    
+    if not media:
+        return render(request, 'registration_failed.html', {'error': 'Journalist not registered'})
+
+    return render(request, 'media/success.html', {
+        'media': media,
+
+    })
+    
+    
 @login_required(login_url='login')
 def media_list(request):
     country = request.user.country
@@ -386,8 +411,7 @@ def mediaDetail(request, id):
 
     return render(request, "media/media.html", context)
 
-def success(request):
-    return render(request, "comittee/success.html")
+
 # Note: The above code assumes you have a template named "reports/media/accreditation.html"
 # and "reports/media/certificate.html" for generating the respective reports.
 # Adjust the template paths as necessary based on your project structure.   
@@ -506,7 +530,7 @@ def add_match_official(request):
 
             new_match_official.save()
             messages.success(request, "Form submitted successfully.")
-            return redirect("success")
+            return  redirect(reverse('match_official_success', args=[new_match_official.id]))  
         else:
             for field, errors in cform.errors.items():
                 for error in errors:
@@ -520,6 +544,17 @@ def add_match_official(request):
 
     return render(request, "match_officials/add_match_official.html", context)
 
+def match_official_success(request,id):
+    match_official = OfficiatingOfficials.objects.filter(id=id).first()
+    
+    if not match_official:
+        return render(request, 'registration_failed.html', {'error': 'Journalist not registered'})
+
+    return render(request, 'match_officials/success.html', {
+        'match_official': match_official,
+
+    })
+   
 @login_required(login_url='login')
 def match_official_list(request):
     country = request.user.country

@@ -137,7 +137,11 @@
                         </div>
                         <div class="row mb-3">
                           <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary mt-2">
+                            <button
+                              type="submit"
+                              id="match_btn"
+                              class="btn btn-primary mt-2"
+                            >
                               Submit
                             </button>
                           </div>
@@ -155,5 +159,17 @@
 
     <!-- Vendor js -->
     {% include "scripts/js.html" %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#regeForm");
+        const submitButton = document.querySelector("#match_btn");
+
+        form.addEventListener("submit", function () {
+          submitButton.disabled = true;
+          submitButton.textContent = "Processing...";
+        });
+      });
+    </script>
   </body>
 </html>

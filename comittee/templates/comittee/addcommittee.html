@@ -133,8 +133,12 @@
                             <label>Country</label>{{cform.country}}
                           </div>
                           <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary mt-2">
-                              Save athlete
+                            <button
+                              type="submit"
+                              class="btn btn-primary mt-2"
+                              id="committee_btn"
+                            >
+                              Submit
                             </button>
                           </div>
                         </div>
@@ -151,5 +155,17 @@
 
     <!-- Vendor js -->
     {% include "scripts/js.html" %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#regeForm");
+        const submitButton = document.querySelector("#committee_btn");
+
+        form.addEventListener("submit", function () {
+          submitButton.disabled = true;
+          submitButton.textContent = "Processing...";
+        });
+      });
+    </script>
   </body>
 </html>

@@ -29,6 +29,9 @@ urlpatterns = [
     path("media_accreditation/", mediaAccreditation, name="media_accreditation"),
     path("all_mediaAccreditation/", all_mediaAccreditation, name="all_media_accreditation"),
     path("media/<int:id>", mediaDetail, name="media_detail"),
+    path("success/<int:id>", media_success, name="media_success"),
+    path("match_official_success/<int:id>", match_official_success, name="match_official_success"),
+    path("committee_success/<int:id>", committee_success, name="committee_success"),
     
     
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
@@ -40,4 +43,7 @@ urlpatterns = [
     path("match_officials_accreditation/", OfficiatingOfficialsAccreditation, name="match_officials_accreditation"),
     path("all_match_officials_accreditation/", all_OfficiatingOfficialsAccreditation, name="all_match_officials_accreditation"),
     path("match_official/<int:id>", match_official_detail, name="match_official"),
+    path("match_official_success/<int:id>", match_official_success, name="match_official_success"),
+    
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
