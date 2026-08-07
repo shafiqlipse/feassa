@@ -11,6 +11,18 @@ def Dashboard(request):
     official_count = Official.objects.all().count()
 
     # athletes_count = Athlete.objects.all().count()
+    kenya_sec_schools = School.objects.filter(country="Kenya",level = "Secondary").count()
+    uganda_sec_schools = School.objects.filter(country="Uganda",level = "Secondary").count()
+    tanzania_sec_schools = School.objects.filter(country="Tanzania",level = "Secondary").count()
+    rwanda_sec_schools = School.objects.filter(country="Rwanda",level = "Secondary").count()
+    burundi_sec_schools = School.objects.filter(country="Burundi",level = "Secondary").count()
+    # athletes_count = Athlete.objects.all().count()
+    kenya_primary_schools = School.objects.filter(country="Kenya",level = "Primary").count()
+    uganda_primary_schools = School.objects.filter(country="Uganda",level = "Primary").count()
+    tanzania_primary_schools = School.objects.filter(country="Tanzania",level = "Primary").count()
+    rwanda_primary_schools = School.objects.filter(country="Rwanda",level = "Primary").count()
+    burundi_primary_schools = School.objects.filter(country="Burundi",level = "Primary").count()
+    # athletes_count = Athlete.objects.all().count()
     kenya_schools = School.objects.filter(country="Kenya")
     uganda_schools = School.objects.filter(country="Uganda")
     tanzania_schools = School.objects.filter(country="Tanzania")
@@ -119,6 +131,21 @@ def Dashboard(request):
         "in_tanzania_officials": in_tanzania_officials,
         "in_rwanda_officials": in_rwanda_officials,
         "in_burundi_officials": in_burundi_officials,
+        # "in_uganda_officials": in_uganda_officials,
+        # oficials
+        "kenya_sec_schools": kenya_sec_schools,
+        "uganda_sec_schools": uganda_sec_schools,
+        "tanzania_sec_schools": tanzania_sec_schools,
+        "rwanda_sec_schools": rwanda_sec_schools,
+        "burundi_sec_schools": burundi_sec_schools,
+        # "in_uganda_officials": in_uganda_officials,
+        # "in_uganda_officials": in_uganda_officials,
+        # oficials
+        "uganda_primary_schools": uganda_primary_schools,
+        "kenya_primary_schools": kenya_primary_schools,
+        "tanzania_primary_schools": tanzania_primary_schools,
+        "rwanda_primary_schools": rwanda_primary_schools,
+        "burundi_primary_schools": burundi_primary_schools,
         # "in_uganda_officials": in_uganda_officials,
         "kenya": kenya,
         "uganda": uganda,
