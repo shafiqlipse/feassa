@@ -22,6 +22,19 @@ def Dashboard(request):
     tanzania_primary_schools = School.objects.filter(country="Tanzania",level = "Primary").count()
     rwanda_primary_schools = School.objects.filter(country="Rwanda",level = "Primary").count()
     burundi_primary_schools = School.objects.filter(country="Burundi",level = "Primary").count()
+
+    # athletes_count = Athlete.objects.all().count()
+    kenya_sec_school = School.objects.filter(country="Kenya",level = "Secondary")
+    uganda_sec_school = School.objects.filter(country="Uganda",level = "Secondary")
+    tanzania_sec_school = School.objects.filter(country="Tanzania",level = "Secondary")
+    rwanda_sec_school = School.objects.filter(country="Rwanda",level = "Secondary")
+    burundi_sec_school = School.objects.filter(country="Burundi",level = "Secondary")
+    # athletes_count = Athlete.objects.all().count()
+    kenya_primary_school = School.objects.filter(country="Kenya",level = "Primary")
+    uganda_primary_school = School.objects.filter(country="Uganda",level = "Primary")
+    tanzania_primary_school = School.objects.filter(country="Tanzania",level = "Primary")
+    rwanda_primary_school = School.objects.filter(country="Rwanda",level = "Primary")
+    burundi_primary_school = School.objects.filter(country="Burundi",level = "Primary")
     # athletes_count = Athlete.objects.all().count()
     kenya_schools = School.objects.filter(country="Kenya")
     uganda_schools = School.objects.filter(country="Uganda")
@@ -42,6 +55,12 @@ def Dashboard(request):
     in_tanzania_athletes = Athlete.objects.filter(school__in=tanzania_schools).count()
     in_rwanda_athletes = Athlete.objects.filter(school__in=rwanda_schools).count()
     in_burundi_athletes = Athlete.objects.filter(school__in=burundi_schools).count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    uganda_gsec_school = Athlete.objects.filter(school__in=uganda_sec_school, gender="Female").count()
+    uganda_bsec_school = Athlete.objects.filter(school__in=uganda_sec_school, gender="Male").count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    uganda_gpri_school = Athlete.objects.filter(school__in=uganda_primary_school, gender="Female").count()
+    uganda_bpri_school = Athlete.objects.filter(school__in=uganda_primary_school, gender="Male").count()
     # rwanda = School.objects.filter(country='Rwanda').count()
 
     # rwanda = School.objects.filter(country='Rwanda').count()
@@ -188,6 +207,12 @@ def Dashboard(request):
         "in_burundi_gofficials": in_burundi_gofficials,
         "in_rwanda_bofficials": in_rwanda_bofficials,
         "in_burundi_bofficials": in_burundi_bofficials,
+        # "in_burundi_bofficials": in_burundi_bofficials,
+            "uganda_gsec_school": uganda_gsec_school,
+            "uganda_bsec_school": uganda_bsec_school,
+            "uganda_gpri_school": uganda_gpri_school,
+            "uganda_bpri_school": uganda_bpri_school,
+        # "in_burundi_bofficials": in_burundi_bofficials,
         # "in_burundi_bofficials": in_burundi_bofficials,
         "media_from_uganda":media_from_uganda,
     }
