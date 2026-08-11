@@ -46,7 +46,7 @@
                 <td>{{teacher.role}}</td>
                 <td>{{teacher.media_house}}</td>
                 <td>{{teacher.country}}</td>
-                <td><a href="" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'delete_media' teacher.id %}" class="btn btn-danger">Delete</a></td>
               </tr>
 
               {%endfor%}

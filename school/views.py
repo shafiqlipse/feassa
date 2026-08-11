@@ -196,7 +196,7 @@ def officials(request):
 
             new_official.save()
             messages.success(request, "Official added successfully.")
-            return redirect("allofficials")
+            return redirect("officials")
         else:
             for field, errors in cform.errors.items():
                 for error in errors:
@@ -220,7 +220,7 @@ def all_officials(request):
         "officials": officials,
     }
 
-    return render(request, "Officials/all_officials.html", context)
+    return render(request, "Officials/allofficials.html", context)
 
 @login_required(login_url='login')
 def officialUpdate(request, id):

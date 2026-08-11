@@ -44,6 +44,7 @@ urlpatterns = [
     path("all_match_officials_accreditation/", all_OfficiatingOfficialsAccreditation, name="all_match_officials_accreditation"),
     path("match_official/<int:id>", match_official_detail, name="match_official"),
     path("match_official_success/<int:id>", match_official_success, name="match_official_success"),
+    path("delete_match_official/<int:id>", delete_match_official, name="delete_match_official"),
     
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

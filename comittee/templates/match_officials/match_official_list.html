@@ -46,7 +46,13 @@
                 <td>{{official.role}}</td>
                 <td>{{official.gender}}</td>
                 <td>{{official.country}}</td>
-                <td><a href="" class="btn btn-danger">Delete</a></td>
+                <td>
+                  <a
+                    href="{% url 'delete_match_official' official.id%}"
+                    class="btn btn-danger"
+                    >Delete</a
+                  >
+                </td>
               </tr>
 
               {%endfor%}

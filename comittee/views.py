@@ -141,7 +141,7 @@ def delete_committee(request, id):
         messages.success(request, "Committee deleted successfully.")
         return redirect("committees")  # Change to your actual list view name
 
-    return render(request, "comittee/deletecomitee.html", {"comittee": comittee})
+    return render(request, "comittee/delete_committee.html", {"comittee": comittee})
 # return render(request, "comittee/addcomittee.html", context)
 
 # This function is used to generate reports for comittees
@@ -516,7 +516,7 @@ def delete_match_official(request, id):
         messages.success(request, "Media deleted successfully.")
         return redirect("match_officials_list")  # Change to your actual list view name
 
-    return render(request, "match_official/delete_match_official.html", {"match_official": match_official})
+    return render(request, "match_officials/delete_match_official.html", {"match_official": match_official})
 
 
 def add_match_official(request):

@@ -28,10 +28,7 @@
                 <th>Gender</th>
                 <th>Title</th>
 
-                {% if user.is_admin %}
-                <th>Edit</th>
-                <th>Delete</th>
-                {% endif %}
+                <th>Actions</th>
               </tr>
             </thead>
 
@@ -46,18 +43,21 @@
                 <td>{{committee.comittee}}</td>
                 <td>{{committee.gender}}</td>
                 <td>{{committee.title}}</td>
-                {% if user.is_admin %}
-                <td>
-                  <a href="" class="badge badge-primary p-2"
-                    ><i class="fa fa-pencil"></i>Edit</a
+
+                <td class="text-muted">
+                  <a
+                    href="{%url 'edit_committee' committee.id%}"
+                    class="link-reset fs-20 p-1"
                   >
-                </td>
-                <td>
-                  <a href="" class="badge badge-danger p-2"
-                    ><i class="fa fa-trash"></i>Delete</a
+                    <i class="ti ti-pencil"></i
+                  ></a>
+                  <a
+                    href="{%url 'delete_committee' committee.id%}"
+                    class="link-reset fs-20 p-1"
                   >
+                    <i class="ti ti-trash"></i
+                  ></a>
                 </td>
-                {% endif %}
               </tr>
               {% endfor %}
             </tbody>
