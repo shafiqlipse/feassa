@@ -98,21 +98,7 @@ def edit_committee(request, id):
         if cform.is_valid():
             updated_committee = cform.save(commit=False)
 
-            # Handle the cropped image
-            cropped_data = request.POST.get("photo_cropped")
-            if cropped_data:
-                try:
-                    format, imgstr = cropped_data.split(";base64,")
-                    ext = format.split("/")[-1]
-                    data = ContentFile(
-                        base64.b64decode(imgstr), name=f"photo.{ext}"
-                    )
-                    updated_committee.photo = data
-                except (ValueError, TypeError):
-                    messages.error(request, "Invalid image data.")
-                    return render(
-                        request, "comittee/addcomittee.html", {"cform": cform, "committee": committee}
-                    )
+
 
             updated_committee.save()
             messages.success(request, "Committee updated successfully.")
@@ -128,7 +114,7 @@ def edit_committee(request, id):
         "cform": cform,
         "committee": committee,
     }
-    return render(request, "comittee/addcomittee.html", context)
+    return render(request, "comittee/addcommittee.html", context)
 # return render(request, "comittee/addcomittee.html", context)
 
 
