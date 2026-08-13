@@ -38,7 +38,6 @@ class Athlete(models.Model):
     fname = models.CharField(max_length=50)
     lname = models.CharField(max_length=50)
     classroom = models.CharField(max_length=50, null=True, blank=True)
-
     gender = models.CharField(
         choices=(("Male", "Male"), ("Female", "Female")), max_length=50
     )

@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from comittee.models import *
 from school.models import *
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 # Create your views here.
 @login_required(login_url='login')
 def Dashboard(request):
@@ -218,3 +219,24 @@ def Dashboard(request):
     }
     return render(request, "dashboard/overview.html", context)
 
+
+
+def album_list(request):
+    albums = (
+        Athlete.objects
+        .values("school_id", "school__name", "sport_id", "sport__name", "gender")
+        .annotate(athlete_count=Count("id"))
+        .order_by("school__name", "sport__name", "gender")
+    )
+    return render(request, "albums/list.html", {"albums": albums})
+
+
+def album_detail(request, school_id, sport_id, gender):
+    school = get_object_or_404(School, pk=school_id)
+    sport = get_object_or_404(Sport, pk=sport_id)
+    athletes = Athlete.objects.filter(
+        school_id=school_id, sport_id=sport_id, gender=gender
+    ).select_related("school", "sport")
+    return render(request, "albums/album_detail.html", {
+        "school": school, "sport": sport, "gender": gender, "athletes": athletes,
+    })
