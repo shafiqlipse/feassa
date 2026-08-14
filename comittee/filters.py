@@ -109,7 +109,7 @@ class match_official_filter(django_filters.FilterSet):
     # Add more fields as needed
 
     class Meta:
-        model = NOC
+        model = OfficiatingOfficials
         fields = [
             "role",
             "gender",
