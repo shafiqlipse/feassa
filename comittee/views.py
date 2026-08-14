@@ -411,7 +411,7 @@ def OfficiatingOfficialsAccreditation(request):
     match_officials = OfficiatingOfficials.objects.filter(country = country)
 
     # Apply the filter
-    match_officials_filter = mediaFilter(request.GET, queryset=match_officials)
+    match_officials_filter = match_official_filter(request.GET, queryset=match_officials)
     filtered_match_officials = match_officials_filter.qs
 
     if request.method == "POST":
