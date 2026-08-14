@@ -496,6 +496,14 @@
                     height="18"
                     id="selected-language-image"
                   />
+                  {% elif user.country == 'Burundi' %}
+                  <img
+                    src="{% static 'img/br.svg' %}"
+                    class="w-100 rounded"
+                    alt="{{ user }}"
+                    height="18"
+                    id="selected-language-image"
+                  />
                   {% elif user.country == 'Rwanda' %}
                   <img
                     src="{% static 'img/rd.svg' %}"
