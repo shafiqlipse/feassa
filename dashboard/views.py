@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from comittee.models import *
 from school.models import *
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 from django.http import HttpResponse
@@ -143,6 +143,19 @@ def Dashboard(request):
     ).count()
     # media officials and journalists in different countries
     media_from_uganda = Media.objects.filter(country = "Uganda").count
+    
+    
+    summary = (
+        Athlete.objects
+        .filter(school__country="Uganda")
+        .values('sport__name')
+        .annotate(
+            male_total=Count('id', filter=Q(gender="Male")),
+            female_total=Count('id', filter=Q(gender="Female")),
+            total=Count('id'),
+        )
+        .order_by('-total')
+    )
     context = {
         "schools_count": schools_count,
         "athletes_count": athletes_count,
@@ -219,6 +232,7 @@ def Dashboard(request):
         # "in_burundi_bofficials": in_burundi_bofficials,
         # "in_burundi_bofficials": in_burundi_bofficials,
         "media_from_uganda":media_from_uganda,
+        'summary': summary,
     }
     return render(request, "dashboard/overview.html", context)
 
@@ -263,3 +277,5 @@ def album_pdf(request, school_id, sport_id, gender):
     if pisa_status.err:
         return HttpResponse("PDF generation failed", status=500)
     return response
+
+

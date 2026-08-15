@@ -656,7 +656,9 @@
                       </td>
                       <td>
                         <span class="text-muted fs-12">Boys Secondary</span>
-                        <h5 class="fs-14 mt-1 fw-normal">{{uganda_bsec_school}}</h5>
+                        <h5 class="fs-14 mt-1 fw-normal">
+                          {{uganda_bsec_school}}
+                        </h5>
                       </td>
                       <td>
                         <span class="text-muted fs-12">Girls secondary</span>
@@ -706,9 +708,7 @@
                       <td>
                         <span class="text-muted fs-12">Girls</span>
                         <br />
-                        <h5 class="fs-14 mt-1 fw-normal">
-                          {{in_kenya_girls}}
-                        </h5>
+                        <h5 class="fs-14 mt-1 fw-normal">{{in_kenya_girls}}</h5>
                       </td>
                       <td>
                         <span class="text-muted fs-12">Male Officials</span>
@@ -746,7 +746,9 @@
                       </td>
                       <td>
                         <span class="text-muted fs-12">Boys</span>
-                        <h5 class="fs-14 mt-1 fw-normal">{{in_tanzania_boys}}</h5>
+                        <h5 class="fs-14 mt-1 fw-normal">
+                          {{in_tanzania_boys}}
+                        </h5>
                       </td>
                       <td>
                         <span class="text-muted fs-12">Girls</span>
@@ -836,7 +838,9 @@
                       </td>
                       <td>
                         <span class="text-muted fs-12">Boys</span>
-                        <h5 class="fs-14 mt-1 fw-normal">{{in_burundi_boys}}</h5>
+                        <h5 class="fs-14 mt-1 fw-normal">
+                          {{in_burundi_boys}}
+                        </h5>
                       </td>
                       <td>
                         <span class="text-muted fs-12">Girls</span>
@@ -862,6 +866,68 @@
                 </table>
               </div>
               <!-- end table-respon sive-->
+            </div>
+          </div>
+        </div>
+        <!-- end card-body-->
+      </div>
+      <!-- end card-->
+    </div>
+    <!-- end col-->
+  </div>
+  <!-- end row-->
+
+  <div class="row">
+    <div class="col-xxl-6">
+      <div class="card">
+        <div
+          class="d-flex card-header justify-content-between align-items-center"
+        >
+          <h4 class="header-title">Breakdown by Sport</h4>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table
+                  class="table table-custom table-centered table-sm table-nowrap table-hover mb-0"
+                >
+                  <thead>
+                    <tr></tr>
+                    <tr>
+                      <th>Sport</th>
+                      <th>Male</th>
+                      <th>Female</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in summary %}
+                    <tr>
+                      <td>
+                        <h5 class="fs-14 mt-1 fw-normal">
+                          {{ row.sport__name }}
+                        </h5>
+                      </td>
+                      <td>
+                        <h5 class="fs-14 mt-1 fw-normal">{{ row.male_total }}</h5>
+                      </td>
+                      <td>
+                        <h5 class="fs-14 mt-1 fw-normal">{{ row.female_total }}</h5>
+                      </td>
+                      <td>
+                        <h5 class="fs-14 mt-1 fw-normal">{{ row.total }}</h5>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="2">No athletes registered yet.</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- end table-responsive-->
             </div>
           </div>
         </div>
