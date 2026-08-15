@@ -26,15 +26,30 @@
                 <th>School</th>
                 <th>Sport</th>
                 <th>Gender</th>
+                <th>Athletes</th>
+                <th>Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {% for album in albums %}
               <tr>
-                <td><a href="{% url 'album_detail' album.school_id album.sport_id album.gender %}">{{ album.school__name }}</a></td>
+                <td>
+                  <a
+                    href="{% url 'album_detail' album.school_id album.sport_id album.gender %}"
+                    >{{ album.school__name }}</a
+                  >
+                </td>
                 <td>{{album.sport__name}}</td>
                 <td>{{album.gender}}</td>
+                <td>{{ album.athlete_count }}</td>
+                <td>
+                  <a
+                    href="{% url 'album_pdf' album.school_id album.sport_id album.gender %}"
+                    class="badge badge-outline-primary"
+                    >Generate Album</a
+                  >
+                </td>
               </tr>
               {% endfor %}
             </tbody>

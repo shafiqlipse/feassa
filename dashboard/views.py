@@ -3,6 +3,9 @@ from comittee.models import *
 from school.models import *
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
+from django.http import HttpResponse
 # Create your views here.
 @login_required(login_url='login')
 def Dashboard(request):
@@ -240,3 +243,23 @@ def album_detail(request, school_id, sport_id, gender):
     return render(request, "albums/album_detail.html", {
         "school": school, "sport": sport, "gender": gender, "athletes": athletes,
     })
+    
+    
+def album_pdf(request, school_id, sport_id, gender):
+    school = get_object_or_404(School, pk=school_id)
+    sport = get_object_or_404(Sport, pk=sport_id)
+    athletes = (
+        Athlete.objects
+        .filter(school_id=school_id, sport_id=sport_id, gender=gender)
+        .select_related("school", "sport")
+        .order_by("lname", "fname")
+    )
+    html = render_to_string("albums/album_pdf.html", {
+        "school": school, "sport": sport, "gender": gender, "athletes": athletes,
+    })
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = f'attachment; filename="{school.name}_{sport.name}_{gender}_album.pdf"'
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse("PDF generation failed", status=500)
+    return response
