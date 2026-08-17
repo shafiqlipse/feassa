@@ -9,7 +9,7 @@ from .views import *
 urlpatterns = [
  
     path("success/", success, name="success"),
-    path("addmember/", committee, name="addmember"),
+    # path("addmember/", committee, name="addmember"),
     path("committees/", committees, name="committees"),
     path("all_committee_members/", all_committee_members, name="all_committee_members"),
     path("committees_reports/", comitteesReports, name="committees_reports"),
@@ -23,7 +23,7 @@ urlpatterns = [
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
-    path("media/", media, name="media"),
+    # path("media/", media, name="media"),
     path("media_list/", media_list, name="media_list"),
     path("mediall_media_lista_list/", all_media_list, name="all_media_list"),
     path("media_accreditation/", mediaAccreditation, name="media_accreditation"),
@@ -37,7 +37,7 @@ urlpatterns = [
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
     # path("delenoc/<int:id>", deleteNoc, name="delenoch"),
-    path("add_match_official/", add_match_official, name="add_match_official"),
+    # path("add_match_official/", add_match_official, name="add_match_official"),
     path("match_officials_list/", match_official_list, name="match_officials_list"),
     path("all_match_official/", all_match_official, name="all_match_official"),
     path("match_officials_accreditation/", OfficiatingOfficialsAccreditation, name="match_officials_accreditation"),
