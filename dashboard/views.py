@@ -53,6 +53,25 @@ def Dashboard(request):
     in_rwanda_officials = Official.objects.filter(school__in=rwanda_schools).count()
     in_burundi_officials = Official.objects.filter(school__in=burundi_schools).count()
     # rwanda = School.objects.filter(country='Rwanda').count()
+    ugandan_committee = NOC.objects.filter(country = "Uganda").count()
+    kenyan_committee = NOC.objects.filter(country = "Kenya").count()
+    tanzanian_committee = NOC.objects.filter(country = "Tanzania").count()
+    rwandan_committee = NOC.objects.filter(country = "Rwanda").count()
+    burundian_committee = NOC.objects.filter(country = "Burundi").count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    ugandan_media = Media.objects.filter(country = "Uganda").count()
+    kenyan_media = Media.objects.filter(country = "Kenya").count()
+    tanzanian_media = Media.objects.filter(country = "Tanzania").count()
+    rwandan_media = Media.objects.filter(country = "Rwanda").count()
+    burundian_media = Media.objects.filter(country = "Burundi").count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    # rwanda = School.objects.filter(country='Rwanda').count()
+    ugandan_referees = OfficiatingOfficials.objects.filter(country = "Uganda").count()
+    kenyan_referees = OfficiatingOfficials.objects.filter(country = "Kenya").count()
+    tanzanian_referees = OfficiatingOfficials.objects.filter(country = "Tanzania").count()
+    rwandan_referees = OfficiatingOfficials.objects.filter(country = "Rwanda").count()
+    burundian_referees = OfficiatingOfficials.objects.filter(country = "Burundi").count()
     # rwanda = School.objects.filter(country='Rwanda').count()
     in_uganda_athletes = Athlete.objects.filter(school__in=uganda_schools).count()
     in_kenya_athletes = Athlete.objects.filter(school__in=kenya_schools).count()
@@ -233,6 +252,23 @@ def Dashboard(request):
         # "in_burundi_bofficials": in_burundi_bofficials,
         "media_from_uganda":media_from_uganda,
         'summary': summary,
+        # 'summary': summary,
+        # 'summary': summary,
+        'ugandan_committee': ugandan_committee,
+        'kenyan_committee': kenyan_committee,
+        'tanzanian_committee': tanzanian_committee,
+        'rwandan_committee': rwandan_committee,
+        'burundian_committee': burundian_committee,
+        'ugandan_media': ugandan_media,
+        'kenyan_media': kenyan_media,
+        'tanzanian_media': tanzanian_media,
+        'rwandan_media': rwandan_media,
+        'burundian_media': burundian_media,
+        'ugandan_referees': ugandan_referees,
+        'kenyan_referees': kenyan_referees,
+        'tanzanian_referees': tanzanian_referees,
+        'rwandan_referees': rwandan_referees,
+        'burundian_referees': burundian_referees,
     }
     return render(request, "dashboard/overview.html", context)
 

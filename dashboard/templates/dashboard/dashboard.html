@@ -192,7 +192,10 @@
                     </a>
                   </li>
                   <li class="side-nav-item">
-                    <a href="{% url 'all_match_officials_accreditation'%}" class="side-nav-link">
+                    <a
+                      href="{% url 'all_match_officials_accreditation'%}"
+                      class="side-nav-link"
+                    >
                       <span class="menu-text">Technical Officials</span>
                     </a>
                   </li>
@@ -388,6 +391,19 @@
                   </li>
                 </ul>
               </div>
+            </li>
+            <li class="side-nav-title">Data</li>
+            <li class="side-nav-item">
+              <a href="{% url 'register_position' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                <span class="menu-text">Add Positions </span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a href="{% url 'allpositions' %}" class="side-nav-link">
+                <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
+                <span class="menu-text"> Positions </span>
+              </a>
             </li>
           </ul>
           {% endif %}
