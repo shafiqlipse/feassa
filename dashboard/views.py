@@ -323,7 +323,7 @@ from django.db.models import Count, Q
 def athlete_summary_csv(request):
     summary = (
         Athlete.objects
-        .filter(school__country="Uganda")
+        .all()
         .values('sport__name', 'school__name')
         .annotate(
             male_total=Count('id', filter=Q(gender="Male")),
