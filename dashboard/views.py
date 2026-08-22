@@ -315,3 +315,34 @@ def album_pdf(request, school_id, sport_id, gender):
     return response
 
 
+import csv
+from django.http import HttpResponse
+from django.db.models import Count, Q
+
+
+def athlete_summary_csv(request):
+    summary = (
+        Athlete.objects
+        .filter(school__country="Uganda")
+        .values('sport__name', 'school__name')
+        .annotate(
+            male_total=Count('id', filter=Q(gender="Male")),
+            female_total=Count('id', filter=Q(gender="Female")),
+            total=Count('id'),
+        )
+        .order_by('sport__name', '-total')
+    )
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="athletes_per_sport.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Sport', 'School', 'Male', 'Female', 'Total'])
+
+    for row in summary:
+        writer.writerow([
+            row['sport__name'], row['school__name'],
+            row['male_total'], row['female_total'], row['total']
+        ])
+
+    return response
