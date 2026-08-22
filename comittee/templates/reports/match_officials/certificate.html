@@ -42,18 +42,16 @@
       <div class="athletes">
         <table class="media-table">
           <tbody>
-            {% for media in athletes %}
+            {% for media in match_officials %}
             <tr>
               <td class="media-cell">
                 <div class="media-info">
                   <span
                     >{{ media.fname|upper }} {{media.lname|upper}}
-                    ({{media.classroom|upper}})</span
+                   </span
                   ><br />
-
-                  <span>{{ media.school|upper }}</span><br />
-                  <span
-                    >{{ media.sport|upper }} ({{media.gender|upper}})</span
+                  <span>{{ media.role|upper }}</span><br />
+                  <span>{{ media.sport|upper }} ({{media.gender|upper}})</span
                   ><br />
                 </div>
               </td>
